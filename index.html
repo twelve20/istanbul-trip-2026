@@ -35,10 +35,10 @@
       <div class="hero"><div class="hero-badge">✈ 4 ночи · Стамбул</div><div><h1>Наш маленький<br>Стамбул.</h1><div class="hero-bottom"><button class="start" data-go="plan">Смотреть маршрут ↗</button></div></div></div>
     </div>
     <div class="stack overview-right">
-      <div class="card"><div class="small-label">НАША БАЗА</div><div class="large-val">Edibe Sultan</div><a class="link-btn" style="display:inline-block;padding:10px 0 0" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Edibe+Sultan+Hotel+Istanbul">Открыть на карте ↗</a></div>
+      <div class="card"><div class="small-label">НАША БАЗА</div><div class="large-val">Edibe Sultan Hotel</div><a class="link-btn" style="display:inline-block;padding:10px 0 0" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Edibe+Sultan+Hotel+Istanbul">Открыть на карте ↗</a></div>
       <div class="card"><div class="small-label">НАША КОМПАНИЯ</div><div class="large-val">6 человек</div></div>
-      <div class="card quick-card"><span class="icon-dot">🛬</span><div><b>29 ноября · Прилёт</b><div class="subline">LED 14:40 → IST 18:35<br>Southwind · ручная кладь 8 кг</div></div></div>
-      <div class="card quick-card"><span class="icon-dot">🛫</span><div><b>3 декабря · Домой</b><div class="subline">IST 17:30 → SVO 22:25<br>Аэрофлот · ручная кладь 10 кг</div></div></div>
+      <div class="card quick-card"><span class="icon-dot">🛬</span><div><b>29 ноября · Прилетаем в Стамбул</b><div class="subline">LED 14:40 → IST 18:35<br>Southwind · ручная кладь 8 кг</div></div></div>
+      <div class="card quick-card"><span class="icon-dot">🛫</span><div><b>3 декабря · Вылетаем в Москву</b><div class="subline">IST 17:30 → SVO 22:25<br>Аэрофлот · ручная кладь 10 кг</div></div></div>
       
     </div>
   </div>
@@ -77,76 +77,75 @@ const I = {
 const tabs=[['overview','Обзор','home'],['plan','Маршрут','plan'],['places','Места','places'],['shopping','Покупки','shopping'],['budget','Бюджет','budget']];
 const days=[
  {date:'29 ноября',week:'Воскресенье',short:'29 ноя',title:'Привет, Стамбул!',desc:'Первый вечер — прилёт, заселение и прогулка без спешки.',tags:['Вдвоём','Перелёт'],events:[
-  ['14:40','✈️','Вылет из Петербурга','Southwind Airlines: LED → IST. Ручная кладь до 8 кг, без багажа.','Вдвоём'],
-  ['18:35','🛬','Прилёт в IST','Паспортный контроль, получение связи и трансфер в район Султанахмета.','Вдвоём'],
-  ['Вечер','🏨','Edibe Sultan Hotel','Заселение и небольшой отдых после дороги.','Вдвоём','Edibe Sultan Hotel Istanbul'],
-  ['≈ 21:00','🍽️','Ужин — Ortaklar Kebap Restaurant','','Вдвоём','Ortaklar Kebap Restaurant Peykhane 27A Istanbul'],
-  ['После ужина','🌙','Султанахмет — вечерняя прогулка','','Вдвоём','Sultanahmet Istanbul']
+  ['14:40','✈️','Вылетаем из Петербурга','Southwind Airlines: LED → IST. Ручная кладь до 8 кг, без багажа.','Вдвоём'],
+  ['18:35','🛬','Прилетаем в Стамбул (IST)','Паспортный контроль, получение связи и трансфер в район Султанахмета.','Вдвоём'],
+  ['Вечер','🏨','Заселение в Edibe Sultan Hotel','Заселение и небольшой отдых после дороги.','Вдвоём','Edibe Sultan Hotel Istanbul'],
+  ['≈ 21:00','🍽️','Ужинаем в Ortaklar Kebap Restaurant','','Вдвоём','Ortaklar Kebap Restaurant Peykhane 27A Istanbul'],
+  ['После ужина','🌙','Гуляем по вечернему Султанахмету','','Вдвоём','Sultanahmet Istanbul']
  ]},
  {date:'30 ноября',week:'Понедельник',short:'30 ноя',title:'Старый город',desc:'Исторические символы Стамбула и обязательная мечеть Сулеймание. Вечером — Semaver Cafe.',tags:['Вдвоём','Кафе'],events:[
-  ['Утро','🥐','Завтрак в Edibe Sultan Hotel — оплачен','','Вдвоём'],
-  ['После завтрака','☕','Starbucks Sultanahmet','','Вдвоём','Starbucks Sultanahmet Istanbul'],
-  ['До обеда','🕌','Айя-София и Голубая мечеть','Красивые площади и архитектура. Цистерну Базилика можно добавить по желанию.','Вдвоём','Hagia Sophia Istanbul'],
-  ['≈ 12:15','⭐','Мечеть Сулеймание — обязательно','','Вдвоём','Suleymaniye Mosque Istanbul'],
-  ['≈ 13:30','🍲','Обед — Süleymaniye Lokantası','','Вдвоём','Süleymaniye Lokantası Istanbul Molla Hüsrev'],
-  ['≈ 18:30','🍽️','Ужин — Balkan Lokantası Sirkeci','','Вдвоём','Balkan Lokantasi Sirkeci Hoca Pasa Sokak Istanbul'],
-  ['≈ 20:30','🫖','Semaver Cafe','','Кафе','Semaver Cafe Kennedy Caddesi Istanbul','https://www.semavercafe.com/menu']
+  ['Утро','🥐','Завтракаем в Edibe Sultan Hotel — оплачено','','Вдвоём'],
+  ['После завтрака','☕','Берём кофе в Starbucks Sultanahmet','','Вдвоём','Starbucks Sultanahmet Istanbul'],
+  ['До обеда','🕌','Посещаем Айя-Софию и Голубую мечеть','Красивые площади и архитектура. Цистерну Базилика можно добавить по желанию.','Вдвоём','Hagia Sophia Istanbul'],
+  ['≈ 12:15','⭐','Посещаем мечеть Сулеймание — обязательно','','Вдвоём','Suleymaniye Mosque Istanbul'],
+  ['≈ 13:30','🍲','Обедаем в Süleymaniye Lokantası','','Вдвоём','Süleymaniye Lokantası Istanbul Molla Hüsrev'],
+  ['≈ 18:30','🍽️','Ужинаем в Balkan Lokantası Sirkeci','','Вдвоём','Balkan Lokantasi Sirkeci Hoca Pasa Sokak Istanbul'],
+  ['≈ 20:30','🫖','Заходим в Semaver Cafe','','Кафе','Semaver Cafe Kennedy Caddesi Istanbul','https://www.semavercafe.com/menu']
  ]},
  {date:'1 декабря',week:'Вторник',short:'1 дек',title:'Галата и Босфор',desc:'Городские улочки, виды на воду и вечер только для вас двоих.',tags:['Вдвоём','Прогулка'],events:[
-  ['Утро','🥐','Завтрак в Edibe Sultan Hotel — оплачен','','Вдвоём'],
-  ['После завтрака','🌉','Эминёню и Галатский мост','','Вдвоём','Galata Bridge Istanbul'],
-  ['День','📸','Галата и Каракёй','','Вдвоём','Galata Tower Istanbul'],
-  ['≈ 13:00','🍲','Обед — Emek Restaurant (Каракёй)','','Вдвоём','Emek Restaurant Yeni Merdiven Sokak 9 Karakoy Istanbul'],
-  ['После прогулки','🍷','Сухое гранатовое вино — Tekel (Сиркеджи)','','Вдвоём','Tekel Sirkeci Istanbul'],
-  ['≈ 19:00','🍽️','Ужин — Yeni Karadeniz Pide','','Вдвоём','Yeni Karadeniz Pide Kebap Salonu Cagaloglu Hamami Sokak Istanbul'],
-  ['Вечер','✨','Вечер с Дашей','','Вдвоём']
+  ['Утро','🥐','Завтракаем в Edibe Sultan Hotel — оплачено','','Вдвоём'],
+  ['После завтрака','🌉','Гуляем по Эминёню и Галатскому мосту','','Вдвоём','Galata Bridge Istanbul'],
+  ['День','📸','Гуляем по Галате и Каракёю','','Вдвоём','Galata Tower Istanbul'],
+  ['≈ 13:00','🍲','Обедаем в Emek Restaurant (Каракёй)','','Вдвоём','Emek Restaurant Yeni Merdiven Sokak 9 Karakoy Istanbul'],
+  ['После прогулки','🍷','Ищем гранатовое вино в Tekel (Сиркеджи)','','Вдвоём','Tekel Sirkeci Istanbul'],
+  ['≈ 19:00','🍽️','Ужинаем в Yeni Karadeniz Pide','','Вдвоём','Yeni Karadeniz Pide Kebap Salonu Cagaloglu Hamami Sokak Istanbul'],
  ]},
  {date:'2 декабря',week:'Среда',short:'2 дек',title:'IKEA и день рождения',desc:'Небольшой шопинг с Дашей, вечер свободен под семейный праздник Тимохи.',tags:['Вдвоём','Возможен семейный ужин'],events:[
-  ['Утро','🥐','Завтрак в Edibe Sultan Hotel — оплачен','','Вдвоём'],
-  ['После завтрака','🛍️','IKEA Bayrampaşa','','Вдвоём','IKEA Bayrampasa Istanbul'],
-  ['≈ 12:30','🍽️','Обед — IKEA Restaurant','','Вдвоём','IKEA Restaurant Bayrampasa Forum Istanbul'],
-  ['День','👕','Forum İstanbul','','Вдвоём','Forum Istanbul Shopping Mall'],
-  ['≈ 19:30','🎂','Ужин на день рождения Тимохи — Bitlisli (вариант)','','С семьёй','Bitlisli Hoca Camii Sokak Sirkeci Istanbul']
+  ['Утро','🥐','Завтракаем в Edibe Sultan Hotel — оплачено','','Вдвоём'],
+  ['После завтрака','🛍️','Едем в IKEA Bayrampaşa','','Вдвоём','IKEA Bayrampasa Istanbul'],
+  ['≈ 12:30','🍽️','Обедаем в IKEA Restaurant','','Вдвоём','IKEA Restaurant Bayrampasa Forum Istanbul'],
+  ['День','👕','Идём за покупками в Forum İstanbul','','Вдвоём','Forum Istanbul Shopping Mall'],
+  ['≈ 19:30','🎂','Вариант ужина на день рождения Тимохи — Bitlisli','','С семьёй','Bitlisli Hoca Camii Sokak Sirkeci Istanbul']
  ]},
  {date:'3 декабря',week:'Четверг',short:'3 дек',title:'До встречи, Стамбул',desc:'Спокойное утро, дорога в аэропорт IST и обратный перелёт.',tags:['Вдвоём','Перелёт'],events:[
-  ['Утро','🥐','Завтрак в Edibe Sultan Hotel — оплачен','','Вдвоём'],
-  ['После завтрака','🧳','Сборы и выезд из отеля','','Вдвоём'],
-  ['11:30–12:00','🚖','Выезд в аэропорт','','Вдвоём','Istanbul Airport IST'],
-  ['≈ 15:00','🥯','Обед — Simit Sarayı (аэропорт IST)','','Вдвоём','Simit Sarayi Istanbul Airport International Departures'],
-  ['17:30','🛫','Аэрофлот IST → SVO','','Вдвоём']
+  ['Утро','🥐','Завтракаем в Edibe Sultan Hotel — оплачено','','Вдвоём'],
+  ['После завтрака','🧳','Собираем вещи и выезжаем из отеля','','Вдвоём'],
+  ['11:30–12:00','🚖','Выезжаем в аэропорт IST','','Вдвоём','Istanbul Airport IST'],
+  ['≈ 15:00','🥯','Обедаем в Simit Sarayı (аэропорт IST)','','Вдвоём','Simit Sarayi Istanbul Airport International Departures'],
+  ['17:30','🛫','Вылетаем в Москву рейсом Аэрофлота','','Вдвоём']
  ]}
 ];
 const places=[
- ['Edibe Sultan Hotel','Отель','🏨','Ваша база в Султанахмете. Завтрак включён.','Edibe Sultan Hotel Istanbul'],
- ['Сулеймание','Смотреть','🕌','Обязательная мечеть с видом на Золотой Рог.','Suleymaniye Mosque Istanbul'],
- ['Айя-София','Смотреть','🕌','Главная точка исторического центра.','Hagia Sophia Istanbul'],
- ['Голубая мечеть','Смотреть','🕌','Площадь Султанахмет.','Blue Mosque Istanbul'],
- ['Цистерна Базилика','Смотреть','🏛️','Подземное водохранилище, вариант по желанию.','Basilica Cistern Istanbul'],
- ['Галатская башня','Смотреть','📸','Галата, Каракёй и атмосферные улочки.','Galata Tower Istanbul'],
- ['Semaver Cafe','Кофе и отдых','🫖','Кафе и кальянная.','Semaver Cafe Kennedy Caddesi Istanbul','https://www.semavercafe.com/menu'],
- ['Starbucks Sultanahmet','Кофе и отдых','☕','Кофе по пути через старый город.','Starbucks Sultanahmet Istanbul'],
- ['IKEA Bayrampaşa','Магазины','🛍️','Ресторан IKEA и короткая прогулка.','IKEA Bayrampasa Istanbul'],
- ['Forum İstanbul','Магазины','👕','Рубашка XL и другие небольшие покупки.','Forum Istanbul Shopping Mall'],
- ['Tekel (Сиркеджи)','Магазины','🍷','Поиск сухого гранатового вина.','Tekel Sirkeci Istanbul'],
- ['Hafız Mustafa','Магазины','🍬','Коробки лукума и другие сладости.','Hafiz Mustafa Sirkeci Istanbul'],
- ['Koska','Магазины','🍬','Халва и упакованные сладости.','Koska Istanbul'],
- ['Değirmencioğlu','Локанты','🍲','Домашняя турецкая еда.','Değirmencioğlu Lokanta Istanbul'],
- ['Buyruk Esnaf Lokantası','Локанты','🍲','Супы и сытные блюда.','Buyruk Esnaf Lokantasi Istanbul'],
- ['Balkan Restaurant Sirkeci','Локанты','🥘','Ужин в Сиркеджи.','Balkan Lokantasi Sirkeci Hoca Pasa Sokak Istanbul'],
- ['Süleymaniye Lokantası','Локанты','🍲','Обед после Сулеймание.','Suleymaniye Lokantasi Istanbul'],
- ['Emek Restaurant','Локанты','🍲','Обед в Каракёе.','Emek Restaurant Yeni Merdiven Sokak Karakoy Istanbul'],
- ['Hocapaşa Pidecisi','Кебабы и пиде','🥙','Пиде и турецкая выпечка.','Hocapasa Pidecisi Istanbul'],
- ['Bitlisli','Кебабы и пиде','🍢','Кебабы и мясные блюда.','Bitlisli Hoca Camii Sokak Sirkeci Istanbul'],
- ['Köfteci Kadırgalı','Кебабы и пиде','🧆','Кёфте по-турецки.','Kofteci Kadirgali Istanbul'],
- ['Yeni Karadeniz Pide','Кебабы и пиде','🥙','Ещё один вариант пиде.','Yeni Karadeniz Pide Istanbul'],
- ['Ortaklar Kebap','Кебабы и пиде','🍢','Кебабная в старом городе.','Ortaklar Kebap Restaurant Peykhane 27A Istanbul'],
- ['IKEA Restaurant Bayrampaşa','Рестораны','🍽️','Обед в IKEA.','IKEA Restaurant Bayrampasa Forum Istanbul'],
- ['Simit Sarayı (аэропорт IST)','Рестораны','🥯','Обед перед вылетом.','Simit Sarayi Istanbul Airport International Departures'],
- ['Tarihi Dürüm Han','Уличная еда','🐟','Вариант перекуса на прогулке.','Tarihi Durum Han Eminonu Istanbul'],
- ['Yılmaz Usta','Уличная еда','🐟','Уличная еда в районе Эминёню.','Yilmaz Usta Eminonu Istanbul']
+ ['Наш отель — Edibe Sultan Hotel','Отель','🏨','Ваша база в Султанахмете. Завтрак включён.','Edibe Sultan Hotel Istanbul'],
+ ['Посетить мечеть Сулеймание','Смотреть','🕌','Обязательная мечеть с видом на Золотой Рог.','Suleymaniye Mosque Istanbul'],
+ ['Посетить Айя-Софию','Смотреть','🕌','Главная точка исторического центра.','Hagia Sophia Istanbul'],
+ ['Посетить Голубую мечеть','Смотреть','🕌','Площадь Султанахмет.','Blue Mosque Istanbul'],
+ ['Спуститься в Цистерну Базилика','Смотреть','🏛️','Подземное водохранилище, вариант по желанию.','Basilica Cistern Istanbul'],
+ ['Посмотреть Галатскую башню','Смотреть','📸','Галата, Каракёй и атмосферные улочки.','Galata Tower Istanbul'],
+ ['Зайти в Semaver Cafe','Кофе и отдых','🫖','Кафе и кальянная.','Semaver Cafe Kennedy Caddesi Istanbul','https://www.semavercafe.com/menu'],
+ ['Выпить кофе в Starbucks Sultanahmet','Кофе и отдых','☕','Кофе по пути через старый город.','Starbucks Sultanahmet Istanbul'],
+ ['Сходить в IKEA Bayrampaşa','Магазины','🛍️','Ресторан IKEA и короткая прогулка.','IKEA Bayrampasa Istanbul'],
+ ['За покупками в Forum İstanbul','Магазины','👕','Рубашка XL и другие небольшие покупки.','Forum Istanbul Shopping Mall'],
+ ['Найти гранатовое вино в Tekel (Сиркеджи)','Магазины','🍷','Поиск сухого гранатового вина.','Tekel Sirkeci Istanbul'],
+ ['Купить сладости в Hafız Mustafa','Магазины','🍬','Коробки лукума и другие сладости.','Hafiz Mustafa Sirkeci Istanbul'],
+ ['Заглянуть за сладостями в Koska','Магазины','🍬','Халва и упакованные сладости.','Koska Istanbul'],
+ ['Пообедать в Değirmencioğlu','Локанты','🍲','Домашняя турецкая еда.','Değirmencioğlu Lokanta Istanbul'],
+ ['Пообедать в Buyruk Esnaf Lokantası','Локанты','🍲','Супы и сытные блюда.','Buyruk Esnaf Lokantasi Istanbul'],
+ ['Поужинать в Balkan Restaurant Sirkeci','Локанты','🥘','Ужин в Сиркеджи.','Balkan Lokantasi Sirkeci Hoca Pasa Sokak Istanbul'],
+ ['Пообедать в Süleymaniye Lokantası','Локанты','🍲','Обед после Сулеймание.','Suleymaniye Lokantasi Istanbul'],
+ ['Пообедать в Emek Restaurant','Локанты','🍲','Обед в Каракёе.','Emek Restaurant Yeni Merdiven Sokak Karakoy Istanbul'],
+ ['Попробовать пиде в Hocapaşa Pidecisi','Кебабы и пиде','🥙','Пиде и турецкая выпечка.','Hocapasa Pidecisi Istanbul'],
+ ['Поужинать в Bitlisli','Кебабы и пиде','🍢','Кебабы и мясные блюда.','Bitlisli Hoca Camii Sokak Sirkeci Istanbul'],
+ ['Попробовать кёфте в Köfteci Kadırgalı','Кебабы и пиде','🧆','Кёфте по-турецки.','Kofteci Kadirgali Istanbul'],
+ ['Поужинать в Yeni Karadeniz Pide','Кебабы и пиде','🥙','Ещё один вариант пиде.','Yeni Karadeniz Pide Istanbul'],
+ ['Поужинать в Ortaklar Kebap','Кебабы и пиде','🍢','Кебабная в старом городе.','Ortaklar Kebap Restaurant Peykhane 27A Istanbul'],
+ ['Пообедать в IKEA Restaurant Bayrampaşa','Рестораны','🍽️','Обед в IKEA.','IKEA Restaurant Bayrampasa Forum Istanbul'],
+ ['Перекусить в Simit Sarayı (аэропорт IST)','Рестораны','🥯','Обед перед вылетом.','Simit Sarayi Istanbul Airport International Departures'],
+ ['Попробовать дюрюм в Tarihi Dürüm Han','Уличная еда','🐟','Вариант перекуса на прогулке.','Tarihi Durum Han Eminonu Istanbul'],
+ ['Попробовать уличную еду у Yılmaz Usta','Уличная еда','🐟','Уличная еда в районе Эминёню.','Yilmaz Usta Eminonu Istanbul']
 ];
 const defaultShopping=[
- ['Магнитик','В память о Стамбуле'],['Сувенир маме','Назар, небольшая керамика или чайный стакан'],['Сладости маме','Лукум, пахлава или халва'],['Сувенир папе','Что-то компактное'],['Сладости папе','Фабрично упакованная коробка'],['Рубашка XL папе','Посмотреть в Forum İstanbul']
+ ['Купить магнитик','В память о Стамбуле'],['Выбрать сувенир маме','Назар, небольшая керамика или чайный стакан'],['Купить сладости маме','Лукум, пахлава или халва'],['Выбрать сувенир папе','Что-то компактное'],['Купить сладости папе','Фабрично упакованная коробка'],['Купить рубашку XL папе','Посмотреть в Forum İstanbul']
 ];
 const budgetFields=[['food','Обеды, ужины и кофе на двоих, за день',2200,4],['transport','Транспорт за поездку',1600,1],['activities','Развлечения и входные билеты',4000,1],['gifts','Покупки и подарки',3000,1]];
 const $=id=>document.getElementById(id);
