@@ -19,6 +19,14 @@
 @media(max-width:900px){.overview-layout{grid-template-columns:1fr}.overview-right{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.overview-right .card{min-width:0}.upnext-grid{grid-template-columns:repeat(3,1fr)}.places-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.shopping-layout,.budget-layout{grid-template-columns:1fr}.timeline-wrap{grid-template-columns:200px minmax(0,1fr)}}
 @media(max-width:650px){.page{padding:18px 15px 103px}.top{margin-bottom:16px}.brand small{font-size:10px}.topright .pill{padding:8px 10px;font-size:11px}.main-tabs{display:none}.mobile-nav{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:30;padding:8px 8px calc(7px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);box-shadow:0 -7px 30px rgba(21,34,45,.065);border-top:1px solid var(--line);justify-content:space-around;backdrop-filter:blur(16px)}.mobile-nav button{display:grid;justify-items:center;gap:5px;border:0;background:transparent;color:#829099;min-width:0;width:20%;font-size:10px;font-weight:700;padding:5px 1px}.mobile-nav svg{width:22px;height:22px}.mobile-nav button.active{color:var(--teal)}.hero{padding:22px;min-height:342px;border-radius:20px}.hero h1{font-size:40px;letter-spacing:-1.5px}.hero-bottom{align-items:start;flex-direction:column;gap:16px}.hero p{font-size:13px}.overview-right{grid-template-columns:1fr 1fr}.overview-right .card{padding:14px}.overview-right .card .large-val{font-size:16px}.upnext{margin-top:22px}.upnext-grid{grid-template-columns:1fr}.preview{min-height:auto}.overview-right .quick-card{gap:8px}.icon-dot{width:34px;height:34px;font-size:16px}.section-title h2{font-size:18px}.timeline-wrap{display:block}.side-panel{position:static}.side-panel h2{font-size:23px}.day-nav{display:flex;overflow-x:auto;gap:8px;margin:14px -15px 20px;padding:0 15px 6px;scrollbar-width:none}.day-nav::-webkit-scrollbar{display:none}.day-nav button{flex:0 0 auto;display:grid;min-width:100px;padding:10px 12px}.day-nav .num{display:none}.day-head{padding:18px}.day-head h2{font-size:23px}.entry{gap:10px;grid-template-columns:39px minmax(0,1fr)}.entry .em{width:39px;height:39px;font-size:17px;border-radius:12px}.entry:not(:last-child):before{left:19px;top:44px}.entry .event{padding:15px}.places-top{display:block}.search{width:100%;margin-top:15px}.places-grid{grid-template-columns:1fr}.place{min-height:0}.map-banner{align-items:start;flex-direction:column}.footer{display:block;line-height:1.8}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+
+.price-note{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-top:9px;font-size:12px;font-weight:650;line-height:1.5;color:#376b65}
+.price-note .amount{background:#edf6f2;border-radius:8px;padding:5px 9px}
+.price-note .source{font-size:11px;color:#66717e;text-decoration:underline;text-underline-offset:3px;font-weight:550}
+.place .price-note{margin-top:1px;margin-bottom:12px}
+.place .price-note .amount{background:#f1f5f3}
+.price-disclaimer{font-size:11px;color:#66717e;line-height:1.55;margin:11px 0 18px}
+@media(max-width:460px){.event .price-note{font-size:11px}.price-note .amount{padding:5px 8px}}
 </style>
 </head>
 <body>
@@ -44,11 +52,11 @@
   </div>
 </section>
 <section class="view" id="plan" aria-label="Маршрут" hidden>
-  <div class="timeline-wrap"><aside class="side-panel"><span class="eyebrow">Маршрут поездки</span><h2>День за днём</h2><div class="day-nav" id="dayNav"></div></aside><div class="day-content"><div class="day-head" id="dayHeader"></div><div id="eventList"></div></div></div>
+  <div class="timeline-wrap"><aside class="side-panel"><span class="eyebrow">Маршрут поездки</span><h2>День за днём</h2><div class="price-disclaimer">Цены проверены 30.10.2026. Могут измениться к поездке.</div><div class="day-nav" id="dayNav"></div></aside><div class="day-content"><div class="day-head" id="dayHeader"></div><div id="eventList"></div></div></div>
 </section>
 <section class="view" id="places" aria-label="Места" hidden>
  <div class="places-top"><div><span class="eyebrow">Сохранённые места</span><h2>Где побывать и поесть</h2></div><input class="search" id="placeSearch" type="search" placeholder="Найти кафе или место…" aria-label="Поиск мест"></div>
- <div class="chips" id="placeFilters"></div><div class="places-grid" id="placesGrid"></div>
+ <div class="price-disclaimer">Билеты — на человека. Для еды указана цена блюда или уровень цен по отзывам.</div><div class="chips" id="placeFilters"></div><div class="places-grid" id="placesGrid"></div>
  <div class="map-banner"><div><strong>Нужно проложить маршрут?</strong></div><a href="https://www.google.com/maps/search/?api=1&query=Sultanahmet+Istanbul" target="_blank" rel="noopener">Открыть карту ↗</a></div>
 </section>
 <section class="view" id="shopping" aria-label="Покупки" hidden>
@@ -58,7 +66,16 @@
 </section>
 <section class="view" id="budget" aria-label="Бюджет" hidden>
  <div class="budget-head"><span class="eyebrow">Расходы на двоих</span><h2>Планируем бюджет</h2></div>
- <div class="budget-layout"><div class="card" id="moneyInputs"></div><div><div class="budget-total"><div class="eyebrow">Итого за поездку</div><strong id="budgetTotal">—</strong><p>Еда за 4 дня + транспорт + развлечения + покупки</p></div></div></div>
+ <div class="budget-layout"><div class="card" id="moneyInputs"></div><div><div class="budget-total"><div class="eyebrow">Итого за поездку</div><strong id="budgetTotal">—</strong><p>Еда за 4 дня + транспорт + развлечения + покупки</p></div>
+<div class="card" style="margin-top:15px">
+  <div class="section-title"><h2>Билеты на двоих</h2></div>
+  <div class="ticket-rows" style="display:grid;gap:10px;font-size:13px">
+    <div style="display:flex;justify-content:space-between;gap:12px"><span>Айя-София</span><strong>50 €</strong></div>
+    <div style="display:flex;justify-content:space-between;gap:12px"><span>Галатская башня (внутрь)</span><strong>60 €</strong></div>
+    <div style="display:flex;justify-content:space-between;gap:12px"><span>Цистерна Базилика (по желанию)</span><strong>3 900 ₺</strong></div>
+  </div>
+  <p style="font-size:11px;color:var(--sub);line-height:1.55;margin:13px 0 0">Это справочные цены билетов, не дополнительные автоматически списываемые расходы. Актуальность: 30.10.2026.</p>
+</div></div></div>
 </section>
 </main>
 <div class="footer"><span>Сделано для вашей поездки · Istanbul Together</span><span>План можно менять в ChatGPT ✦</span></div>
@@ -157,9 +174,41 @@ function setJSON(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch{}}
 let activeTab='overview',activeDay=0,placeCategory='Все',query='';
 const nav=(container,mobile)=>{container.innerHTML=tabs.map(([id,name,icon])=>`<button type="button" class="${mobile?'':'tab'} ${activeTab===id?'active':''}" data-tab="${id}" aria-current="${activeTab===id?'page':'false'}">${I[icon]}<span>${name}</span></button>`).join('')};
 function go(tab){if(!tabs.some(t=>t[0]===tab))return;activeTab=tab;document.querySelectorAll('.view').forEach(v=>{v.hidden=v.id!==tab});nav($('desktopTabs'),false);nav($('mobileTabs'),true);try{history.replaceState(null,'','#'+tab)}catch{}window.scrollTo({top:0,behavior:'instant'})}
+
+const priceRules=[
+ [/Айя-Софию и Голубую мечеть/i,'Айя-София 25 €/чел. · Голубая мечеть бесплатно','https://muze.gen.tr/muze-detay/ayasofya'],
+ [/Айя-Софию/i,'25 €/чел. (туристическая галерея)','https://muze.gen.tr/muze-detay/ayasofya'],
+ [/Голубую мечеть/i,'Бесплатно','https://www.sultanahmetcami.org/sayfa.php?s=ziyaretci-rehberi'],
+ [/Цистерну Базилика/i,'1 950 ₺/чел. днём','https://kultur.istanbul/yerebatan-sarnici-muzesi/'],
+ [/Сулеймание/i,'Бесплатно','https://istanbul.travel/en/suleymaniye-mosque?gruppe=moscheen'],
+ [/Галатскую башню/i,'Вход внутрь 30 €/чел.','https://dosim.ktb.gov.tr/TR-218202/muze-ve-oren-yeri-ucretleri.html'],
+ [/Галате и Каракёю/i,'Галатская башня: вход 30 €/чел.','https://dosim.ktb.gov.tr/TR-218202/muze-ve-oren-yeri-ucretleri.html'],
+ [/Ortaklar Kebap/i,'Кебаб 450–600 ₺/блюдо','https://ortaklarkebaprestaurant.com/menuler'],
+ [/Emek Restaurant/i,'Горячее от 300 ₺','https://emekrestaurant.com.tr/menu'],
+ [/IKEA Restaurant/i,'Фрикадельки (8 шт.) 260 ₺','https://www.ikea.com.tr/p00000779'],
+ [/Yeni Karadeniz Pide/i,'Недорого · ~200–400 ₺/чел. по отзывам','https://restaurantguru.com/Yeni-Karadeniz-Pide-and-Kebap-Salonu-Istanbul'],
+ [/Bitlisli/i,'Средне–дорого · по отзывам','https://www.tripadvisor.com/Restaurant_Review-g293974-d10170813-Reviews-Bitlisli_Sirkeci-Istanbul.html'],
+ [/Balkan Restaurant|Balkan Lokantası/i,'Недорого · по отзывам','https://yummyistanbul.com/sirkeci-restaurants/'],
+ [/Süleymaniye Lokantası/i,'Недорого · по отзывам',''],
+ [/Semaver Cafe/i,'Средне–дорого · по отзывам','https://ru.restaurantguru.com/Semaver-Cafe-and-Nargile-Istanbul'],
+ [/Simit Sarayı/i,'Аэропорт · цена зависит от заказа',''],
+ [/Starbucks/i,'Средний ценовой уровень',''],
+ [/Hocapaşa Pidecisi/i,'Средний уровень · по отзывам',''],
+ [/Köfteci Kadırgalı/i,'Недорого · по отзывам',''],
+ [/Değirmencioğlu|Buyruk Esnaf Lokantası/i,'Вероятно недорого · локанта',''],
+ [/Tarihi Dürüm Han|Yılmaz Usta/i,'Обычно недорого · уличная еда',''],
+ [/IKEA Bayrampaşa|Forum İstanbul/i,'Вход бесплатный',''],
+ [/Завтракаем в Edibe Sultan Hotel/i,'Уже оплачено','']
+];
+function priceNote(name){
+ const rule=priceRules.find(([re])=>re.test(name));
+ if(!rule)return '';
+ const [,label,url]=rule;
+ return '<div class="price-note"><span class="amount">'+esc(label)+'</span>'+(url?'<a class="source" target="_blank" rel="noopener" href="'+url+'">Источник ↗</a>':'')+'</div>';
+}
 function showDay(i){activeDay=i;$('dayNav').innerHTML=days.map((d,j)=>`<button type="button" data-day="${j}" class="${j===i?'active':''}"><span><b>${d.short}</b><small>${d.week}</small></span><span class="num">${j===i?'●':'›'}</span></button>`).join('');const d=days[i];$('dayHeader').innerHTML=`<div class="date">${d.date} · ${d.week}</div><h2>${d.title}</h2>`;
- $('eventList').innerHTML=d.events.map(e=>{const [time,emoji,title,desc,kind,map,extra]=e;return `<div class="entry"><div class="em" aria-hidden="true">${emoji}</div><div class="event"><div class="event-top"><span class="event-time">${esc(time)}</span></div><h3>${esc(title)}</h3>${map||extra?`<div class="event-links">${map?`<a target="_blank" rel="noopener" href="${mapUrl(map)}">↗ На карте</a>`:''}${extra?`<a target="_blank" rel="noopener" href="${extra}">Меню ↗</a>`:''}</div>`:''}</div></div>`}).join('')}
-function drawPlaces(){const cats=['Все','Смотреть','Локанты','Рестораны','Кебабы и пиде','Уличная еда','Кофе и отдых','Магазины'];$('placeFilters').innerHTML=cats.map(x=>`<button type="button" class="filter ${placeCategory===x?'active':''}" data-cat="${esc(x)}">${esc(x)}</button>`).join('');const q=query.trim().toLocaleLowerCase('ru');const filtered=places.filter(p=>(placeCategory==='Все'||p[1]===placeCategory)&&(!q||(p[0]+' '+p[1]+' '+p[3]).toLocaleLowerCase('ru').includes(q)));$('placesGrid').innerHTML=filtered.length?filtered.map(p=>`<div class="place"><div class="place-top"><div class="symbol">${p[2]}</div><span class="badge gray">${esc(p[1])}</span></div><h3>${esc(p[0])}</h3><a target="_blank" rel="noopener" href="${mapUrl(p[4])}">Открыть на карте ↗</a></div>`).join(''):'<p class="subline">Ничего не найдено. Попробуй другой запрос.</p>'}
+ $('eventList').innerHTML=d.events.map(e=>{const [time,emoji,title,desc,kind,map,extra]=e;return `<div class="entry"><div class="em" aria-hidden="true">${emoji}</div><div class="event"><div class="event-top"><span class="event-time">${esc(time)}</span></div><h3>${esc(title)}</h3>${priceNote(title)}${map||extra?`<div class="event-links">${map?`<a target="_blank" rel="noopener" href="${mapUrl(map)}">↗ На карте</a>`:''}${extra?`<a target="_blank" rel="noopener" href="${extra}">Меню ↗</a>`:''}</div>`:''}</div></div>`}).join('')}
+function drawPlaces(){const cats=['Все','Смотреть','Локанты','Рестораны','Кебабы и пиде','Уличная еда','Кофе и отдых','Магазины'];$('placeFilters').innerHTML=cats.map(x=>`<button type="button" class="filter ${placeCategory===x?'active':''}" data-cat="${esc(x)}">${esc(x)}</button>`).join('');const q=query.trim().toLocaleLowerCase('ru');const filtered=places.filter(p=>(placeCategory==='Все'||p[1]===placeCategory)&&(!q||(p[0]+' '+p[1]+' '+p[3]).toLocaleLowerCase('ru').includes(q)));$('placesGrid').innerHTML=filtered.length?filtered.map(p=>`<div class="place"><div class="place-top"><div class="symbol">${p[2]}</div><span class="badge gray">${esc(p[1])}</span></div><h3>${esc(p[0])}</h3>${priceNote(p[0])}<a target="_blank" rel="noopener" href="${mapUrl(p[4])}">Открыть на карте ↗</a></div>`).join(''):'<p class="subline">Ничего не найдено. Попробуй другой запрос.</p>'}
 function drawShopping(){const checks=getJSON('it-shopping-v5',{}),custom=getJSON('it-custom-v5',[]);const items=[...defaultShopping.map((x,i)=>['s'+i,...x]),...custom.map((x,i)=>['c'+i,x,'Добавлено тобой'])];$('shoppingItems').innerHTML=items.map(([key,t,desc])=>`<label class="check-row"><input type="checkbox" data-shopping="${key}" ${checks[key]?'checked':''}><div><b>${esc(t)}</b></div></label>`).join('');const done=items.filter(x=>checks[x[0]]).length;$('shoppingProgressText').textContent=`${done} из ${items.length} куплено`;$('shoppingProgress').style.width=(items.length?done/items.length*100:0)+'%'}
 function drawBudget(){$('moneyInputs').innerHTML=budgetFields.map(([key,label,initial,qty])=>{const num=Number(getJSON('it-budget-v5-'+key,initial));return `<div class="money-line"><label for="money-${key}">${label}<span style="color:var(--teal)">${qty>1?'× '+qty+' дня':''}</span></label><input id="money-${key}" type="number" min="0" max="1000000" step="100" inputmode="numeric" data-money="${key}" value="${Number.isFinite(num)?num:initial}"></div>`}).join('');updateBudget()}
 function updateBudget(){let total=0;for(const [key,,def,qty] of budgetFields){const field=$('money-'+key);if(!field)continue;const n=Math.max(0,Number(field.value)||0);total+=n*qty;setJSON('it-budget-v5-'+key,n)}$('budgetTotal').textContent=lira(total)}
