@@ -55,11 +55,11 @@
   </div>
 </section>
 <section class="view" id="plan" aria-label="Маршрут" hidden>
-  <div class="timeline-wrap"><aside class="side-panel"><span class="eyebrow">Маршрут поездки</span><h2>День за днём</h2><div class="price-disclaimer">Цены проверены 30.10.2026. Могут измениться к поездке.</div><div class="day-nav" id="dayNav"></div></aside><div class="day-content"><div class="day-head" id="dayHeader"></div><div id="eventList"></div></div></div>
+  <div class="timeline-wrap"><aside class="side-panel"><span class="eyebrow">Маршрут поездки</span><h2>День за днём</h2><div class="price-disclaimer">Ориентировочные цены на 30.10.2026; чек зависит от заказа.</div><div class="day-nav" id="dayNav"></div></aside><div class="day-content"><div class="day-head" id="dayHeader"></div><div id="eventList"></div></div></div>
 </section>
 <section class="view" id="places" aria-label="Места" hidden>
  <div class="places-top"><div><span class="eyebrow">Сохранённые места</span><h2>Где побывать и поесть</h2></div><input class="search" id="placeSearch" type="search" placeholder="Найти кафе или место…" aria-label="Поиск мест"></div>
- <div class="price-disclaimer">Билеты — на человека. Для еды указана цена блюда или уровень цен по отзывам.</div><div class="chips" id="placeFilters"></div><div class="places-grid" id="placesGrid"></div>
+ <div class="price-disclaimer">Билеты — на человека. Для еды указаны ориентиры на одного гостя по картам и отзывам, а не точный счёт.</div><div class="chips" id="placeFilters"></div><div class="places-grid" id="placesGrid"></div>
  <div class="map-banner"><div><strong>Нужно проложить маршрут?</strong></div><a href="https://www.google.com/maps/search/?api=1&query=Sultanahmet+Istanbul" target="_blank" rel="noopener">Открыть карту ↗</a></div>
 </section>
 <section class="view" id="shopping" aria-label="Покупки" hidden>
@@ -233,20 +233,22 @@ const priceRules=[
  [/Сулеймание/i,'Бесплатно','https://istanbul.travel/en/suleymaniye-mosque?gruppe=moscheen'],
  [/Галатскую башню/i,'Вход внутрь 30 €/чел.','https://dosim.ktb.gov.tr/TR-218202/muze-ve-oren-yeri-ucretleri.html'],
  [/Галате и Каракёю/i,'Галатская башня: вход 30 €/чел.','https://dosim.ktb.gov.tr/TR-218202/muze-ve-oren-yeri-ucretleri.html'],
- [/Ortaklar Kebap/i,'Кебаб 450–600 ₺/блюдо','https://ortaklarkebaprestaurant.com/menuler'],
- [/Emek Restaurant/i,'Горячее от 300 ₺','https://emekrestaurant.com.tr/menu'],
- [/IKEA Restaurant/i,'Фрикадельки (8 шт.) 260 ₺','https://www.ikea.com.tr/p00000779'],
- [/Yeni Karadeniz Pide/i,'Недорого · ~200–400 ₺/чел.','https://restaurantguru.com/Yeni-Karadeniz-Pide-and-Kebap-Salonu-Istanbul'],
- [/Bitlisli/i,'Дорого','https://www.tripadvisor.com/Restaurant_Review-g293974-d10170813-Reviews-Bitlisli_Sirkeci-Istanbul.html'],
- [/Balkan Restaurant|Balkan Lokantası/i,'Недорого','https://yummyistanbul.com/sirkeci-restaurants/'],
- [/Süleymaniye Lokantası/i,'Недорого',''],
- [/Semaver Cafe/i,'Дорого','https://ru.restaurantguru.com/Semaver-Cafe-and-Nargile-Istanbul'],
- [/Simit Sarayı/i,'Дорого',''],
+ [/Ortaklar Kebap/i,'В среднем 400–600 ₺/чел.','https://restoranim.net/istanbul/fatih/kebapci/ortaklar-kebap-restaurant'],
+ [/Emek Restaurant/i,'В среднем 600–1 000 ₺/чел.','https://restaurantguru.com/Emek-Restaurant-Istanbul'],
+ [/IKEA Restaurant/i,'Недорого',''],
+ [/Yeni Karadeniz Pide/i,'В среднем 200–400 ₺/чел.','https://restaurantguru.com/Yeni-Karadeniz-Pide-and-Kebap-Salonu-Istanbul'],
+ [/Bitlisli/i,'В среднем 1 000–1 600 ₺/чел.','https://restaurantguru.com/Birecikli-Istanbul?com=900143'],
+ [/Balkan Restaurant|Balkan Lokantası/i,'В среднем 200–400 ₺/чел.','https://de.restaurantguru.com/Balkan-Lokantasi-2-Istanbul'],
+ [/Süleymaniye Lokantası/i,'В среднем 200–400 ₺/чел.','https://es.restaurantguru.com/Suleymaniye-Lokantasi-Istanbul-3'],
+ [/Semaver Cafe/i,'В среднем 800–1 000 ₺/чел.','https://ru.restaurantguru.com/Semaver-Cafe-and-Nargile-Istanbul'],
+ [/Simit Sarayı/i,'В среднем 600–800 ₺/чел. (IST)','https://tr.restaurantguru.com/Simit-Sarayi-Istanbul-Havalimani-E28-Arnavutkoy'],
  [/Starbucks/i,'Дорого',''],
- [/Hocapaşa Pidecisi/i,'Недорого',''],
- [/Köfteci Kadırgalı/i,'Недорого',''],
- [/Değirmencioğlu|Buyruk Esnaf Lokantası/i,'Недорого',''],
- [/Tarihi Dürüm Han|Yılmaz Usta/i,'Дешево',''],
+ [/Hocapaşa Pidecisi/i,'В среднем 400–600 ₺/чел.','https://restaurantguru.com/Hocapasa-Pidecisi-Istanbul'],
+ [/Köfteci Kadırgalı/i,'В среднем 400–600 ₺/чел.','https://ru.restaurantguru.com/Kofteci-Kadirgali-Istanbul'],
+ [/Değirmencioğlu/i,'В среднем 200–400 ₺/чел.','https://restaurantguru.com/Degirmencioglu-Kebap-Lahmacun-Pide-Salonu-Istanbul-2'],
+ [/Buyruk Esnaf Lokantası/i,'В среднем 200–400 ₺/чел.','https://restaurantguru.com/Balkan-Lokantasi-Istanbul'],
+ [/Tarihi Dürüm Han/i,'В среднем 400–600 ₺/чел.','https://tr.restaurantguru.com/Tarihi-Durum-Han-Eminonu-Istanbul'],
+ [/Yılmaz Usta/i,'Дешево',''],
  [/Завтракаем в Edibe Sultan Hotel/i,'Уже оплачено','']
 ];
 function priceNote(name){
