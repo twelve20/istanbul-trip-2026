@@ -21,6 +21,7 @@
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
 
 .venue-type{font-size:11px;color:#677481;font-weight:650;letter-spacing:.1px;margin-top:5px;line-height:1.4}
+.transport-tip{font-size:12px;color:var(--sub);line-height:1.55;margin-top:9px;max-width:640px}
 .place .venue-type{margin:0 0 7px}
 .price-note{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-top:9px;font-size:12px;font-weight:650;line-height:1.5;color:#376b65}
 .price-note .amount{background:#edf6f2;border-radius:8px;padding:5px 9px}
@@ -98,12 +99,16 @@ const days=[
  {date:'29 ноября',week:'Воскресенье',short:'29 ноя',title:'Привет, Стамбул!',desc:'Первый вечер — прилёт, заселение и прогулка без спешки.',tags:['Вдвоём','Перелёт'],events:[
   ['14:40','✈️','Вылетаем из Петербурга','Southwind Airlines: LED → IST. Ручная кладь до 8 кг, без багажа.','Вдвоём'],
   ['18:35','🛬','Прилетаем в Стамбул (IST)','Паспортный контроль, получение связи и трансфер в район Султанахмета.','Вдвоём'],
-  ['Вечер','🏨','Заселение в Edibe Sultan Hotel','Заселение и небольшой отдых после дороги.','Вдвоём','Edibe Sultan Hotel Istanbul'],
-  ['≈ 21:00','🍽️','Ужинаем в Ortaklar Kebap Restaurant','','Вдвоём','Ortaklar Kebap Restaurant Peykhane 27A Istanbul'],
+  ['После контроля','🎫','Покупаем Istanbulkart для поездок','','Транспортная карта','Istanbul Airport Metro M11 station'],
+  ['Из аэропорта','🚌','Едем на Havaist до Султанахмета','','Аэропортовый автобус','Çatladıkapı Havaist Sultanahmet Istanbul'],
+  ['Дешевле, альтернатива','🚇','Метро M11 → M2 → T1 до Султанахмета','','Метро','Sultanahmet tram stop Istanbul'],
+  ['Поздний вечер','🏨','Заселение в Edibe Sultan Hotel','','Вдвоём','Edibe Sultan Hotel Istanbul'],
+  ['После заселения','🍽️','Ужинаем в Ortaklar Kebap Restaurant','','Вдвоём','Ortaklar Kebap Restaurant Peykhane 27A Istanbul'],
   ['После ужина','🌙','Гуляем по вечернему Султанахмету','','Вдвоём','Sultanahmet Istanbul']
  ]},
  {date:'30 ноября',week:'Понедельник',short:'30 ноя',title:'Старый город',desc:'Исторические символы Стамбула и обязательная мечеть Сулеймание. Вечером — Semaver Cafe.',tags:['Вдвоём','Кафе'],events:[
   ['Утро','🥐','Завтракаем в Edibe Sultan Hotel — оплачено','','Вдвоём'],
+  ['На все дни','🚋','Городской транспорт по Istanbulkart','','Проезд'],
   ['После завтрака','☕','Берём кофе в Starbucks Sultanahmet','','Вдвоём','Starbucks Sultanahmet Istanbul'],
   ['До обеда','🕌','Посещаем Айя-Софию и Голубую мечеть','Красивые площади и архитектура. Цистерну Базилика можно добавить по желанию.','Вдвоём','Hagia Sophia Istanbul'],
   ['≈ 12:15','⭐','Посещаем мечеть Сулеймание — обязательно','','Вдвоём','Suleymaniye Mosque Istanbul'],
@@ -129,7 +134,7 @@ const days=[
  {date:'3 декабря',week:'Четверг',short:'3 дек',title:'До встречи, Стамбул',desc:'Спокойное утро, дорога в аэропорт IST и обратный перелёт.',tags:['Вдвоём','Перелёт'],events:[
   ['Утро','🥐','Завтракаем в Edibe Sultan Hotel — оплачено','','Вдвоём'],
   ['После завтрака','🧳','Собираем вещи и выезжаем из отеля','','Вдвоём'],
-  ['11:30–12:00','🚖','Выезжаем в аэропорт IST','','Вдвоём','Istanbul Airport IST'],
+  ['11:30–12:00','🚌','Возвращаемся в IST на Havaist','','Аэропортовый автобус','Çatladıkapı Havaist Sultanahmet Istanbul'],
   ['≈ 15:00','🥯','Обедаем в Simit Sarayı (аэропорт IST)','','Вдвоём','Simit Sarayi Istanbul Airport International Departures'],
   ['17:30','🛫','Вылетаем в Москву рейсом Аэрофлота','','Вдвоём']
  ]}
@@ -178,6 +183,10 @@ const nav=(container,mobile)=>{container.innerHTML=tabs.map(([id,name,icon])=>`<
 function go(tab){if(!tabs.some(t=>t[0]===tab))return;activeTab=tab;document.querySelectorAll('.view').forEach(v=>{v.hidden=v.id!==tab});nav($('desktopTabs'),false);nav($('mobileTabs'),true);try{history.replaceState(null,'','#'+tab)}catch{}window.scrollTo({top:0,behavior:'instant'})}
 
 const venueTypes=[
+ [/Покупаем Istanbulkart/i,'Проездной · транспортная карта'],
+ [/Едем на Havaist|Возвращаемся в IST на Havaist/i,'Аэропортовый автобус'],
+ [/Метро M11 → M2 → T1/i,'Метро · альтернатива автобусу'],
+ [/Городской транспорт по Istanbulkart/i,'Метро · трамвай · автобус'],
  [/Simit Sarayı/i,'Фастфуд · пекарня'],
  [/IKEA Restaurant/i,'Ресторан самообслуживания'],
  [/Ortaklar Kebap/i,'Ресторан · кебабы'],
@@ -216,6 +225,10 @@ function venueType(name){
  return type?'<div class="venue-type">'+esc(type[1])+'</div>':'';
 }
 const priceRules=[
+ [/Покупаем Istanbulkart/i,'Карта 165 ₺ · баланс отдельно','https://www.istanbulkart.istanbul/ucretler-limitler/'],
+ [/Едем на Havaist|Возвращаемся в IST на Havaist/i,'470 ₺/чел. · 940 ₺ на двоих','https://hava.ist/'],
+ [/Метро M11 → M2 → T1/i,'≈135–150 ₺/чел. · пересадки','https://www.metro.istanbul/SeferDurumlari/BiletUcretleri'],
+ [/Городской транспорт по Istanbulkart/i,'46,20 ₺/поездка · разовый билет 65 ₺','https://www.metro.istanbul/SeferDurumlari/BiletUcretleri'],
  [/Айя-Софию и Голубую мечеть/i,'Айя-София 25 €/чел. · Голубая мечеть бесплатно','https://muze.gen.tr/muze-detay/ayasofya'],
  [/Айя-Софию/i,'25 €/чел. (туристическая галерея)','https://muze.gen.tr/muze-detay/ayasofya'],
  [/Голубую мечеть/i,'Бесплатно','https://www.sultanahmetcami.org/sayfa.php?s=ziyaretci-rehberi'],
@@ -245,8 +258,19 @@ function priceNote(name){
  const [,label,url]=rule;
  return '<div class="price-note"><span class="amount">'+esc(label)+'</span>'+(url?'<a class="source" target="_blank" rel="noopener" href="'+url+'">Источник ↗</a>':'')+'</div>';
 }
+const transportTips=[
+ [/Покупаем Istanbulkart/i,'Автоматы Biletmatik у станции метро M11. Можно пользоваться одной картой вдвоём: прикладывать дважды за каждую поездку.'],
+ [/Едем на Havaist/i,'Аэропорт IST, этаж −2 → автобус до Çatladıkapı → 15–20 минут пешком до отеля. В пути около 110 минут без учёта ожидания.'],
+ [/Метро M11 → M2 → T1/i,'M11 до Gayrettepe → M2 до Vezneciler → пешком к Laleli-Üniversitesi → T1 до Sultanahmet. Около 1,5 часов, две пересадки.'],
+ [/Городской транспорт по Istanbulkart/i,'Обычные метро, трамвай T1 и автобус — 46,20 ₺ за посадку с картой. Аэропортовое метро M11 и Marmaray имеют другие тарифы.'],
+ [/Возвращаемся в IST на Havaist/i,'От отеля до остановки Çatladıkapı около 15–20 минут пешком. Автобус едет примерно 110 минут; сверить отправление и заложить запас на пробки.']
+];
+function transportTip(title){
+ const item=transportTips.find(([re])=>re.test(title));
+ return item?'<div class="transport-tip">'+esc(item[1])+'</div>':'';
+}
 function showDay(i){activeDay=i;$('dayNav').innerHTML=days.map((d,j)=>`<button type="button" data-day="${j}" class="${j===i?'active':''}"><span><b>${d.short}</b><small>${d.week}</small></span><span class="num">${j===i?'●':'›'}</span></button>`).join('');const d=days[i];$('dayHeader').innerHTML=`<div class="date">${d.date} · ${d.week}</div><h2>${d.title}</h2>`;
- $('eventList').innerHTML=d.events.map(e=>{const [time,emoji,title,desc,kind,map,extra]=e;return `<div class="entry"><div class="em" aria-hidden="true">${emoji}</div><div class="event"><div class="event-top"><span class="event-time">${esc(time)}</span></div><h3>${esc(title)}</h3>${venueType(title)}${priceNote(title)}${map||extra?`<div class="event-links">${map?`<a target="_blank" rel="noopener" href="${mapUrl(map)}">↗ На карте</a>`:''}${extra?`<a target="_blank" rel="noopener" href="${extra}">Меню ↗</a>`:''}</div>`:''}</div></div>`}).join('')}
+ $('eventList').innerHTML=d.events.map(e=>{const [time,emoji,title,desc,kind,map,extra]=e;return `<div class="entry"><div class="em" aria-hidden="true">${emoji}</div><div class="event"><div class="event-top"><span class="event-time">${esc(time)}</span></div><h3>${esc(title)}</h3>${venueType(title)}${priceNote(title)}${transportTip(title)}${map||extra?`<div class="event-links">${map?`<a target="_blank" rel="noopener" href="${mapUrl(map)}">↗ На карте</a>`:''}${extra?`<a target="_blank" rel="noopener" href="${extra}">Меню ↗</a>`:''}</div>`:''}</div></div>`}).join('')}
 function drawPlaces(){const cats=['Все','Смотреть','Локанты','Рестораны','Кебабы и пиде','Фастфуд','Уличная еда','Кофе и отдых','Магазины'];$('placeFilters').innerHTML=cats.map(x=>`<button type="button" class="filter ${placeCategory===x?'active':''}" data-cat="${esc(x)}">${esc(x)}</button>`).join('');const q=query.trim().toLocaleLowerCase('ru');const filtered=places.filter(p=>(placeCategory==='Все'||p[1]===placeCategory)&&(!q||(p[0]+' '+p[1]+' '+p[3]).toLocaleLowerCase('ru').includes(q)));$('placesGrid').innerHTML=filtered.length?filtered.map(p=>`<div class="place"><div class="place-top"><div class="symbol">${p[2]}</div><span class="badge gray">${esc(p[1])}</span></div><h3>${esc(p[0])}</h3>${venueType(p[0])}${priceNote(p[0])}<a target="_blank" rel="noopener" href="${mapUrl(p[4])}">Открыть на карте ↗</a></div>`).join(''):'<p class="subline">Ничего не найдено. Попробуй другой запрос.</p>'}
 function drawShopping(){const checks=getJSON('it-shopping-v5',{}),custom=getJSON('it-custom-v5',[]);const items=[...defaultShopping.map((x,i)=>['s'+i,...x]),...custom.map((x,i)=>['c'+i,x,'Добавлено тобой'])];$('shoppingItems').innerHTML=items.map(([key,t,desc])=>`<label class="check-row"><input type="checkbox" data-shopping="${key}" ${checks[key]?'checked':''}><div><b>${esc(t)}</b></div></label>`).join('');const done=items.filter(x=>checks[x[0]]).length;$('shoppingProgressText').textContent=`${done} из ${items.length} куплено`;$('shoppingProgress').style.width=(items.length?done/items.length*100:0)+'%'}
 function drawBudget(){$('moneyInputs').innerHTML=budgetFields.map(([key,label,initial,qty])=>{const num=Number(getJSON('it-budget-v5-'+key,initial));return `<div class="money-line"><label for="money-${key}">${label}<span style="color:var(--teal)">${qty>1?'× '+qty+' дня':''}</span></label><input id="money-${key}" type="number" min="0" max="1000000" step="100" inputmode="numeric" data-money="${key}" value="${Number.isFinite(num)?num:initial}"></div>`}).join('');updateBudget()}
