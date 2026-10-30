@@ -84,7 +84,8 @@ const days=[
   ['После ужина','🌙','Султанахмет — вечерняя прогулка','','Вдвоём','Sultanahmet Istanbul']
  ]},
  {date:'30 ноября',week:'Понедельник',short:'30 ноя',title:'Старый город',desc:'Исторические символы Стамбула и обязательная мечеть Сулеймание. Вечером — Semaver Cafe.',tags:['Вдвоём','Кафе'],events:[
-  ['Утро','☕','Завтрак и Starbucks','Завтракаем в отеле, потом кофе и прогулка по Султанахмету.','Вдвоём','Starbucks Sultanahmet Istanbul'],
+  ['Утро','🥐','Завтрак в Edibe Sultan Hotel — оплачен','','Вдвоём'],
+  ['После завтрака','☕','Starbucks Sultanahmet','','Вдвоём','Starbucks Sultanahmet Istanbul'],
   ['До обеда','🕌','Айя-София и Голубая мечеть','Красивые площади и архитектура. Цистерну Базилика можно добавить по желанию.','Вдвоём','Hagia Sophia Istanbul'],
   ['≈ 12:15','⭐','Мечеть Сулеймание — обязательно','','Вдвоём','Suleymaniye Mosque Istanbul'],
   ['≈ 13:30','🍲','Обед — Süleymaniye Lokantası','','Вдвоём','Süleymaniye Lokantası Istanbul Molla Hüsrev'],
@@ -92,7 +93,8 @@ const days=[
   ['≈ 20:30','🫖','Semaver Cafe','','Кафе','Semaver Cafe Kennedy Caddesi Istanbul','https://www.semavercafe.com/menu']
  ]},
  {date:'1 декабря',week:'Вторник',short:'1 дек',title:'Галата и Босфор',desc:'Городские улочки, виды на воду и вечер только для вас двоих.',tags:['Вдвоём','Прогулка'],events:[
-  ['Утро','🌉','Эминёню и Галатский мост','По пути попробовать балык-экмек или рыбный дюрюм.','Вдвоём','Galata Bridge Istanbul'],
+  ['Утро','🥐','Завтрак в Edibe Sultan Hotel — оплачен','','Вдвоём'],
+  ['После завтрака','🌉','Эминёню и Галатский мост','','Вдвоём','Galata Bridge Istanbul'],
   ['День','📸','Галата и Каракёй','','Вдвоём','Galata Tower Istanbul'],
   ['≈ 13:00','🍲','Обед — Emek Restaurant (Каракёй)','','Вдвоём','Emek Restaurant Yeni Merdiven Sokak 9 Karakoy Istanbul'],
   ['После прогулки','🍷','Сухое гранатовое вино — Tekel (Сиркеджи)','','Вдвоём','Tekel Sirkeci Istanbul'],
@@ -100,13 +102,15 @@ const days=[
   ['Вечер','✨','Вечер с Дашей','','Вдвоём']
  ]},
  {date:'2 декабря',week:'Среда',short:'2 дек',title:'IKEA и день рождения',desc:'Небольшой шопинг с Дашей, вечер свободен под семейный праздник Тимохи.',tags:['Вдвоём','Возможен семейный ужин'],events:[
-  ['Утро','🛍️','IKEA Bayrampaşa','','Вдвоём','IKEA Bayrampasa Istanbul'],
+  ['Утро','🥐','Завтрак в Edibe Sultan Hotel — оплачен','','Вдвоём'],
+  ['После завтрака','🛍️','IKEA Bayrampaşa','','Вдвоём','IKEA Bayrampasa Istanbul'],
   ['≈ 12:30','🍽️','Обед — IKEA Restaurant','','Вдвоём','IKEA Restaurant Bayrampasa Forum Istanbul'],
   ['День','👕','Forum İstanbul','','Вдвоём','Forum Istanbul Shopping Mall'],
   ['≈ 19:30','🎂','Ужин на день рождения Тимохи — Bitlisli (вариант)','','С семьёй','Bitlisli Hoca Camii Sokak Sirkeci Istanbul']
  ]},
  {date:'3 декабря',week:'Четверг',short:'3 дек',title:'До встречи, Стамбул',desc:'Спокойное утро, дорога в аэропорт IST и обратный перелёт.',tags:['Вдвоём','Перелёт'],events:[
-  ['Утро','🥐','Завтрак и сборы','Последние покупки, если что-то осталось, и выезд из отеля.','Вдвоём'],
+  ['Утро','🥐','Завтрак в Edibe Sultan Hotel — оплачен','','Вдвоём'],
+  ['После завтрака','🧳','Сборы и выезд из отеля','','Вдвоём'],
   ['11:30–12:00','🚖','Выезд в аэропорт','','Вдвоём','Istanbul Airport IST'],
   ['≈ 15:00','🥯','Обед — Simit Sarayı (аэропорт IST)','','Вдвоём','Simit Sarayi Istanbul Airport International Departures'],
   ['17:30','🛫','Аэрофлот IST → SVO','','Вдвоём']
@@ -144,7 +148,7 @@ const places=[
 const defaultShopping=[
  ['Магнитик','В память о Стамбуле'],['Сувенир маме','Назар, небольшая керамика или чайный стакан'],['Сладости маме','Лукум, пахлава или халва'],['Сувенир папе','Что-то компактное'],['Сладости папе','Фабрично упакованная коробка'],['Рубашка XL папе','Посмотреть в Forum İstanbul'],['Сухое гранатовое вино','Для вечера в Стамбуле — не везём в самолёт']
 ];
-const budgetFields=[['food','Еда на двоих, за день',2200,4],['transport','Транспорт за поездку',1600,1],['activities','Развлечения и входные билеты',4000,1],['gifts','Покупки и подарки',3000,1]];
+const budgetFields=[['food','Обеды, ужины и кофе на двоих, за день',2200,4],['transport','Транспорт за поездку',1600,1],['activities','Развлечения и входные билеты',4000,1],['gifts','Покупки и подарки',3000,1]];
 const $=id=>document.getElementById(id);
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const mapUrl=name=>'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(name);
