@@ -20,6 +20,8 @@
 @media(max-width:650px){.page{padding:18px 15px 103px}.top{margin-bottom:16px}.brand small{font-size:10px}.topright .pill{padding:8px 10px;font-size:11px}.main-tabs{display:none}.mobile-nav{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:30;padding:8px 8px calc(7px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);box-shadow:0 -7px 30px rgba(21,34,45,.065);border-top:1px solid var(--line);justify-content:space-around;backdrop-filter:blur(16px)}.mobile-nav button{display:grid;justify-items:center;gap:5px;border:0;background:transparent;color:#829099;min-width:0;width:20%;font-size:10px;font-weight:700;padding:5px 1px}.mobile-nav svg{width:22px;height:22px}.mobile-nav button.active{color:var(--teal)}.hero{padding:22px;min-height:342px;border-radius:20px}.hero h1{font-size:40px;letter-spacing:-1.5px}.hero-bottom{align-items:start;flex-direction:column;gap:16px}.hero p{font-size:13px}.overview-right{grid-template-columns:1fr 1fr}.overview-right .card{padding:14px}.overview-right .card .large-val{font-size:16px}.upnext{margin-top:22px}.upnext-grid{grid-template-columns:1fr}.preview{min-height:auto}.overview-right .quick-card{gap:8px}.icon-dot{width:34px;height:34px;font-size:16px}.section-title h2{font-size:18px}.timeline-wrap{display:block}.side-panel{position:static}.side-panel h2{font-size:23px}.day-nav{display:flex;overflow-x:auto;gap:8px;margin:14px -15px 20px;padding:0 15px 6px;scrollbar-width:none}.day-nav::-webkit-scrollbar{display:none}.day-nav button{flex:0 0 auto;display:grid;min-width:100px;padding:10px 12px}.day-nav .num{display:none}.day-head{padding:18px}.day-head h2{font-size:23px}.entry{gap:10px;grid-template-columns:39px minmax(0,1fr)}.entry .em{width:39px;height:39px;font-size:17px;border-radius:12px}.entry:not(:last-child):before{left:19px;top:44px}.entry .event{padding:15px}.places-top{display:block}.search{width:100%;margin-top:15px}.places-grid{grid-template-columns:1fr}.place{min-height:0}.map-banner{align-items:start;flex-direction:column}.footer{display:block;line-height:1.8}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
 
+.venue-type{font-size:11px;color:#677481;font-weight:650;letter-spacing:.1px;margin-top:5px;line-height:1.4}
+.place .venue-type{margin:0 0 7px}
 .price-note{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-top:9px;font-size:12px;font-weight:650;line-height:1.5;color:#376b65}
 .price-note .amount{background:#edf6f2;border-radius:8px;padding:5px 9px}
 .price-note .source{font-size:11px;color:#66717e;text-decoration:underline;text-underline-offset:3px;font-weight:550}
@@ -157,7 +159,7 @@ const places=[
  ['Поужинать в Yeni Karadeniz Pide','Кебабы и пиде','🥙','Ещё один вариант пиде.','Yeni Karadeniz Pide Istanbul'],
  ['Поужинать в Ortaklar Kebap','Кебабы и пиде','🍢','Кебабная в старом городе.','Ortaklar Kebap Restaurant Peykhane 27A Istanbul'],
  ['Пообедать в IKEA Restaurant Bayrampaşa','Рестораны','🍽️','Обед в IKEA.','IKEA Restaurant Bayrampasa Forum Istanbul'],
- ['Перекусить в Simit Sarayı (аэропорт IST)','Рестораны','🥯','Обед перед вылетом.','Simit Sarayi Istanbul Airport International Departures'],
+ ['Перекусить в Simit Sarayı (аэропорт IST)','Фастфуд','🥯','Обед перед вылетом.','Simit Sarayi Istanbul Airport International Departures'],
  ['Попробовать дюрюм в Tarihi Dürüm Han','Уличная еда','🐟','Вариант перекуса на прогулке.','Tarihi Durum Han Eminonu Istanbul'],
  ['Попробовать уличную еду у Yılmaz Usta','Уличная еда','🐟','Уличная еда в районе Эминёню.','Yilmaz Usta Eminonu Istanbul']
 ];
@@ -175,6 +177,43 @@ let activeTab='overview',activeDay=0,placeCategory='Все',query='';
 const nav=(container,mobile)=>{container.innerHTML=tabs.map(([id,name,icon])=>`<button type="button" class="${mobile?'':'tab'} ${activeTab===id?'active':''}" data-tab="${id}" aria-current="${activeTab===id?'page':'false'}">${I[icon]}<span>${name}</span></button>`).join('')};
 function go(tab){if(!tabs.some(t=>t[0]===tab))return;activeTab=tab;document.querySelectorAll('.view').forEach(v=>{v.hidden=v.id!==tab});nav($('desktopTabs'),false);nav($('mobileTabs'),true);try{history.replaceState(null,'','#'+tab)}catch{}window.scrollTo({top:0,behavior:'instant'})}
 
+const venueTypes=[
+ [/Simit Sarayı/i,'Фастфуд · пекарня'],
+ [/IKEA Restaurant/i,'Ресторан самообслуживания'],
+ [/Ortaklar Kebap/i,'Ресторан · кебабы'],
+ [/Bitlisli/i,'Ресторан · турецкая кухня'],
+ [/Balkan (?:Restaurant|Lokantası)/i,'Локанта · турецкая столовая'],
+ [/Emek Restaurant/i,'Локанта · домашняя турецкая кухня'],
+ [/Süleymaniye Lokantası/i,'Локанта · домашняя кухня'],
+ [/Değirmencioğlu|Buyruk Esnaf Lokantası/i,'Локанта · домашняя кухня'],
+ [/Yeni Karadeniz Pide/i,'Небольшое кафе · пиде и кебабы'],
+ [/Hocapaşa Pidecisi/i,'Пидеджий · турецкие лепёшки'],
+ [/Köfteci Kadırgalı/i,'Кёфтеджий · мясные котлетки'],
+ [/Tarihi Dürüm Han/i,'Уличная еда · дюрюм'],
+ [/Yılmaz Usta/i,'Уличная еда'],
+ [/Semaver Cafe/i,'Кафе · кальянная'],
+ [/Starbucks/i,'Кофейня'],
+ [/Hafız Mustafa/i,'Кондитерская'],
+ [/Koska/i,'Магазин сладостей'],
+ [/Tekel/i,'Магазин напитков'],
+ [/Айя-Софию и Голубую мечеть/i,'Исторические мечети'],
+ [/Айя-Софию/i,'Мечеть · туристическая галерея'],
+ [/Голубую мечеть/i,'Мечеть'],
+ [/Сулеймание/i,'Мечеть'],
+ [/Цистерну Базилика/i,'Музей · подземная цистерна'],
+ [/Галатскую башню|Галате и Каракёю/i,'Историческая башня · прогулка'],
+ [/Эминёню и Галатскому мосту/i,'Прогулка · достопримечательности'],
+ [/Султанахмету/i,'Прогулка · старый город'],
+ [/Forum İstanbul/i,'Торговый центр'],
+ [/IKEA Bayrampaşa/i,'Мебельный магазин'],
+ [/Edibe Sultan Hotel/i,'Отель'],
+ [/аэропорт IST/i,'Аэропорт'],
+ [/Вылетаем|Прилетаем/i,'Перелёт']
+];
+function venueType(name){
+ const type=venueTypes.find(([re])=>re.test(name));
+ return type?'<div class="venue-type">'+esc(type[1])+'</div>':'';
+}
 const priceRules=[
  [/Айя-Софию и Голубую мечеть/i,'Айя-София 25 €/чел. · Голубая мечеть бесплатно','https://muze.gen.tr/muze-detay/ayasofya'],
  [/Айя-Софию/i,'25 €/чел. (туристическая галерея)','https://muze.gen.tr/muze-detay/ayasofya'],
@@ -207,8 +246,8 @@ function priceNote(name){
  return '<div class="price-note"><span class="amount">'+esc(label)+'</span>'+(url?'<a class="source" target="_blank" rel="noopener" href="'+url+'">Источник ↗</a>':'')+'</div>';
 }
 function showDay(i){activeDay=i;$('dayNav').innerHTML=days.map((d,j)=>`<button type="button" data-day="${j}" class="${j===i?'active':''}"><span><b>${d.short}</b><small>${d.week}</small></span><span class="num">${j===i?'●':'›'}</span></button>`).join('');const d=days[i];$('dayHeader').innerHTML=`<div class="date">${d.date} · ${d.week}</div><h2>${d.title}</h2>`;
- $('eventList').innerHTML=d.events.map(e=>{const [time,emoji,title,desc,kind,map,extra]=e;return `<div class="entry"><div class="em" aria-hidden="true">${emoji}</div><div class="event"><div class="event-top"><span class="event-time">${esc(time)}</span></div><h3>${esc(title)}</h3>${priceNote(title)}${map||extra?`<div class="event-links">${map?`<a target="_blank" rel="noopener" href="${mapUrl(map)}">↗ На карте</a>`:''}${extra?`<a target="_blank" rel="noopener" href="${extra}">Меню ↗</a>`:''}</div>`:''}</div></div>`}).join('')}
-function drawPlaces(){const cats=['Все','Смотреть','Локанты','Рестораны','Кебабы и пиде','Уличная еда','Кофе и отдых','Магазины'];$('placeFilters').innerHTML=cats.map(x=>`<button type="button" class="filter ${placeCategory===x?'active':''}" data-cat="${esc(x)}">${esc(x)}</button>`).join('');const q=query.trim().toLocaleLowerCase('ru');const filtered=places.filter(p=>(placeCategory==='Все'||p[1]===placeCategory)&&(!q||(p[0]+' '+p[1]+' '+p[3]).toLocaleLowerCase('ru').includes(q)));$('placesGrid').innerHTML=filtered.length?filtered.map(p=>`<div class="place"><div class="place-top"><div class="symbol">${p[2]}</div><span class="badge gray">${esc(p[1])}</span></div><h3>${esc(p[0])}</h3>${priceNote(p[0])}<a target="_blank" rel="noopener" href="${mapUrl(p[4])}">Открыть на карте ↗</a></div>`).join(''):'<p class="subline">Ничего не найдено. Попробуй другой запрос.</p>'}
+ $('eventList').innerHTML=d.events.map(e=>{const [time,emoji,title,desc,kind,map,extra]=e;return `<div class="entry"><div class="em" aria-hidden="true">${emoji}</div><div class="event"><div class="event-top"><span class="event-time">${esc(time)}</span></div><h3>${esc(title)}</h3>${venueType(title)}${priceNote(title)}${map||extra?`<div class="event-links">${map?`<a target="_blank" rel="noopener" href="${mapUrl(map)}">↗ На карте</a>`:''}${extra?`<a target="_blank" rel="noopener" href="${extra}">Меню ↗</a>`:''}</div>`:''}</div></div>`}).join('')}
+function drawPlaces(){const cats=['Все','Смотреть','Локанты','Рестораны','Кебабы и пиде','Фастфуд','Уличная еда','Кофе и отдых','Магазины'];$('placeFilters').innerHTML=cats.map(x=>`<button type="button" class="filter ${placeCategory===x?'active':''}" data-cat="${esc(x)}">${esc(x)}</button>`).join('');const q=query.trim().toLocaleLowerCase('ru');const filtered=places.filter(p=>(placeCategory==='Все'||p[1]===placeCategory)&&(!q||(p[0]+' '+p[1]+' '+p[3]).toLocaleLowerCase('ru').includes(q)));$('placesGrid').innerHTML=filtered.length?filtered.map(p=>`<div class="place"><div class="place-top"><div class="symbol">${p[2]}</div><span class="badge gray">${esc(p[1])}</span></div><h3>${esc(p[0])}</h3>${venueType(p[0])}${priceNote(p[0])}<a target="_blank" rel="noopener" href="${mapUrl(p[4])}">Открыть на карте ↗</a></div>`).join(''):'<p class="subline">Ничего не найдено. Попробуй другой запрос.</p>'}
 function drawShopping(){const checks=getJSON('it-shopping-v5',{}),custom=getJSON('it-custom-v5',[]);const items=[...defaultShopping.map((x,i)=>['s'+i,...x]),...custom.map((x,i)=>['c'+i,x,'Добавлено тобой'])];$('shoppingItems').innerHTML=items.map(([key,t,desc])=>`<label class="check-row"><input type="checkbox" data-shopping="${key}" ${checks[key]?'checked':''}><div><b>${esc(t)}</b></div></label>`).join('');const done=items.filter(x=>checks[x[0]]).length;$('shoppingProgressText').textContent=`${done} из ${items.length} куплено`;$('shoppingProgress').style.width=(items.length?done/items.length*100:0)+'%'}
 function drawBudget(){$('moneyInputs').innerHTML=budgetFields.map(([key,label,initial,qty])=>{const num=Number(getJSON('it-budget-v5-'+key,initial));return `<div class="money-line"><label for="money-${key}">${label}<span style="color:var(--teal)">${qty>1?'× '+qty+' дня':''}</span></label><input id="money-${key}" type="number" min="0" max="1000000" step="100" inputmode="numeric" data-money="${key}" value="${Number.isFinite(num)?num:initial}"></div>`}).join('');updateBudget()}
 function updateBudget(){let total=0;for(const [key,,def,qty] of budgetFields){const field=$('money-'+key);if(!field)continue;const n=Math.max(0,Number(field.value)||0);total+=n*qty;setJSON('it-budget-v5-'+key,n)}$('budgetTotal').textContent=lira(total)}
