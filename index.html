@@ -126,6 +126,8 @@ const days=[
   ['≈ 14:45','🏺','Гуляем по Гранд-базару','','Достопримечательность','Grand Bazaar Kapalıçarşı Istanbul'],
   ['≈ 16:15','🌶️','Заходим на Египетский базар специй','','Достопримечательность','Mısır Çarşısı Spice Bazaar Istanbul'],
   ['≈ 17:15','🌊','Гуляем вдоль Золотого Рога в Эминёню','','Прогулка','Eminönü waterfront Istanbul'],
+  ['≈ 17:45','🐟','Пробуем балык-экмек в Derya Balıkçısı','','Уличная еда','Derya Balik Ekmek Ragip Gumuspala Caddesi 2/3 Eminonu Istanbul','https://www.deryabalikekmek.com/menu/'],
+  ['≈ 19:00','🌶️','Пробуем чий-кёфте в Çiğköftem Sirkeci','','Уличная еда','Cigkoftem Hoca Pasa Orhaniye Caddesi 18 Sirkeci Istanbul'],
   ['≈ 20:30','🍽️','Ужинаем в Balkan Lokantası Sirkeci','','Вдвоём','Balkan Lokantasi Sirkeci Hoca Pasa Sokak Istanbul'],
   ['После ужина · ≈ 22:00','🫖','Заходим в Semaver Cafe','','Кафе','Semaver Cafe Kennedy Caddesi Istanbul','https://www.semavercafe.com/menu']
  ]},
@@ -136,8 +138,11 @@ const days=[
   ['День','📸','Гуляем по Галате и Каракёю','','Вдвоём','Galata Tower Istanbul'],
   ['Перед обедом','🗼','Смотрим на Галатскую башню снаружи','','Достопримечательность','Galata Tower Istanbul'],
   ['После башни','🍲','Обедаем в Emek Restaurant (Каракёй)','','Вдвоём','Emek Restaurant Yeni Merdiven Sokak 9 Karakoy Istanbul'],
-  ['После обеда','🚋','Возвращаемся на T1 в Сиркеджи','','Трамвай','Sirkeci tram station Istanbul'],
-  ['После трамвая','🍷','Ищем гранатовое вино в Tekel (Сиркеджи)','','Вдвоём','Tekel Sirkeci Istanbul'],
+  ['≈ 15:00','🚇','Едем на M2 от Şişhane до Taksim','','Метро','Taksim M2 metro station Istanbul'],
+  ['≈ 15:40','🍔','Пробуем мокрые бургеры в Kızılkayalar Taksim','','Фастфуд','Kizilkayalar Taksim Siraselviler Caddesi 2/C Istanbul','https://menu.kizilkayalar.com.tr/'],
+  ['≈ 16:45','🍲','Пробуем шердан в Şırdancı Mehmet Beyoğlu','','Ресторан','Sirdanci Mehmet Kamer Hatun Caddesi 35A Beyoglu Istanbul'],
+  ['≈ 17:45','🚇','Возвращаемся на метро M2 и трамвае T1 в Сиркеджи','','Метро и трамвай','Sirkeci tram station Istanbul'],
+  ['После метро','🍷','Ищем гранатовое вино в Tekel (Сиркеджи)','','Вдвоём','Tekel Sirkeci Istanbul'],
   ['19:15','🛒','Покупаем закуски для вечера: инжир, виноград, beyaz peynir, фисташки, тёмный шоколад и пахлаву','','Продуктовый магазин','Migros Sultanahmet Istanbul'],
   ['≈ 20:30','🍽️','Ужинаем в Yeni Karadeniz Pide','','Вдвоём','Yeni Karadeniz Pide Kebap Salonu Cagaloglu Hamami Sokak Istanbul'],
   ['22:30','🌹','Ужин в номере Edibe Sultan Hotel с вином и закусками','','Вдвоём','Edibe Sultan Hotel Istanbul'],
@@ -189,7 +194,11 @@ const places=[
  ['Пообедать в IKEA Restaurant Bayrampaşa','Рестораны','🍽️','Обед в IKEA.','IKEA Restaurant Bayrampasa Forum Istanbul'],
  ['Купить еду в дорогу в SHOW Supermarket','Магазины','🛒','Продукты для перекуса перед вылетом.','SHOW Supermarket Çemberlitaş Peykhane Sokak 6 Istanbul'],
  ['Попробовать дюрюм в Tarihi Dürüm Han','Уличная еда','🐟','Вариант перекуса на прогулке.','Tarihi Durum Han Eminonu Istanbul'],
- ['Попробовать уличную еду у Yılmaz Usta','Уличная еда','🐟','Уличная еда в районе Эминёню.','Yilmaz Usta Eminonu Istanbul']
+ ['Попробовать уличную еду у Yılmaz Usta','Уличная еда','🐟','Уличная еда в районе Эминёню.','Yilmaz Usta Eminonu Istanbul'],
+ ['Попробовать балык-экмек в Derya Balıkçısı','Уличная еда','🐟','Рыбный сэндвич с набережной Эминёню.','Derya Balik Ekmek Ragip Gumuspala Caddesi 2/3 Eminonu Istanbul'],
+ ['Попробовать чий-кёфте в Çiğköftem Sirkeci','Уличная еда','🌶️','Булгур, специи, лаваш.','Cigkoftem Hoca Pasa Orhaniye Caddesi 18 Sirkeci Istanbul'],
+ ['Попробовать мокрые бургеры в Kızılkayalar Taksim','Фастфуд','🍔','Маленькие бургеры в соусе.','Kizilkayalar Taksim Siraselviler Caddesi 2/C Istanbul'],
+ ['Попробовать шердан в Şırdancı Mehmet Beyoğlu','Рестораны','🍲','Фаршированный бараний желудок.','Sirdanci Mehmet Kamer Hatun Caddesi 35A Beyoglu Istanbul']
 ];
 const defaultShopping=[
  ['Купить магнитик','В память о Стамбуле'],
@@ -202,12 +211,14 @@ const defaultShopping=[
 const budgetMeals=[
  ['d29','29 ноя · Ortaklar Kebap',1000],
  ['d30','30 ноя · Starbucks, Süleymaniye, Balkan, Semaver',3500],
+ ['d30street','30 ноя · балык-экмек и чий-кёфте на двоих',960],
  ['d01','1 дек · Emek, Yeni Karadeniz, вино и напитки',3600],
+ ['d01street','1 дек · мокрые бургеры и шердан на двоих',1400],
  ['d01grocery','1 дек · продукты для вечера в номере на двоих',900],
  ['d02food','2 дек · IKEA и продукты в дорогу',1200]
 ];
 const budgetOther=[
- ['transport','Метро, трамваи и две Istanbulkart (с небольшим запасом)',1750],
+ ['transport','Метро, трамваи и две Istanbulkart (с небольшим запасом)',1950],
  ['gifts','Рубашка XL, сладости, сувениры, магнитик',4000],
  ['hagia','Айя-София · два билета (50 € ≈ 2 800 ₺)',2800],
  ['bitlisli','Bitlisli · ужин 2 декабря (только наши 2 порции)',2600],
@@ -224,6 +235,12 @@ const nav=(container,mobile)=>{container.innerHTML=tabs.map(([id,name,icon])=>`<
 function go(tab){if(!tabs.some(t=>t[0]===tab))return;activeTab=tab;document.querySelectorAll('.view').forEach(v=>{v.hidden=v.id!==tab});nav($('desktopTabs'),false);nav($('mobileTabs'),true);try{history.replaceState(null,'','#'+tab)}catch{}window.scrollTo({top:0,behavior:'instant'})}
 
 const venueTypes=[
+ [/Derya Balıkçısı/i,'Уличная еда · балык-экмек'],
+ [/Çiğköftem Sirkeci/i,'Уличная еда · чий-кёфте'],
+ [/Kızılkayalar Taksim/i,'Фастфуд · мокрые бургеры'],
+ [/Şırdancı Mehmet Beyoğlu/i,'Ресторан · шердан'],
+ [/Едем на M2 от Şişhane до Taksim/i,'Метро'],
+ [/Возвращаемся на метро M2 и трамвае T1/i,'Метро · трамвай'],
  [/Покупаем Istanbulkart/i,'Проездной · транспортная карта'],
  [/метро M11 → M2 и трамвае T1|трамвай T1 → метро M2 → M11/i,'Метро · трамвай'],
  [/Едем на T1|Возвращаемся на T1/i,'Трамвай'],
@@ -271,6 +288,12 @@ function venueType(name){
  return type?'<div class="venue-type">'+esc(type[1])+'</div>':'';
 }
 const priceRules=[
+ [/Derya Balıkçısı/i,'В среднем 330 ₺/чел. · 660 ₺ на двоих','https://www.deryabalikekmek.com/menu/'],
+ [/Çiğköftem Sirkeci/i,'В среднем 100–200 ₺/чел.','https://cigkoftem.com/tr/subeler/istanbul-sirkeci'],
+ [/Kızılkayalar Taksim/i,'В среднем 150–250 ₺/чел.','https://menu.kizilkayalar.com.tr/'],
+ [/Şırdancı Mehmet Beyoğlu/i,'В среднем 400–650 ₺/чел.','https://www.yemeksepeti.com/restaurant/nski/sirdanci-mehmet-nski'],
+ [/Едем на M2 от Şişhane до Taksim/i,'Istanbulkart: 46,20 ₺/чел. · 92,40 ₺ на двоих','https://www.metro.istanbul/SeferDurumlari/BiletUcretleri'],
+ [/Возвращаемся на метро M2 и трамвае T1/i,'Istanbulkart: 92,40 ₺/чел. · 184,80 ₺ на двоих','https://www.metro.istanbul/SeferDurumlari/BiletUcretleri'],
  [/Покупаем Istanbulkart/i,'Карта 165 ₺ · баланс отдельно','https://www.istanbulkart.istanbul/ucretler-limitler/'],
  [/метро M11 → M2 и трамвае T1/i,'Istanbulkart: ≈140,30 ₺/чел. · 280,60 ₺ на двоих','https://www.airportstransferturkey.com/ru/guides/istanbul-airport-metro-m11'],
  [/трамвай T1 → метро M2 → M11/i,'Istanbulkart: ≈158,80 ₺/чел. · 317,60 ₺ на двоих','https://www.airportstransferturkey.com/ru/guides/istanbul-airport-metro-m11'],
@@ -306,6 +329,8 @@ function priceNote(name){
  return '<div class="price-note"><span class="amount">'+esc(label)+'</span>'+(url?'<a class="source" target="_blank" rel="noopener" href="'+url+'">Источник ↗</a>':'')+'</div>';
 }
 const transportTips=[
+ [/Едем на M2 от Şişhane до Taksim/i,'От Каракёя пешком к станции Şişhane (M2), затем на метро до Taksim.'],
+ [/Возвращаемся на метро M2 и трамвае T1/i,'Taksim → M2 до Vezneciler → пешком к Laleli-Üniversite → T1 до Sirkeci. Две оплаты по Istanbulkart на человека.'],
  [/Покупаем Istanbulkart/i,'Карта 165 ₺ без баланса. Берём две обычные (анонимные) Istanbulkart и пополняем. Для туристических карт скидки за пересадки не предусмотрены.'],
  [/метро M11 → M2 и трамвае T1/i,'IST → M11 до Gayrettepe (47,89 ₺) → M2 до Vezneciler (46,20 ₺) → пешком к Laleli-Üniversite → T1 до Sultanahmet (46,20 ₺). Цены для анонимной Istanbulkart.'],
  [/трамвай T1 → метро M2 → M11/i,'Sultanahmet → T1 до Laleli-Üniversite (46,20 ₺) → пешком к Vezneciler → M2 до Gayrettepe (46,20 ₺) → M11 до IST (до 66,39 ₺ при входе; без гарантии возврата на туристическую карту).'],
