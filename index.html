@@ -74,9 +74,9 @@
  <div class="map-banner"><div><strong>Нужно проложить маршрут?</strong></div><a href="https://www.google.com/maps/search/?api=1&query=Sultanahmet+Istanbul" target="_blank" rel="noopener">Открыть карту ↗</a></div>
 </section>
 <section class="view" id="shopping" aria-label="Покупки" hidden>
- <div class="shopping-head"><span class="eyebrow">Наши покупки</span><h2>Подарки и мелочи</h2></div>
+ <div class="shopping-head"><span class="eyebrow">Что привезём домой</span><h2>Подарки и сувениры</h2></div>
  <div class="shopping-layout"><div class="card"><div class="section-title"><div><h2>Чек-лист</h2><p id="shoppingProgressText">0 из 0 куплено</p></div><span class="badge">Сохраняется</span></div><div class="progress"><div class="progress-bar" id="shoppingProgress"></div></div><div id="shoppingItems" style="margin-top:12px"></div><form class="add-row" id="addShoppingForm"><input id="newShopping" maxlength="80" placeholder="Добавить свою покупку" aria-label="Новая покупка"><button type="submit">Добавить</button></form></div>
- <div class="stack"><div class="card"><div class="section-title"><h2>Заметки</h2></div><textarea class="notearea" id="notes" placeholder="Что ещё хотим купить или посмотреть…" aria-label="Личные заметки"></textarea><p class="tiny" style="line-height:1.6">Чек-лист и заметки сохраняются только в браузере этого устройства, не синхронизируются между телефонами.</p></div></div></div>
+ <div class="stack"><div class="card"><div class="section-title"><h2>Заметки</h2></div><textarea class="notearea" id="notes" placeholder="Какие ещё сувениры и подарки привезём домой…" aria-label="Личные заметки"></textarea><p class="tiny" style="line-height:1.6">Чек-лист и заметки сохраняются только в браузере этого устройства, не синхронизируются между телефонами.</p></div></div></div>
 </section>
 <section class="view" id="budget" aria-label="Бюджет" hidden>
  <div class="budget-head"><span class="eyebrow">Только Даша и Даниил</span><h2>Бюджет на двоих</h2></div>
@@ -192,7 +192,12 @@ const places=[
  ['Попробовать уличную еду у Yılmaz Usta','Уличная еда','🐟','Уличная еда в районе Эминёню.','Yilmaz Usta Eminonu Istanbul']
 ];
 const defaultShopping=[
- ['Купить магнитик','В память о Стамбуле'],['Выбрать сувенир маме','Назар, небольшая керамика или чайный стакан'],['Купить сладости маме','Лукум, пахлава или халва'],['Выбрать сувенир папе','Что-то компактное'],['Купить сладости папе','Фабрично упакованная коробка'],['Купить рубашку XL папе','Посмотреть в Forum İstanbul'],['Купить перекусы в дорогу','Купить 2 декабря и взять в ручную кладь'],['Купить гранатовое вино на вечер 1 декабря','Выпить в Стамбуле'],['Купить свежий инжир и виноград','К ужину в номере'],['Купить турецкий сыр beyaz peynir и фисташки','К ужину в номере'],['Купить тёмный шоколад и немного пахлавы','К ужину в номере']
+ ['Купить магнитик','В память о Стамбуле'],
+ ['Выбрать сувенир маме','Назар, небольшая керамика или чайный стакан'],
+ ['Купить сладости маме','Лукум, пахлава или халва'],
+ ['Выбрать сувенир папе','Что-то компактное'],
+ ['Купить сладости папе','Фабрично упакованная коробка'],
+ ['Купить рубашку XL папе','Посмотреть в Forum İstanbul']
 ];
 const budgetMeals=[
  ['d29','29 ноя · Ortaklar Kebap',1000],
