@@ -100,8 +100,7 @@ const days=[
   ['14:40','✈️','Вылетаем из Петербурга','Southwind Airlines: LED → IST. Ручная кладь до 8 кг, без багажа.','Вдвоём'],
   ['18:35','🛬','Прилетаем в Стамбул (IST)','Паспортный контроль, получение связи и трансфер в район Султанахмета.','Вдвоём'],
   ['После контроля','🎫','Покупаем Istanbulkart для поездок','','Транспортная карта','Istanbul Airport Metro M11 station'],
-  ['Из аэропорта','🚌','Едем на Havaist до Султанахмета','','Аэропортовый автобус','Çatladıkapı Havaist Sultanahmet Istanbul'],
-  ['Дешевле, альтернатива','🚇','Метро M11 → M2 → T1 до Султанахмета','','Метро','Sultanahmet tram stop Istanbul'],
+  ['Из аэропорта','🚇','Едем на метро M11 → M2 и трамвае T1','','Метро и трамвай','Sultanahmet tram stop Istanbul'],
   ['Поздний вечер','🏨','Заселение в Edibe Sultan Hotel','','Вдвоём','Edibe Sultan Hotel Istanbul'],
   ['После заселения','🍽️','Ужинаем в Ortaklar Kebap Restaurant','','Вдвоём','Ortaklar Kebap Restaurant Peykhane 27A Istanbul'],
   ['После ужина','🌙','Гуляем по вечернему Султанахмету','','Вдвоём','Sultanahmet Istanbul']
@@ -134,7 +133,7 @@ const days=[
  {date:'3 декабря',week:'Четверг',short:'3 дек',title:'До встречи, Стамбул',desc:'Спокойное утро, дорога в аэропорт IST и обратный перелёт.',tags:['Вдвоём','Перелёт'],events:[
   ['Утро','🥐','Завтракаем в Edibe Sultan Hotel — оплачено','','Вдвоём'],
   ['После завтрака','🧳','Собираем вещи и выезжаем из отеля','','Вдвоём'],
-  ['11:30–12:00','🚌','Возвращаемся в IST на Havaist','','Аэропортовый автобус','Çatladıkapı Havaist Sultanahmet Istanbul'],
+  ['11:30–12:00','🚇','Едем в аэропорт: трамвай T1 → метро M2 → M11','','Метро и трамвай','Istanbul Airport IST'],
   ['≈ 15:00','🥯','Обедаем в Simit Sarayı (аэропорт IST)','','Вдвоём','Simit Sarayi Istanbul Airport International Departures'],
   ['17:30','🛫','Вылетаем в Москву рейсом Аэрофлота','','Вдвоём']
  ]}
@@ -184,9 +183,8 @@ function go(tab){if(!tabs.some(t=>t[0]===tab))return;activeTab=tab;document.quer
 
 const venueTypes=[
  [/Покупаем Istanbulkart/i,'Проездной · транспортная карта'],
- [/Едем на Havaist|Возвращаемся в IST на Havaist/i,'Аэропортовый автобус'],
- [/Метро M11 → M2 → T1/i,'Метро · альтернатива автобусу'],
- [/Городской транспорт по Istanbulkart/i,'Метро · трамвай · автобус'],
+ [/метро M11 → M2 и трамвае T1|трамвай T1 → метро M2 → M11/i,'Метро · трамвай'],
+ [/Городской транспорт по Istanbulkart/i,'Метро · трамвай'],
  [/Simit Sarayı/i,'Фастфуд · пекарня'],
  [/IKEA Restaurant/i,'Ресторан самообслуживания'],
  [/Ortaklar Kebap/i,'Ресторан · кебабы'],
@@ -226,8 +224,7 @@ function venueType(name){
 }
 const priceRules=[
  [/Покупаем Istanbulkart/i,'Карта 165 ₺ · баланс отдельно','https://www.istanbulkart.istanbul/ucretler-limitler/'],
- [/Едем на Havaist|Возвращаемся в IST на Havaist/i,'470 ₺/чел. · 940 ₺ на двоих','https://hava.ist/'],
- [/Метро M11 → M2 → T1/i,'≈135–150 ₺/чел. · пересадки','https://www.metro.istanbul/SeferDurumlari/BiletUcretleri'],
+ [/метро M11 → M2 и трамвае T1|трамвай T1 → метро M2 → M11/i,'≈110–140 ₺/чел. за маршрут с пересадками','https://www.metro.istanbul/SeferDurumlari/BiletUcretleri'],
  [/Городской транспорт по Istanbulkart/i,'46,20 ₺/поездка · разовый билет 65 ₺','https://www.metro.istanbul/SeferDurumlari/BiletUcretleri'],
  [/Айя-Софию и Голубую мечеть/i,'Айя-София 25 €/чел. · Голубая мечеть бесплатно','https://muze.gen.tr/muze-detay/ayasofya'],
  [/Айя-Софию/i,'25 €/чел. (туристическая галерея)','https://muze.gen.tr/muze-detay/ayasofya'],
@@ -259,11 +256,10 @@ function priceNote(name){
  return '<div class="price-note"><span class="amount">'+esc(label)+'</span>'+(url?'<a class="source" target="_blank" rel="noopener" href="'+url+'">Источник ↗</a>':'')+'</div>';
 }
 const transportTips=[
- [/Покупаем Istanbulkart/i,'Автоматы Biletmatik у станции метро M11. Можно пользоваться одной картой вдвоём: прикладывать дважды за каждую поездку.'],
- [/Едем на Havaist/i,'Аэропорт IST, этаж −2 → автобус до Çatladıkapı → 15–20 минут пешком до отеля. В пути около 110 минут без учёта ожидания.'],
- [/Метро M11 → M2 → T1/i,'M11 до Gayrettepe → M2 до Vezneciler → пешком к Laleli-Üniversitesi → T1 до Sultanahmet. Около 1,5 часов, две пересадки.'],
- [/Городской транспорт по Istanbulkart/i,'Обычные метро, трамвай T1 и автобус — 46,20 ₺ за посадку с картой. Аэропортовое метро M11 и Marmaray имеют другие тарифы.'],
- [/Возвращаемся в IST на Havaist/i,'От отеля до остановки Çatladıkapı около 15–20 минут пешком. Автобус едет примерно 110 минут; сверить отправление и заложить запас на пробки.']
+ [/Покупаем Istanbulkart/i,'Карту покупаем в автоматах Biletmatik у метро M11 в аэропорту. Для пересадок вдвоём удобнее иметь по карте на человека; при покупке пополните баланс.'],
+ [/метро M11 → M2 и трамвае T1/i,'В IST следуем к метро M11 → едем до Gayrettepe → пересадка на M2 в сторону Yenikapı до Vezneciler → пешком 7–10 минут до трамвая T1 (Laleli-Üniversite) → едем до Sultanahmet. Закладываем 80–100 минут и небольшой пеший путь до отеля.'],
+ [/Городской транспорт по Istanbulkart/i,'Метро и трамвай T1 — 46,20 ₺ за обычную поездку с Istanbulkart; при пересадках возможны дополнительные списания.'],
+ [/трамвай T1 → метро M2 → M11/i,'От Sultanahmet едем на трамвае T1 до Laleli-Üniversite → пешком до метро Vezneciler (M2) → M2 до Gayrettepe → пересадка на M11 до аэропорта IST. Заложить около 80–100 минут плюс время на контроль.']
 ];
 function transportTip(title){
  const item=transportTips.find(([re])=>re.test(title));
