@@ -117,29 +117,32 @@ const days=[
  ]},
  {date:'30 ноября',week:'Понедельник',short:'30 ноя',title:'Старый город',desc:'Исторические символы Стамбула и обязательная мечеть Сулеймание. Вечером — Semaver Cafe.',tags:['Вдвоём','Кафе'],events:[
   ['Утро','🥐','Завтракаем в Edibe Sultan Hotel — оплачено','','Вдвоём'],
-  ['На все дни','🚋','Городской транспорт по Istanbulkart','','Проезд'],
   ['После завтрака','☕','Берём кофе в Starbucks Sultanahmet','','Вдвоём','Starbucks Sultanahmet Istanbul'],
   ['Утро','🕌','Посещаем Айя-Софию и Голубую мечеть','','Вдвоём','Hagia Sophia Istanbul'],
   ['После мечетей','🏛️','Посещаем Цистерну Базилика','','Музей','Basilica Cistern Istanbul'],
-  ['После цистерны','⭐','Посещаем мечеть Сулеймание — обязательно','','Вдвоём','Suleymaniye Mosque Istanbul'],
+  ['После цистерны','🚋','Едем на T1 до Эминёню','','Трамвай','Eminönü tram station Istanbul'],
+  ['После трамвая','⭐','Посещаем мечеть Сулеймание — обязательно','','Вдвоём','Suleymaniye Mosque Istanbul'],
   ['После Сулеймание','🍲','Обедаем в Süleymaniye Lokantası','','Вдвоём','Süleymaniye Lokantası Istanbul Molla Hüsrev'],
   ['≈ 18:30','🍽️','Ужинаем в Balkan Lokantası Sirkeci','','Вдвоём','Balkan Lokantasi Sirkeci Hoca Pasa Sokak Istanbul'],
   ['≈ 20:30','🫖','Заходим в Semaver Cafe','','Кафе','Semaver Cafe Kennedy Caddesi Istanbul','https://www.semavercafe.com/menu']
  ]},
  {date:'1 декабря',week:'Вторник',short:'1 дек',title:'Галата и Босфор',desc:'Городские улочки, виды на воду и вечер только для вас двоих.',tags:['Вдвоём','Прогулка'],events:[
   ['Утро','🥐','Завтракаем в Edibe Sultan Hotel — оплачено','','Вдвоём'],
-  ['После завтрака','🌉','Гуляем по Эминёню и Галатскому мосту','','Вдвоём','Galata Bridge Istanbul'],
+  ['После завтрака','🚋','Едем на T1 в Эминёню','','Трамвай','Eminönü tram station Istanbul'],
+  ['Утро','🌉','Гуляем по Эминёню и Галатскому мосту','','Вдвоём','Galata Bridge Istanbul'],
   ['День','📸','Гуляем по Галате и Каракёю','','Вдвоём','Galata Tower Istanbul'],
   ['Перед обедом','🗼','Поднимаемся на Галатскую башню','','Достопримечательность','Galata Tower Istanbul'],
   ['После башни','🍲','Обедаем в Emek Restaurant (Каракёй)','','Вдвоём','Emek Restaurant Yeni Merdiven Sokak 9 Karakoy Istanbul'],
-  ['После прогулки','🍷','Ищем гранатовое вино в Tekel (Сиркеджи)','','Вдвоём','Tekel Sirkeci Istanbul'],
+  ['После обеда','🚋','Возвращаемся на T1 в Сиркеджи','','Трамвай','Sirkeci tram station Istanbul'],
+  ['После трамвая','🍷','Ищем гранатовое вино в Tekel (Сиркеджи)','','Вдвоём','Tekel Sirkeci Istanbul'],
   ['≈ 19:00','🍽️','Ужинаем в Yeni Karadeniz Pide','','Вдвоём','Yeni Karadeniz Pide Kebap Salonu Cagaloglu Hamami Sokak Istanbul'],
  ]},
  {date:'2 декабря',week:'Среда',short:'2 дек',title:'IKEA и день рождения',desc:'IKEA, Forum İstanbul, продукты в дорогу и ужин в Bitlisli.',tags:['Вдвоём','Возможен семейный ужин'],events:[
   ['Утро','🥐','Завтракаем в Edibe Sultan Hotel — оплачено','','Вдвоём'],
-  ['После завтрака','🛍️','Едем в IKEA Bayrampaşa','','Вдвоём','IKEA Bayrampasa Istanbul'],
+  ['После завтрака','🚇','Едем в IKEA на трамвае T1 и метро M1','','Метро и трамвай','IKEA Bayrampasa Istanbul'],
   ['≈ 12:30','🍽️','Обедаем в IKEA Restaurant','','Вдвоём','IKEA Restaurant Bayrampasa Forum Istanbul'],
   ['День','👕','Идём за покупками в Forum İstanbul','','Вдвоём','Forum Istanbul Shopping Mall'],
+  ['После покупок','🚇','Возвращаемся из IKEA на метро M1 и трамвае T1','','Метро и трамвай','Sultanahmet tram station Istanbul'],
   ['Перед вечером','🛒','Покупаем еду в дорогу в SHOW Supermarket','','Супермаркет','SHOW Supermarket Çemberlitaş Peykhane Sokak 6 Istanbul'],
   ['≈ 19:30','🎂','Ужинаем в Bitlisli на дне рождения Тимохи','','С семьёй','Bitlisli Hoca Camii Sokak Sirkeci Istanbul']
  ]},
@@ -190,7 +193,7 @@ const budgetMeals=[
  ['d02food','2 дек · IKEA и продукты в дорогу',1200]
 ];
 const budgetOther=[
- ['transport','Метро, трамваи и две Istanbulkart',1750],
+ ['transport','Метро, трамваи и две Istanbulkart (с небольшим запасом)',1750],
  ['gifts','Рубашка XL, сладости, сувениры, магнитик',4000],
  ['hagia','Айя-София · два билета (50 € ≈ 2 800 ₺)',2800],
  ['bitlisli','Bitlisli · ужин 2 декабря (только наши 2 порции)',2600],
@@ -210,7 +213,8 @@ function go(tab){if(!tabs.some(t=>t[0]===tab))return;activeTab=tab;document.quer
 const venueTypes=[
  [/Покупаем Istanbulkart/i,'Проездной · транспортная карта'],
  [/метро M11 → M2 и трамвае T1|трамвай T1 → метро M2 → M11/i,'Метро · трамвай'],
- [/Городской транспорт по Istanbulkart/i,'Метро · трамвай'],
+ [/Едем на T1|Возвращаемся на T1/i,'Трамвай'],
+ [/Едем в IKEA на трамвае T1 и метро M1|Возвращаемся из IKEA на метро M1 и трамвае T1/i,'Метро · трамвай'],
  [/SHOW Supermarket/i,'Супермаркет'],
  [/Перекусываем едой, купленной накануне/i,'Перекус · своё'],
  [/IKEA Restaurant/i,'Ресторан самообслуживания'],
@@ -252,8 +256,10 @@ function venueType(name){
 }
 const priceRules=[
  [/Покупаем Istanbulkart/i,'Карта 165 ₺ · баланс отдельно','https://www.istanbulkart.istanbul/ucretler-limitler/'],
- [/метро M11 → M2 и трамвае T1|трамвай T1 → метро M2 → M11/i,'≈110–140 ₺/чел. за маршрут с пересадками','https://www.metro.istanbul/SeferDurumlari/BiletUcretleri'],
- [/Городской транспорт по Istanbulkart/i,'46,20 ₺/поездка · разовый билет 65 ₺','https://www.metro.istanbul/SeferDurumlari/BiletUcretleri'],
+ [/метро M11 → M2 и трамвае T1/i,'Istanbulkart: ≈140,30 ₺/чел. · 280,60 ₺ на двоих','https://www.airportstransferturkey.com/ru/guides/istanbul-airport-metro-m11'],
+ [/трамвай T1 → метро M2 → M11/i,'Istanbulkart: ≈158,80 ₺/чел. · 317,60 ₺ на двоих','https://www.airportstransferturkey.com/ru/guides/istanbul-airport-metro-m11'],
+ [/Едем на T1 до Эминёню|Едем на T1 в Эминёню|Возвращаемся на T1 в Сиркеджи/i,'Istanbulkart: 46,20 ₺/чел. · 92,40 ₺ на двоих','https://www.metro.istanbul/SeferDurumlari/BiletUcretleri'],
+ [/Едем в IKEA на трамвае T1 и метро M1|Возвращаемся из IKEA на метро M1 и трамвае T1/i,'Istanbulkart: 92,40 ₺/чел. · 184,80 ₺ на двоих','https://www.metro.istanbul/SeferDurumlari/BiletUcretleri'],
  [/Айя-Софию и Голубую мечеть/i,'Айя-София 25 €/чел. · Голубая мечеть бесплатно','https://muze.gen.tr/muze-detay/ayasofya'],
  [/Айя-Софию/i,'25 €/чел. (туристическая галерея)','https://muze.gen.tr/muze-detay/ayasofya'],
  [/Голубую мечеть/i,'Бесплатно','https://www.sultanahmetcami.org/sayfa.php?s=ziyaretci-rehberi'],
@@ -262,20 +268,20 @@ const priceRules=[
  [/Галатскую башню/i,'Вход внутрь 30 €/чел.','https://dosim.ktb.gov.tr/TR-218202/muze-ve-oren-yeri-ucretleri.html'],
  [/Ortaklar Kebap/i,'В среднем 400–600 ₺/чел.','https://restoranim.net/istanbul/fatih/kebapci/ortaklar-kebap-restaurant'],
  [/Emek Restaurant/i,'В среднем 600–1 000 ₺/чел.','https://restaurantguru.com/Emek-Restaurant-Istanbul'],
- [/IKEA Restaurant/i,'Недорого',''],
+ [/IKEA Restaurant/i,'В среднем 200–450 ₺/чел.','https://www.karekod.org/blog/ikea-menu-fiyatlari-2024-ikea-restaurant/'],
  [/Yeni Karadeniz Pide/i,'В среднем 200–400 ₺/чел.','https://restaurantguru.com/Yeni-Karadeniz-Pide-and-Kebap-Salonu-Istanbul'],
  [/Bitlisli/i,'В среднем 1 000–1 600 ₺/чел.','https://restaurantguru.com/Birecikli-Istanbul?com=900143'],
  [/Balkan Restaurant|Balkan Lokantası/i,'В среднем 200–400 ₺/чел.','https://de.restaurantguru.com/Balkan-Lokantasi-2-Istanbul'],
  [/Süleymaniye Lokantası/i,'В среднем 200–400 ₺/чел.','https://es.restaurantguru.com/Suleymaniye-Lokantasi-Istanbul-3'],
  [/Semaver Cafe/i,'В среднем 800–1 000 ₺/чел.','https://ru.restaurantguru.com/Semaver-Cafe-and-Nargile-Istanbul'],
  [/SHOW Supermarket/i,'Продукты в дорогу: около 500 ₺ на двоих (оценка)',''],
- [/Starbucks/i,'Дорого',''],
+ [/Starbucks/i,'Дорого · в среднем 200–400 ₺/чел.','https://turkpidya.com/starbucks-prices-in-turkey/'],
  [/Hocapaşa Pidecisi/i,'В среднем 400–600 ₺/чел.','https://restaurantguru.com/Hocapasa-Pidecisi-Istanbul'],
  [/Köfteci Kadırgalı/i,'В среднем 400–600 ₺/чел.','https://ru.restaurantguru.com/Kofteci-Kadirgali-Istanbul'],
  [/Değirmencioğlu/i,'В среднем 200–400 ₺/чел.','https://restaurantguru.com/Degirmencioglu-Kebap-Lahmacun-Pide-Salonu-Istanbul-2'],
  [/Buyruk Esnaf Lokantası/i,'В среднем 200–400 ₺/чел.','https://restaurantguru.com/Balkan-Lokantasi-Istanbul'],
  [/Tarihi Dürüm Han/i,'В среднем 400–600 ₺/чел.','https://tr.restaurantguru.com/Tarihi-Durum-Han-Eminonu-Istanbul'],
- [/Yılmaz Usta/i,'Дешево',''],
+ [/Yılmaz Usta/i,'В среднем 200–400 ₺/чел.','https://restaurantguru.com/Meshur-Eminonu-Balik-Ekmek-Istanbul'],
  [/Завтракаем в Edibe Sultan Hotel/i,'Уже оплачено','']
 ];
 function priceNote(name){
@@ -285,10 +291,13 @@ function priceNote(name){
  return '<div class="price-note"><span class="amount">'+esc(label)+'</span>'+(url?'<a class="source" target="_blank" rel="noopener" href="'+url+'">Источник ↗</a>':'')+'</div>';
 }
 const transportTips=[
- [/Покупаем Istanbulkart/i,'Карту покупаем в автоматах Biletmatik у метро M11 в аэропорту. Для пересадок вдвоём удобнее иметь по карте на человека; при покупке пополните баланс.'],
- [/метро M11 → M2 и трамвае T1/i,'В IST следуем к метро M11 → едем до Gayrettepe → пересадка на M2 в сторону Yenikapı до Vezneciler → пешком 7–10 минут до трамвая T1 (Laleli-Üniversite) → едем до Sultanahmet. Закладываем 80–100 минут и небольшой пеший путь до отеля.'],
- [/Городской транспорт по Istanbulkart/i,'Метро и трамвай T1 — 46,20 ₺ за обычную поездку с Istanbulkart; при пересадках возможны дополнительные списания.'],
- [/трамвай T1 → метро M2 → M11/i,'От Sultanahmet едем на трамвае T1 до Laleli-Üniversite → пешком до метро Vezneciler (M2) → M2 до Gayrettepe → пересадка на M11 до аэропорта IST. Заложить около 80–100 минут плюс время на контроль.']
+ [/Покупаем Istanbulkart/i,'Карта 165 ₺ без баланса. Берём две обычные (анонимные) Istanbulkart и пополняем. Для туристических карт скидки за пересадки не предусмотрены.'],
+ [/метро M11 → M2 и трамвае T1/i,'IST → M11 до Gayrettepe (47,89 ₺) → M2 до Vezneciler (46,20 ₺) → пешком к Laleli-Üniversite → T1 до Sultanahmet (46,20 ₺). Цены для анонимной Istanbulkart.'],
+ [/трамвай T1 → метро M2 → M11/i,'Sultanahmet → T1 до Laleli-Üniversite (46,20 ₺) → пешком к Vezneciler → M2 до Gayrettepe (46,20 ₺) → M11 до IST (до 66,39 ₺ при входе; без гарантии возврата на туристическую карту).'],
+ [/Едем на T1 до Эминёню|Едем на T1 в Эминёню/i,'От Sultanahmet до Eminönü, одна поездка на трамвае T1.'],
+ [/Возвращаемся на T1 в Сиркеджи/i,'От Karaköy до Sirkeci на T1, одна поездка.'],
+ [/Едем в IKEA на трамвае T1 и метро M1/i,'T1 Sultanahmet → Yusufpaşa (46,20 ₺), пешком до Aksaray → метро M1 до Kocatepe (46,20 ₺) → Forum İstanbul / IKEA.'],
+ [/Возвращаемся из IKEA на метро M1 и трамвае T1/i,'Kocatepe → метро M1 до Aksaray (46,20 ₺), пешком до Yusufpaşa → T1 до Sultanahmet (46,20 ₺).']
 ];
 function transportTip(title){
  const item=transportTips.find(([re])=>re.test(title));
