@@ -91,10 +91,10 @@
    </div>
    <div class="card budget-explanation">
     <div class="section-title"><h2>Что учтено</h2></div>
-    <p>Все суммы — за двоих, не за всю компанию. Завтраки в отеле оплачены. Перелёт и проживание не включены: их стоимость не задана.</p>
-    <p>Еда рассчитана по ресторанам маршрута. Включены кофе, Semaver Cafe, перекусы и напитки. Вино для вечера в Стамбуле заложено в расходы 1 декабря, не в покупки домой.</p>
+    <p>Все суммы — за двоих, не за всю компанию. Ужин в Bitlisli считается только за наши две порции. Завтраки в отеле оплачены. Перелёт и проживание не включены: их стоимость не задана.</p>
+    <p>Еда рассчитана по маршруту: кафе, рестораны, Semaver Cafe и напитки. 2 декабря покупаем перекусы в магазине для аэропорта — аэропортовые кафе в бюджет не включены. Вино для вечера в Стамбуле учтено 1 декабря.</p>
     <p>Транспорт: две Istanbulkart по 165 ₺, поездки на метро и трамваях в аэропорт и по городу. Без автобусов и такси.</p>
-    <p>Билеты в Айя-Софию — 50 € на двоих, примерно 2 800 ₺ при расчётном курсе 56 ₺/€. Цистерна и подъём на Галатскую башню — необязательные расходы.</p>
+    <p>Билеты в Айя-Софию — 50 € на двоих, примерно 2 800 ₺ при расчётном курсе 56 ₺/€. Цистерна Базилика и Галатская башня включены в основной бюджет на двоих.</p>
     <p class="tiny">Оценка на 30.10.2026. Цены, курс и выбранные блюда могут измениться. Все суммы ниже можно редактировать.</p>
    </div>
   </div>
@@ -129,9 +129,10 @@ const days=[
   ['Утро','🥐','Завтракаем в Edibe Sultan Hotel — оплачено','','Вдвоём'],
   ['На все дни','🚋','Городской транспорт по Istanbulkart','','Проезд'],
   ['После завтрака','☕','Берём кофе в Starbucks Sultanahmet','','Вдвоём','Starbucks Sultanahmet Istanbul'],
-  ['До обеда','🕌','Посещаем Айя-Софию и Голубую мечеть','Красивые площади и архитектура. Цистерну Базилика можно добавить по желанию.','Вдвоём','Hagia Sophia Istanbul'],
-  ['≈ 12:15','⭐','Посещаем мечеть Сулеймание — обязательно','','Вдвоём','Suleymaniye Mosque Istanbul'],
-  ['≈ 13:30','🍲','Обедаем в Süleymaniye Lokantası','','Вдвоём','Süleymaniye Lokantası Istanbul Molla Hüsrev'],
+  ['Утро','🕌','Посещаем Айя-Софию и Голубую мечеть','','Вдвоём','Hagia Sophia Istanbul'],
+  ['После мечетей','🏛️','Посещаем Цистерну Базилика','','Музей','Basilica Cistern Istanbul'],
+  ['После цистерны','⭐','Посещаем мечеть Сулеймание — обязательно','','Вдвоём','Suleymaniye Mosque Istanbul'],
+  ['После Сулеймание','🍲','Обедаем в Süleymaniye Lokantası','','Вдвоём','Süleymaniye Lokantası Istanbul Molla Hüsrev'],
   ['≈ 18:30','🍽️','Ужинаем в Balkan Lokantası Sirkeci','','Вдвоём','Balkan Lokantasi Sirkeci Hoca Pasa Sokak Istanbul'],
   ['≈ 20:30','🫖','Заходим в Semaver Cafe','','Кафе','Semaver Cafe Kennedy Caddesi Istanbul','https://www.semavercafe.com/menu']
  ]},
@@ -139,22 +140,24 @@ const days=[
   ['Утро','🥐','Завтракаем в Edibe Sultan Hotel — оплачено','','Вдвоём'],
   ['После завтрака','🌉','Гуляем по Эминёню и Галатскому мосту','','Вдвоём','Galata Bridge Istanbul'],
   ['День','📸','Гуляем по Галате и Каракёю','','Вдвоём','Galata Tower Istanbul'],
-  ['≈ 13:00','🍲','Обедаем в Emek Restaurant (Каракёй)','','Вдвоём','Emek Restaurant Yeni Merdiven Sokak 9 Karakoy Istanbul'],
+  ['Перед обедом','🗼','Поднимаемся на Галатскую башню','','Достопримечательность','Galata Tower Istanbul'],
+  ['После башни','🍲','Обедаем в Emek Restaurant (Каракёй)','','Вдвоём','Emek Restaurant Yeni Merdiven Sokak 9 Karakoy Istanbul'],
   ['После прогулки','🍷','Ищем гранатовое вино в Tekel (Сиркеджи)','','Вдвоём','Tekel Sirkeci Istanbul'],
   ['≈ 19:00','🍽️','Ужинаем в Yeni Karadeniz Pide','','Вдвоём','Yeni Karadeniz Pide Kebap Salonu Cagaloglu Hamami Sokak Istanbul'],
  ]},
- {date:'2 декабря',week:'Среда',short:'2 дек',title:'IKEA и день рождения',desc:'Небольшой шопинг с Дашей, вечер свободен под семейный праздник Тимохи.',tags:['Вдвоём','Возможен семейный ужин'],events:[
+ {date:'2 декабря',week:'Среда',short:'2 дек',title:'IKEA и день рождения',desc:'IKEA, Forum İstanbul, продукты в дорогу и ужин в Bitlisli.',tags:['Вдвоём','Возможен семейный ужин'],events:[
   ['Утро','🥐','Завтракаем в Edibe Sultan Hotel — оплачено','','Вдвоём'],
   ['После завтрака','🛍️','Едем в IKEA Bayrampaşa','','Вдвоём','IKEA Bayrampasa Istanbul'],
   ['≈ 12:30','🍽️','Обедаем в IKEA Restaurant','','Вдвоём','IKEA Restaurant Bayrampasa Forum Istanbul'],
   ['День','👕','Идём за покупками в Forum İstanbul','','Вдвоём','Forum Istanbul Shopping Mall'],
-  ['≈ 19:30','🎂','Вариант ужина на день рождения Тимохи — Bitlisli','','С семьёй','Bitlisli Hoca Camii Sokak Sirkeci Istanbul']
+  ['Перед вечером','🛒','Покупаем еду в дорогу в SHOW Supermarket','','Супермаркет','SHOW Supermarket Çemberlitaş Peykhane Sokak 6 Istanbul'],
+  ['≈ 19:30','🎂','Ужинаем в Bitlisli на дне рождения Тимохи','','С семьёй','Bitlisli Hoca Camii Sokak Sirkeci Istanbul']
  ]},
  {date:'3 декабря',week:'Четверг',short:'3 дек',title:'До встречи, Стамбул',desc:'Спокойное утро, дорога в аэропорт IST и обратный перелёт.',tags:['Вдвоём','Перелёт'],events:[
   ['Утро','🥐','Завтракаем в Edibe Sultan Hotel — оплачено','','Вдвоём'],
   ['После завтрака','🧳','Собираем вещи и выезжаем из отеля','','Вдвоём'],
   ['11:30–12:00','🚇','Едем в аэропорт: трамвай T1 → метро M2 → M11','','Метро и трамвай','Istanbul Airport IST'],
-  ['≈ 15:00','🥯','Обедаем в Simit Sarayı (аэропорт IST)','','Вдвоём','Simit Sarayi Istanbul Airport International Departures'],
+  ['В ожидании вылета','🥪','Перекусываем едой, купленной накануне','','Еда с собой'],
   ['17:30','🛫','Вылетаем в Москву рейсом Аэрофлота','','Вдвоём']
  ]}
 ];
@@ -183,27 +186,24 @@ const places=[
  ['Поужинать в Yeni Karadeniz Pide','Кебабы и пиде','🥙','Ещё один вариант пиде.','Yeni Karadeniz Pide Istanbul'],
  ['Поужинать в Ortaklar Kebap','Кебабы и пиде','🍢','Кебабная в старом городе.','Ortaklar Kebap Restaurant Peykhane 27A Istanbul'],
  ['Пообедать в IKEA Restaurant Bayrampaşa','Рестораны','🍽️','Обед в IKEA.','IKEA Restaurant Bayrampasa Forum Istanbul'],
- ['Перекусить в Simit Sarayı (аэропорт IST)','Фастфуд','🥯','Обед перед вылетом.','Simit Sarayi Istanbul Airport International Departures'],
+ ['Купить еду в дорогу в SHOW Supermarket','Магазины','🛒','Продукты для перекуса перед вылетом.','SHOW Supermarket Çemberlitaş Peykhane Sokak 6 Istanbul'],
  ['Попробовать дюрюм в Tarihi Dürüm Han','Уличная еда','🐟','Вариант перекуса на прогулке.','Tarihi Durum Han Eminonu Istanbul'],
  ['Попробовать уличную еду у Yılmaz Usta','Уличная еда','🐟','Уличная еда в районе Эминёню.','Yilmaz Usta Eminonu Istanbul']
 ];
 const defaultShopping=[
- ['Купить магнитик','В память о Стамбуле'],['Выбрать сувенир маме','Назар, небольшая керамика или чайный стакан'],['Купить сладости маме','Лукум, пахлава или халва'],['Выбрать сувенир папе','Что-то компактное'],['Купить сладости папе','Фабрично упакованная коробка'],['Купить рубашку XL папе','Посмотреть в Forum İstanbul']
+ ['Купить магнитик','В память о Стамбуле'],['Выбрать сувенир маме','Назар, небольшая керамика или чайный стакан'],['Купить сладости маме','Лукум, пахлава или халва'],['Выбрать сувенир папе','Что-то компактное'],['Купить сладости папе','Фабрично упакованная коробка'],['Купить рубашку XL папе','Посмотреть в Forum İstanbul'],['Купить перекусы в дорогу','Купить 2 декабря и взять в ручную кладь']
 ];
 const budgetMeals=[
  ['d29','29 ноя · Ortaklar Kebap',1000],
  ['d30','30 ноя · Starbucks, Süleymaniye, Balkan, Semaver',3500],
  ['d01','1 дек · Emek, Yeni Karadeniz, перекусы и напитки',3600],
- ['d02','2 дек · обед в IKEA',700],
- ['d03','3 дек · Simit Sarayı в аэропорту',1400]
+ ['d02food','2 дек · IKEA и продукты в дорогу',1200]
 ];
 const budgetOther=[
  ['transport','Метро, трамваи и две Istanbulkart',1750],
  ['gifts','Рубашка XL, сладости, сувениры, магнитик',4000],
- ['hagia','Айя-София · два билета (50 € ≈ 2 800 ₺)',2800]
-];
-const budgetOptions=[
- ['bitlisli','Bitlisli · ужин 2 декабря только за нас двоих',2600],
+ ['hagia','Айя-София · два билета (50 € ≈ 2 800 ₺)',2800],
+ ['bitlisli','Bitlisli · ужин 2 декабря (только наши 2 порции)',2600],
  ['cistern','Цистерна Базилика · два билета',3900],
  ['galata','Галатская башня · два билета (60 € ≈ 3 360 ₺)',3360]
 ];
@@ -221,7 +221,8 @@ const venueTypes=[
  [/Покупаем Istanbulkart/i,'Проездной · транспортная карта'],
  [/метро M11 → M2 и трамвае T1|трамвай T1 → метро M2 → M11/i,'Метро · трамвай'],
  [/Городской транспорт по Istanbulkart/i,'Метро · трамвай'],
- [/Simit Sarayı/i,'Фастфуд · пекарня'],
+ [/SHOW Supermarket/i,'Супермаркет'],
+ [/Перекусываем едой, купленной накануне/i,'Перекус · своё'],
  [/IKEA Restaurant/i,'Ресторан самообслуживания'],
  [/Ortaklar Kebap/i,'Ресторан · кебабы'],
  [/Bitlisli/i,'Ресторан · турецкая кухня'],
@@ -244,7 +245,8 @@ const venueTypes=[
  [/Голубую мечеть/i,'Мечеть'],
  [/Сулеймание/i,'Мечеть'],
  [/Цистерну Базилика/i,'Музей · подземная цистерна'],
- [/Галатскую башню|Галате и Каракёю/i,'Историческая башня · прогулка'],
+ [/Галатскую башню/i,'Историческая башня · смотровая площадка'],
+ [/Галате и Каракёю/i,'Прогулка · исторический район'],
  [/Эминёню и Галатскому мосту/i,'Прогулка · достопримечательности'],
  [/Султанахмету/i,'Прогулка · старый город'],
  [/Forum İstanbul/i,'Торговый центр'],
@@ -268,7 +270,6 @@ const priceRules=[
  [/Цистерну Базилика/i,'1 950 ₺/чел. днём','https://kultur.istanbul/yerebatan-sarnici-muzesi/'],
  [/Сулеймание/i,'Бесплатно','https://istanbul.travel/en/suleymaniye-mosque?gruppe=moscheen'],
  [/Галатскую башню/i,'Вход внутрь 30 €/чел.','https://dosim.ktb.gov.tr/TR-218202/muze-ve-oren-yeri-ucretleri.html'],
- [/Галате и Каракёю/i,'Галатская башня: вход 30 €/чел.','https://dosim.ktb.gov.tr/TR-218202/muze-ve-oren-yeri-ucretleri.html'],
  [/Ortaklar Kebap/i,'В среднем 400–600 ₺/чел.','https://restoranim.net/istanbul/fatih/kebapci/ortaklar-kebap-restaurant'],
  [/Emek Restaurant/i,'В среднем 600–1 000 ₺/чел.','https://restaurantguru.com/Emek-Restaurant-Istanbul'],
  [/IKEA Restaurant/i,'Недорого',''],
@@ -277,7 +278,7 @@ const priceRules=[
  [/Balkan Restaurant|Balkan Lokantası/i,'В среднем 200–400 ₺/чел.','https://de.restaurantguru.com/Balkan-Lokantasi-2-Istanbul'],
  [/Süleymaniye Lokantası/i,'В среднем 200–400 ₺/чел.','https://es.restaurantguru.com/Suleymaniye-Lokantasi-Istanbul-3'],
  [/Semaver Cafe/i,'В среднем 800–1 000 ₺/чел.','https://ru.restaurantguru.com/Semaver-Cafe-and-Nargile-Istanbul'],
- [/Simit Sarayı/i,'В среднем 600–800 ₺/чел. (IST)','https://tr.restaurantguru.com/Simit-Sarayi-Istanbul-Havalimani-E28-Arnavutkoy'],
+ [/SHOW Supermarket/i,'Продукты в дорогу: около 500 ₺ на двоих (оценка)',''],
  [/Starbucks/i,'Дорого',''],
  [/Hocapaşa Pidecisi/i,'В среднем 400–600 ₺/чел.','https://restaurantguru.com/Hocapasa-Pidecisi-Istanbul'],
  [/Köfteci Kadırgalı/i,'В среднем 400–600 ₺/чел.','https://ru.restaurantguru.com/Kofteci-Kadirgali-Istanbul'],
@@ -316,30 +317,22 @@ function budgetRow([key,label,def]){
  return `<div class="money-line"><label for="money-${key}">${esc(label)}<span>на двоих, ₺</span></label><input id="money-${key}" type="number" min="0" max="1000000" step="50" inputmode="numeric" data-money="${key}" value="${budgetValue(key,def)}"></div>`;
 }
 function drawBudget(){
- const selected=key=>getJSON('it-budget-v6-on-'+key,false)===true;
  $('moneyInputs').innerHTML=
   '<h3 class="budget-group">Еда и напитки · по дням</h3>'+
   budgetMeals.map(budgetRow).join('')+
-  '<h3 class="budget-group">Транспорт, покупки и билеты</h3>'+
-  budgetOther.map(budgetRow).join('')+
-  '<h3 class="budget-group">Дополнительно · по желанию</h3>'+
-  '<p class="budget-small">Включи только если действительно планируете. Ужин Bitlisli считается за ваши две порции, не за всю семью.</p>'+
-  budgetOptions.map(([key,label,def])=>`<div class="budget-option"><label for="on-${key}"><input id="on-${key}" type="checkbox" data-budget-on="${key}" ${selected(key)?'checked':''}><span>${esc(label)}</span></label><input id="money-${key}" type="number" min="0" max="1000000" step="50" data-money="${key}" inputmode="numeric" aria-label="Сумма на двоих: ${esc(label)}" value="${budgetValue(key,def)}"></div>`).join('');
+  '<h3 class="budget-group">Транспорт, покупки и все запланированные билеты</h3>'+
+  '<p class="budget-small">Все позиции учтены в общей сумме на двоих. Их можно редактировать.</p>'+
+  budgetOther.map(budgetRow).join('');
  updateBudget();
 }
 function updateBudget(){
  let total=0;
- for(const [key,,def] of [...budgetMeals,...budgetOther,...budgetOptions]){
+ for(const [key,,def] of [...budgetMeals,...budgetOther]){
   const el=$('money-'+key);
   if(!el)continue;
   const n=Math.min(1000000,Math.max(0,Number(el.value)||0));
   setJSON('it-budget-v6-'+key,n);
-  const isOption=budgetOptions.some(([id])=>id===key);
-  if(isOption){
-   const on=$('on-'+key).checked;
-   setJSON('it-budget-v6-on-'+key,on);
-   if(on)total+=n;
-  }else total+=n;
+  total+=n;
  }
  $('budgetTotal').textContent=lira(total);
  $('budgetEach').textContent='На человека: '+lira(total/2);
