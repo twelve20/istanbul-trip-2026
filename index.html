@@ -1,794 +1,169 @@
 <!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Istanbul Together 3.0 — 29.11–03.12.2026</title>
-  <meta name="theme-color" content="#111827" />
-  <meta name="description" content="Современный маршрут поездки в Стамбул: 29 ноября — 3 декабря 2026" />
-  <style>
-    :root {
-      --bg: #0b1220;
-      --panel: rgba(17,24,39,.72);
-      --panel-strong: #111827;
-      --panel-soft: #172033;
-      --text: #eef2ff;
-      --muted: #9fb0d0;
-      --line: rgba(255,255,255,.08);
-      --accent: #7c3aed;
-      --accent-2: #22c55e;
-      --accent-3: #f59e0b;
-      --danger: #ef4444;
-      --chip: rgba(255,255,255,.08);
-      --shadow: 0 18px 50px rgba(0,0,0,.35);
-      --radius: 22px;
-      --radius-sm: 16px;
-      --max: 1180px;
-    }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at top left, rgba(124,58,237,.22), transparent 30%),
-        radial-gradient(circle at top right, rgba(34,197,94,.16), transparent 28%),
-        radial-gradient(circle at 20% 90%, rgba(245,158,11,.12), transparent 24%),
-        linear-gradient(180deg, #08101d 0%, #0b1220 40%, #0e1527 100%);
-      min-height: 100vh;
-    }
-
-    a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
-
-    .shell { max-width: var(--max); margin: 0 auto; padding: 18px 16px 40px; }
-
-    .nav {
-      position: sticky; top: 10px; z-index: 30;
-      backdrop-filter: blur(18px);
-      background: rgba(10,16,29,.58);
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 12px; padding: 10px 14px; margin-bottom: 18px;
-      box-shadow: var(--shadow);
-    }
-    .brand { display:flex; gap:12px; align-items:center; min-width:0; }
-    .brand-badge {
-      width: 38px; height: 38px; border-radius: 12px;
-      background: linear-gradient(135deg, var(--accent), #2563eb 60%, #06b6d4);
-      display:grid; place-items:center; font-size: 20px; box-shadow: 0 10px 25px rgba(124,58,237,.35);
-      flex: 0 0 auto;
-    }
-    .brand h1 { font-size: 15px; margin: 0; letter-spacing: .2px; }
-    .brand p { font-size: 12px; margin: 2px 0 0; color: var(--muted); }
-    .nav-links { display:flex; gap:8px; flex-wrap: wrap; justify-content:flex-end; }
-    .nav-links a {
-      padding: 9px 12px; border-radius: 999px; font-size: 13px; color: var(--muted);
-      background: rgba(255,255,255,.04); border: 1px solid transparent;
-    }
-    .nav-links a:hover { color: var(--text); border-color: var(--line); }
-
-    .hero {
-      position: relative; overflow: hidden;
-      background:
-        linear-gradient(135deg, rgba(17,24,39,.85), rgba(23,32,51,.72)),
-        url('https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=1600&q=80') center/cover;
-      border: 1px solid var(--line); border-radius: 30px;
-      padding: 28px 22px 22px; box-shadow: var(--shadow); margin-bottom: 18px;
-    }
-    .hero::after {
-      content:""; position:absolute; inset:auto -10% -30% auto; width:220px; height:220px;
-      background: radial-gradient(circle, rgba(124,58,237,.32), transparent 65%);
-      pointer-events:none;
-    }
-    .hero-grid {
-      display:grid; gap:18px; grid-template-columns: 1.3fr .9fr;
-      position:relative; z-index:1;
-    }
-    .eyebrow {
-      display:inline-flex; align-items:center; gap:8px; padding:8px 12px;
-      border:1px solid rgba(255,255,255,.08); border-radius:999px;
-      background: rgba(255,255,255,.06); color: #d7def0; font-size: 12px; font-weight: 600;
-      margin-bottom: 14px;
-    }
-    .hero h2 {
-      font-size: clamp(30px, 6vw, 56px); line-height: .98; margin: 0 0 12px;
-      letter-spacing: -.04em;
-    }
-    .hero h2 span { color: #d8b4fe; }
-    .hero p.lead {
-      font-size: clamp(15px, 2.8vw, 18px); line-height: 1.55; color: #d7def0; margin: 0 0 18px;
-      max-width: 58ch;
-    }
-    .hero-actions { display:flex; flex-wrap:wrap; gap:10px; }
-    .btn {
-      padding: 12px 16px; border-radius: 14px; border:1px solid var(--line); font-weight: 600;
-      background: rgba(255,255,255,.08); color: var(--text); font-size: 14px;
-      display:inline-flex; align-items:center; gap:8px;
-    }
-    .btn.primary {
-      background: linear-gradient(135deg, var(--accent), #2563eb);
-      border-color: transparent; box-shadow: 0 14px 30px rgba(61,94,255,.26);
-    }
-    .hero-side {
-      display:grid; gap:12px; align-content:start;
-    }
-    .mini-card {
-      background: rgba(255,255,255,.06); backdrop-filter: blur(8px);
-      border:1px solid rgba(255,255,255,.08); border-radius: 20px; padding: 16px;
-    }
-    .mini-card h3 { margin: 0 0 8px; font-size: 14px; color: #dfe7fb; }
-    .mini-list { display:grid; gap:8px; }
-    .mini-item { display:flex; justify-content:space-between; gap:12px; font-size:13px; color: var(--muted); }
-    .mini-item strong { color: var(--text); font-weight:700; }
-
-    .stats {
-      display:grid; grid-template-columns: repeat(4, 1fr); gap:12px; margin-bottom: 18px;
-    }
-    .stat {
-      background: var(--panel); border:1px solid var(--line); border-radius: 20px; padding: 16px;
-      box-shadow: var(--shadow); backdrop-filter: blur(16px);
-    }
-    .stat .kicker { font-size: 12px; color: var(--muted); margin-bottom: 8px; }
-    .stat .value { font-size: 22px; font-weight: 800; margin-bottom: 4px; }
-    .stat .sub { font-size: 13px; color: #ced8f3; }
-
-    .grid {
-      display:grid; grid-template-columns: 1.55fr .95fr; gap:18px;
-    }
-
-    .section {
-      background: var(--panel); border:1px solid var(--line); border-radius: 26px; padding: 20px;
-      box-shadow: var(--shadow); backdrop-filter: blur(16px);
-      margin-bottom: 18px;
-    }
-    .section-head { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; margin-bottom: 16px; }
-    .section-head h3 { margin:0; font-size: 24px; letter-spacing: -.03em; }
-    .section-head p { margin:6px 0 0; color: var(--muted); font-size: 14px; }
-
-    .chips { display:flex; flex-wrap:wrap; gap:8px; }
-    .chip {
-      display:inline-flex; align-items:center; gap:7px; padding:8px 10px;
-      border-radius: 999px; background: var(--chip); color: #d8e0f8; font-size: 12px; border:1px solid var(--line);
-    }
-    .chip.green { background: rgba(34,197,94,.12); color: #b7f7cb; }
-    .chip.purple { background: rgba(124,58,237,.16); color: #e7d5ff; }
-    .chip.orange { background: rgba(245,158,11,.14); color: #fde1a5; }
-
-    .timeline { display:grid; gap:14px; }
-    .day-card {
-      position:relative; border:1px solid var(--line); background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.02));
-      border-radius: 22px; padding: 18px;
-    }
-    .day-top { display:flex; justify-content:space-between; gap:10px; align-items:flex-start; margin-bottom: 12px; }
-    .day-title h4 { margin:0; font-size: 19px; }
-    .day-title p { margin:6px 0 0; font-size: 13px; color: var(--muted); }
-    .day-number {
-      width: 42px; height: 42px; border-radius: 14px; display:grid; place-items:center;
-      background: linear-gradient(135deg, rgba(124,58,237,.32), rgba(59,130,246,.3)); border:1px solid rgba(255,255,255,.08); font-weight:800;
-    }
-    .activity-list { display:grid; gap:10px; }
-    .activity {
-      display:grid; grid-template-columns: 62px 1fr; gap:12px; align-items:start;
-      padding: 12px; background: rgba(255,255,255,.03); border-radius: 16px; border:1px solid rgba(255,255,255,.04);
-    }
-    .time {
-      font-size: 12px; color: #c5d0eb; font-weight: 700; line-height: 1.25;
-      padding: 8px 10px; background: rgba(255,255,255,.06); border-radius: 12px; text-align:center;
-    }
-    .activity h5 { margin:0 0 4px; font-size: 15px; }
-    .activity p { margin:0; font-size: 13px; color: var(--muted); line-height: 1.55; }
-    .activity .links { display:flex; flex-wrap:wrap; gap:8px; margin-top: 8px; }
-    .activity .links a {
-      padding: 7px 9px; border-radius: 999px; font-size: 12px; background: rgba(255,255,255,.06); border: 1px solid var(--line); color: #dfe8ff;
-    }
-
-    .info-stack, .checklist, .shopping-grid, .food-grid, .people-grid, .flight-list { display:grid; gap:12px; }
-    .info-card, .shopping-item, .food-card, .person-card, .flight-card {
-      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-      border:1px solid var(--line); border-radius: 18px; padding: 16px;
-    }
-    .info-card h4, .food-card h4, .flight-card h4, .person-card h4 { margin:0 0 8px; font-size:16px; }
-    .info-card p, .food-card p, .flight-card p, .person-card p { margin:0; color: var(--muted); font-size: 13px; line-height: 1.55; }
-
-    .people-grid { grid-template-columns: 1fr 1fr; }
-    .person-card .who { font-weight: 800; font-size: 16px; }
-    .person-card .tagline { margin-top: 4px; color: #d8e2ff; }
-
-    .checklist label, .shopping-item label {
-      display:flex; gap:12px; align-items:flex-start; padding: 13px 14px; cursor:pointer;
-      border-radius: 16px; background: rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.05);
-    }
-    .checklist input, .shopping-item input { margin-top: 2px; accent-color: var(--accent); width: 18px; height: 18px; }
-    .checklist strong, .shopping-item strong { display:block; font-size:14px; }
-    .checklist span, .shopping-item span { display:block; margin-top: 4px; font-size:12px; color: var(--muted); }
-
-    .shopping-grid { grid-template-columns: 1fr; }
-    .shopping-item .meta { display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; }
-
-    .budget-grid {
-      display:grid; gap:14px;
-    }
-    .budget-line {
-      background: rgba(255,255,255,.03); border:1px solid var(--line); border-radius: 18px; padding: 14px;
-    }
-    .budget-line .row { display:flex; justify-content:space-between; gap:12px; align-items:center; margin-bottom: 10px; }
-    .budget-line .name { font-weight:700; }
-    .budget-line input[type="range"] { width:100%; }
-    .budget-line output { font-size: 14px; color:#dbe5ff; font-weight:700; }
-    .budget-total {
-      padding: 18px; border-radius: 20px; background: linear-gradient(135deg, rgba(124,58,237,.24), rgba(37,99,235,.16)); border:1px solid rgba(124,58,237,.32);
-    }
-    .budget-total .title { font-size: 12px; color: #d8b4fe; text-transform: uppercase; letter-spacing: .12em; }
-    .budget-total .sum { font-size: 30px; font-weight: 900; margin: 6px 0 4px; }
-    .budget-total .sub { color: var(--muted); font-size: 13px; }
-
-    .food-grid { grid-template-columns: 1fr; }
-    .food-card .badges { display:flex; flex-wrap:wrap; gap:8px; margin-top: 10px; }
-    .food-card .badges span { font-size: 12px; padding: 6px 8px; border-radius: 999px; background: rgba(255,255,255,.06); color:#d9e4ff; }
-
-    .two-col { display:grid; grid-template-columns: 1fr 1fr; gap:12px; }
-    .muted { color: var(--muted); }
-    .small { font-size: 12px; }
-    .footer {
-      text-align:center; color: var(--muted); padding: 10px 0 30px; font-size: 13px;
-    }
-
-    @media (max-width: 980px) {
-      .hero-grid, .grid, .stats, .people-grid, .two-col { grid-template-columns: 1fr; }
-      .nav { border-radius: 24px; align-items:flex-start; }
-      .nav-links { justify-content:flex-start; }
-    }
-
-    @media (max-width: 640px) {
-      .shell { padding: 12px 12px 28px; }
-      .hero { padding: 22px 16px 18px; border-radius: 24px; }
-      .section { padding: 16px; border-radius: 22px; }
-      .day-card { padding: 14px; }
-      .activity { grid-template-columns: 56px 1fr; padding: 10px; }
-      .time { padding: 8px 6px; font-size: 11px; }
-      .hero h2 { max-width: 10ch; }
-      .section-head h3 { font-size: 22px; }
-      .brand h1 { font-size: 14px; }
-      .brand p { font-size: 11px; }
-      .nav-links a { font-size: 12px; }
-    }
-  
-    .mode-tabs {display:flex; flex-wrap:wrap; gap:8px; margin:0 0 16px}
-    .mode {cursor:pointer; background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:999px;padding:10px 13px;color:var(--muted);font:600 13px/1.2 inherit;transition:.2s}
-    .mode.active {background:linear-gradient(135deg,#7c3aed,#2563eb);color:white;border-color:transparent;box-shadow:0 8px 20px rgba(124,58,237,.25)}
-    .day-card.is-hidden {display:none}
-    .map-frame {height:280px;border-radius:20px;overflow:hidden;border:1px solid var(--line);background:#1c2433}
-    .map-frame iframe {width:100%;height:100%;border:0;filter:grayscale(.25) contrast(.95)}
-    .map-places {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:14px 0}
-    .map-places a {display:flex;justify-content:space-between;gap:10px;align-items:center;padding:13px 12px;border:1px solid var(--line);background:rgba(255,255,255,.04);border-radius:14px;font-size:13px;font-weight:600}
-    .map-places span {font-size:11px;color:var(--muted);font-weight:400}
-    .map-places a:hover {border-color:rgba(167,139,250,.5);background:rgba(124,58,237,.1)}
-    @media(max-width:640px){.map-places{grid-template-columns:1fr}.map-frame{height:240px}}
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F8F8F6">
+<meta name="description" content="Стамбул вдвоём: персональный маршрут 29 ноября — 3 декабря 2026">
+<title>Стамбул · Даша и Даниил</title>
+<style>
+:root{--bg:#f8f8f6;--white:#fff;--ink:#172331;--sub:#66717e;--muted:#929ba5;--line:#e8ebeb;--tint:#f0f4f3;--teal:#087d76;--deep:#07655f;--soft:#e9f6f2;--orange:#b36c46;--gold:#fff4df;--shadow:0 5px 22px rgba(28,43,49,.045);--r:19px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;font-size:14px;-webkit-font-smoothing:antialiased}button,input,textarea{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid rgba(8,125,118,.35);outline-offset:3px}.page{max-width:1140px;margin:auto;padding:24px 24px 90px}.top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:26px}.brand{display:flex;gap:11px;align-items:center}.mark{display:grid;place-items:center;width:39px;height:39px;background:var(--teal);color:#fff;border-radius:13px;font-size:20px}.brand b{display:block;font-size:15px;letter-spacing:-.3px}.brand small{display:block;color:var(--sub);font-size:11px;margin-top:3px}.topright{display:flex;align-items:center;gap:10px}.pill{display:flex;gap:6px;align-items:center;background:#fff;border:1px solid var(--line);padding:9px 12px;border-radius:999px;font-size:12px;color:var(--sub);white-space:nowrap}.pill strong{color:var(--ink)}.tiny{font-size:11px;color:var(--muted)}
+.main-tabs{display:flex;align-items:center;gap:5px;padding:5px;background:#eff1ef;border-radius:15px;width:max-content;max-width:100%;margin-bottom:26px}.tab{display:flex;align-items:center;gap:8px;border:0;background:transparent;border-radius:11px;padding:11px 17px;color:var(--sub);font-weight:650;font-size:13px;white-space:nowrap;transition:.15s}.tab svg{width:17px;height:17px}.tab.active{background:#fff;box-shadow:0 2px 6px rgba(18,33,42,.055);color:var(--teal)}.tab:not(.active):hover{color:var(--ink)}[hidden]{display:none!important}
+.view{animation:fade .16s ease}@keyframes fade{from{opacity:.5;transform:translateY(3px)}to{opacity:1;transform:none}}
+.overview-layout{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(300px,.9fr);gap:22px}.hero{position:relative;min-height:352px;overflow:hidden;background:linear-gradient(100deg,rgba(9,30,41,.78),rgba(9,30,41,.18)),url('https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1600&q=85') center 53%/cover;border-radius:24px;color:#fff;padding:29px;display:flex;flex-direction:column;justify-content:space-between}.hero-badge{align-self:flex-start;display:inline-block;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.13);backdrop-filter:blur(8px);padding:8px 11px;border-radius:999px;font-size:12px}.hero h1{margin:0 0 11px;font-size:clamp(34px,4.6vw,54px);line-height:1.06;letter-spacing:-2px;font-weight:750}.hero p{margin:0;color:rgba(255,255,255,.9);line-height:1.65;max-width:380px}.hero-bottom{display:flex;justify-content:space-between;align-items:flex-end;gap:12px}.hero .start{background:#fff;color:var(--ink);border:0;padding:12px 15px;border-radius:12px;font-weight:700;white-space:nowrap}.hero .start:hover{background:#eaf3f1}.eyebrow{font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal)}.section-title{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:16px}.section-title h2{font-size:20px;letter-spacing:-.65px;margin:0}.section-title p{margin:4px 0 0;color:var(--sub);font-size:13px}.link-btn{background:none;border:0;color:var(--teal);font-size:12px;font-weight:750;padding:8px;white-space:nowrap}.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:20px;box-shadow:var(--shadow)}.stack{display:grid;gap:15px}.split{display:grid;grid-template-columns:1fr 1fr;gap:14px}.small-label{font-size:11px;color:var(--muted);font-weight:650;margin-bottom:8px}.large-val{font-weight:770;font-size:19px;letter-spacing:-.6px}.subline{color:var(--sub);font-size:12px;margin-top:6px;line-height:1.55}.icon-dot{flex:0 0 auto;width:41px;height:41px;border-radius:14px;background:var(--soft);display:grid;place-items:center;font-size:18px}.quick-card{display:flex;align-items:flex-start;gap:12px}.quick-card b{font-size:14px}.quick-card .subline{margin-top:3px}.quick-card .text-link{display:inline-block;color:var(--teal);font-size:12px;font-weight:700;margin-top:8px}.badge{font-size:11px;font-weight:700;padding:5px 8px;border-radius:7px;background:var(--soft);color:var(--teal);display:inline-block}.badge.amber{background:var(--gold);color:#9d642c}.badge.gray{background:#f0f2f3;color:#677481}.upnext{margin-top:24px}.upnext-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}.preview{background:#fff;border:1px solid var(--line);padding:17px;border-radius:17px;min-height:138px;display:flex;flex-direction:column;gap:8px}.preview .date{font-size:11px;font-weight:800;color:var(--teal)}.preview h3{font-size:14px;line-height:1.4;margin:0}.preview p{font-size:12px;color:var(--sub);line-height:1.5;margin:0}.preview .foot{margin-top:auto;color:var(--muted);font-size:11px}
+.timeline-wrap{display:grid;grid-template-columns:260px minmax(0,1fr);gap:24px;align-items:start}.side-panel{position:sticky;top:20px}.side-panel h2{font-size:23px;letter-spacing:-.7px;margin:0 0 6px}.side-panel p{font-size:13px;color:var(--sub);line-height:1.6;margin:0 0 20px}.day-nav{display:grid;gap:8px}.day-nav button{border:1px solid transparent;text-align:left;padding:12px 14px;border-radius:13px;background:transparent;color:var(--sub);display:flex;align-items:center;justify-content:space-between}.day-nav button.active{background:#fff;border-color:var(--line);color:var(--ink);box-shadow:var(--shadow)}.day-nav b{font-size:13px}.day-nav small{display:block;font-size:11px;margin-top:4px;color:var(--muted)}.day-nav .num{color:var(--teal);font-weight:800}.day-content{min-width:0}.day-head{background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px;margin-bottom:15px}.day-head .date{font-size:12px;font-weight:750;color:var(--teal);margin-bottom:8px}.day-head h2{font-size:28px;letter-spacing:-1px;margin:0 0 10px}.day-head p{font-size:13px;line-height:1.7;color:var(--sub);margin:0}.day-head .rowbadges{margin-top:14px;display:flex;gap:7px;flex-wrap:wrap}.entry{position:relative;display:grid;grid-template-columns:52px minmax(0,1fr);gap:16px;padding:16px 0}.entry:not(:last-child):before{content:'';position:absolute;width:1px;top:53px;bottom:-4px;left:25px;background:var(--line)}.entry .em{width:51px;height:51px;background:#eef5f2;border:1px solid #e2eeeb;border-radius:16px;display:grid;place-items:center;font-size:20px;z-index:1}.entry .event{background:#fff;border:1px solid var(--line);border-radius:17px;padding:17px 19px}.event-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}.event-time{font-size:11px;color:var(--teal);font-weight:800;letter-spacing:.3px}.event h3{font-size:16px;margin:8px 0 7px;letter-spacing:-.3px}.event p{font-size:13px;line-height:1.65;color:var(--sub);margin:0}.event-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.event-links a{font-size:12px;color:var(--teal);font-weight:750;background:var(--soft);padding:8px 10px;border-radius:9px}.event-links a:hover{background:#d6eee7}
+.places-top{display:flex;gap:14px;align-items:end;justify-content:space-between;margin-bottom:18px}.places-top h2,.shopping-head h2,.budget-head h2{margin:0 0 6px;font-size:25px;letter-spacing:-.8px}.places-top p,.shopping-head p,.budget-head p{margin:0;color:var(--sub);line-height:1.6}.search{border:1px solid var(--line);border-radius:13px;padding:12px 14px;background:#fff;min-width:230px;width:280px;max-width:100%;color:var(--ink)}.chips{display:flex;flex-wrap:wrap;gap:7px;margin:18px 0}.filter{border:1px solid var(--line);background:#fff;border-radius:999px;padding:10px 14px;font-weight:650;font-size:12px;color:var(--sub)}.filter.active{background:var(--teal);color:#fff;border-color:var(--teal)}.places-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}.place{background:#fff;border:1px solid var(--line);border-radius:18px;min-height:195px;padding:18px;display:flex;flex-direction:column}.place-top{display:flex;justify-content:space-between;align-items:center}.place .symbol{width:40px;height:40px;display:grid;place-items:center;background:#f1f5f3;border-radius:13px;font-size:19px}.place h3{font-size:15px;line-height:1.35;margin:17px 0 6px}.place p{font-size:12px;color:var(--sub);line-height:1.55;margin:0 0 16px}.place a{margin-top:auto;color:var(--teal);font-size:12px;font-weight:750}.map-banner{display:flex;align-items:center;justify-content:space-between;gap:16px;background:#e7f1ed;padding:20px 23px;border-radius:18px;margin-top:20px}.map-banner strong{display:block;font-size:14px}.map-banner p{font-size:12px;color:var(--sub);margin:5px 0 0}.map-banner a{background:var(--teal);color:#fff;border-radius:10px;padding:11px 13px;white-space:nowrap;font-weight:750;font-size:12px}
+.shopping-layout,.budget-layout{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(270px,.7fr);gap:20px;align-items:start}.shopping-head,.budget-head{margin-bottom:20px}.progress{height:7px;border-radius:99px;background:#e9eded;overflow:hidden;margin-top:14px}.progress-bar{height:100%;width:0;background:var(--teal);transition:.2s}.check-row{display:flex;align-items:flex-start;gap:13px;padding:15px 0;cursor:pointer}.check-row+ .check-row{border-top:1px solid var(--line)}.check-row input{appearance:none;width:21px;height:21px;border:1.7px solid #cdd8d6;border-radius:7px;margin:0;flex:0 0 auto;position:relative}.check-row input:checked{background:var(--teal);border-color:var(--teal)}.check-row input:checked:after{content:'✓';color:white;position:absolute;top:0px;left:4px;font-size:15px;font-weight:800}.check-row b{display:block;font-size:13px}.check-row .detail{display:block;font-size:12px;margin-top:5px;color:var(--sub);line-height:1.45}.check-row input:checked~div b{text-decoration:line-through;color:var(--muted)}.add-row{display:flex;gap:8px;margin-top:16px}.add-row input{min-width:0;flex:1;background:#f8faf8;border:1px solid var(--line);border-radius:11px;padding:12px}.add-row button{border:0;background:var(--teal);color:white;border-radius:11px;padding:0 16px;font-weight:750}.side-note{background:#eff5f1;border:1px solid #e0eee6;padding:19px;border-radius:18px}.side-note h3{font-size:15px;margin:0 0 10px}.side-note p{font-size:12px;line-height:1.75;color:var(--sub);margin:0}.money-line{display:grid;gap:8px;margin-bottom:18px}.money-line label{display:flex;justify-content:space-between;gap:10px;font-size:13px;font-weight:700}.money-line input{padding:13px 14px;border:1px solid var(--line);border-radius:10px;width:100%;background:#fbfcfb;font-weight:650}.budget-total{background:#eaf5f0;border-radius:18px;padding:23px}.budget-total .eyebrow{margin-bottom:10px}.budget-total strong{display:block;font-size:32px;letter-spacing:-1px}.budget-total p{font-size:12px;color:var(--sub);margin:10px 0 0;line-height:1.65}
+.footer{border-top:1px solid var(--line);margin-top:32px;padding-top:23px;display:flex;justify-content:space-between;gap:12px;font-size:12px;color:var(--muted)}.mobile-nav{display:none}.notearea{width:100%;resize:vertical;min-height:125px;line-height:1.6;background:#fbfcfb;border:1px solid var(--line);border-radius:13px;padding:14px;color:var(--ink)}
+@media(max-width:900px){.overview-layout{grid-template-columns:1fr}.overview-right{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.overview-right .card{min-width:0}.upnext-grid{grid-template-columns:repeat(3,1fr)}.places-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.shopping-layout,.budget-layout{grid-template-columns:1fr}.timeline-wrap{grid-template-columns:200px minmax(0,1fr)}}
+@media(max-width:650px){.page{padding:18px 15px 103px}.top{margin-bottom:16px}.brand small{font-size:10px}.topright .pill{padding:8px 10px;font-size:11px}.main-tabs{display:none}.mobile-nav{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:30;padding:8px 8px calc(7px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);box-shadow:0 -7px 30px rgba(21,34,45,.065);border-top:1px solid var(--line);justify-content:space-around;backdrop-filter:blur(16px)}.mobile-nav button{display:grid;justify-items:center;gap:5px;border:0;background:transparent;color:#829099;min-width:0;width:20%;font-size:10px;font-weight:700;padding:5px 1px}.mobile-nav svg{width:22px;height:22px}.mobile-nav button.active{color:var(--teal)}.hero{padding:22px;min-height:342px;border-radius:20px}.hero h1{font-size:40px;letter-spacing:-1.5px}.hero-bottom{align-items:start;flex-direction:column;gap:16px}.hero p{font-size:13px}.overview-right{grid-template-columns:1fr 1fr}.overview-right .card{padding:14px}.overview-right .card .large-val{font-size:16px}.upnext{margin-top:22px}.upnext-grid{grid-template-columns:1fr}.preview{min-height:auto}.overview-right .quick-card{gap:8px}.icon-dot{width:34px;height:34px;font-size:16px}.section-title h2{font-size:18px}.timeline-wrap{display:block}.side-panel{position:static}.side-panel h2{font-size:23px}.day-nav{display:flex;overflow-x:auto;gap:8px;margin:14px -15px 20px;padding:0 15px 6px;scrollbar-width:none}.day-nav::-webkit-scrollbar{display:none}.day-nav button{flex:0 0 auto;display:grid;min-width:100px;padding:10px 12px}.day-nav .num{display:none}.day-head{padding:18px}.day-head h2{font-size:23px}.entry{gap:10px;grid-template-columns:39px minmax(0,1fr)}.entry .em{width:39px;height:39px;font-size:17px;border-radius:12px}.entry:not(:last-child):before{left:19px;top:44px}.entry .event{padding:15px}.places-top{display:block}.search{width:100%;margin-top:15px}.places-grid{grid-template-columns:1fr}.place{min-height:0}.map-banner{align-items:start;flex-direction:column}.footer{display:block;line-height:1.8}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+</style>
 </head>
 <body>
-  <div class="shell">
-    <nav class="nav">
-      <div class="brand">
-        <div class="brand-badge">🇹🇷</div>
-        <div>
-          <h1>Istanbul Together</h1>
-          <p>29 ноября — 3 декабря 2026 · маршрут для двоих + семьи</p>
-        </div>
+<div class="page">
+<header class="top">
+  <div class="brand"><span class="mark">✦</span><div><b>Istanbul Together</b><small>Даша и Даниил · 2026</small></div></div>
+  <div class="topright"><span class="pill">🇹🇷 <strong>29.11—03.12</strong></span></div>
+</header>
+<nav class="main-tabs" aria-label="Разделы сайта" id="desktopTabs"></nav>
+<main>
+<section class="view" id="overview" aria-label="Обзор">
+  <div class="overview-layout">
+    <div>
+      <div class="hero"><div class="hero-badge">✈ 4 ночи · Стамбул</div><div><h1>Наш маленький<br>Стамбул.</h1><div class="hero-bottom"><p>Пять дней воспоминаний, прогулок, вкусной еды и времени вдвоём.</p><button class="start" data-go="plan">Смотреть маршрут ↗</button></div></div></div>
+      <div class="upnext">
+        <div class="section-title"><div><h2>Самое важное</h2><p>Главные планы поездки</p></div><button class="link-btn" data-go="plan">Все дни →</button></div>
+        <div class="upnext-grid" id="highlights"></div>
       </div>
-      <div class="nav-links">
-        <a href="#plan">Маршрут</a>
-        <a href="#map">Карта</a>
-        <a href="#shopping">Покупки</a>
-        <a href="#food">Еда</a>
-        <a href="#info">Полезное</a>
-      </div>
-    </nav>
-
-    <header class="hero">
-      <div class="hero-grid">
-        <div>
-          <div class="eyebrow">✨ Istanbul Together 3.0 · ваш личный тревел-гид</div>
-          <h2>Ваш <span>Стамбул</span> — красиво, удобно и без суеты</h2>
-          <p class="lead">
-            База в <strong>Edibe Sultan Hotel</strong>, акцент на времени вдвоём, отдельные встречи с семьёй,
-            вкусная еда рядом, покупки без лишней беготни и гибкий маршрут на случай спонтанных изменений.
-          </p>
-          <div class="hero-actions">
-            <a class="btn primary" href="#plan">Открыть маршрут</a>
-            <a class="btn" href="https://maps.google.com/?q=Edibe+Sultan+Hotel+Istanbul" target="_blank" rel="noopener">Отель на карте</a>
-            <a class="btn" href="#budget">Бюджет поездки</a>
-          </div>
-        </div>
-        <div class="hero-side">
-          <div class="mini-card">
-            <h3>Ключевая идея поездки</h3>
-            <div class="mini-list">
-              <div class="mini-item"><span>Формат</span><strong>в основном вдвоём</strong></div>
-              <div class="mini-item"><span>Семья</span><strong>отдельные встречи</strong></div>
-              <div class="mini-item"><span>День рождения</span><strong>2 декабря, 16 лет</strong></div>
-              <div class="mini-item"><span>Покупки</span><strong>подарки + сладости</strong></div>
-            </div>
-          </div>
-          <div class="mini-card">
-            <h3>Must-have</h3>
-            <div class="chips">
-              <span class="chip purple">Semaver Cafe с мамой Даши</span>
-              <span class="chip green">IKEA + ресторан</span>
-              <span class="chip orange">сухое гранатовое вино</span>
-              <span class="chip">Starbucks</span>
-              <span class="chip">магнитик</span>
-              <span class="chip">сладости родителям</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <section class="stats">
-      <div class="stat">
-        <div class="kicker">Ночей</div>
-        <div class="value">4</div>
-        <div class="sub">29.11 → 03.12</div>
-      </div>
-      <div class="stat">
-        <div class="kicker">Полных дней</div>
-        <div class="value">3</div>
-        <div class="sub">30.11, 01.12, 02.12</div>
-      </div>
-      <div class="stat">
-        <div class="kicker">Проживание</div>
-        <div class="value">Edibe Sultan</div>
-        <div class="sub">завтрак включён</div>
-      </div>
-      <div class="stat">
-        <div class="kicker">Багаж</div>
-        <div class="value">8 кг / 10 кг</div>
-        <div class="sub">туда / обратно</div>
-      </div>
-    </section>
-
-    <div class="grid">
-      <main>
-        <section class="section" id="plan">
-          <div class="section-head">
-            <div>
-              <h3>Маршрут по дням</h3>
-              <p>Мягкий план без перегруза — основа есть, но остаётся место для спонтанности.</p>
-            </div>
-            <div class="chips">
-              <span class="chip purple">Вдвоём</span>
-              <span class="chip green">Семья</span>
-              <span class="chip orange">По желанию</span>
-            </div>
-          </div>
-          <div class="mode-tabs" role="group" aria-label="Фильтр событий">
-              <button class="mode active" data-mode="all" aria-pressed="true">Все планы</button>
-              <button class="mode" data-mode="couple" aria-pressed="false">❤️ Вдвоём</button>
-              <button class="mode" data-mode="family" aria-pressed="false">👨‍👩‍👦 С семьёй</button>
-              <button class="mode" data-mode="optional" aria-pressed="false">✨ По желанию</button>
-            </div>
-          <div class="timeline">
-            <article class="day-card" data-group="couple optional">
-              <div class="day-top">
-                <div class="day-title">
-                  <h4>29 ноября · Воскресенье</h4>
-                  <p>Прилёт, заселение и спокойный первый вечер вдвоём.</p>
-                </div>
-                <div class="day-number">29</div>
-              </div>
-              <div class="activity-list">
-                <div class="activity" data-group="couple optional">
-                  <div class="time">14:40<br>LED</div>
-                  <div>
-                    <h5>Вылет в Стамбул</h5>
-                    <p>Southwind Airlines, ручная кладь 8 кг, без зарегистрированного багажа.</p>
-                  </div>
-                </div>
-                <div class="activity" data-group="couple optional">
-                  <div class="time">18:35<br>IST</div>
-                  <div>
-                    <h5>Прилёт и дорога в отель</h5>
-                    <p>По прилёте — трансфер в район Sultanahmet, заселение в Edibe Sultan, лёгкий выдох после дороги.</p>
-                    <div class="links">
-                      <a href="https://maps.google.com/?q=Edibe+Sultan+Hotel+Istanbul" target="_blank" rel="noopener">Отель</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="activity" data-group="couple optional">
-                  <div class="time">вечер</div>
-                  <div>
-                    <h5>Прогулка у Султанахмета</h5>
-                    <p>Неспешный ужин рядом и вечерний исторический центр — без плотной программы, просто почувствовать город.</p>
-                  </div>
-                </div>
-              </div>
-            </article>
-
-            <article class="day-card" data-group="couple family">
-              <div class="day-top">
-                <div class="day-title">
-                  <h4>30 ноября · Понедельник</h4>
-                  <p>Исторический центр вдвоём, а вечером кальянная с мамой Даши.</p>
-                </div>
-                <div class="day-number">30</div>
-              </div>
-              <div class="activity-list">
-                <div class="activity" data-group="couple optional">
-                  <div class="time">утро</div>
-                  <div>
-                    <h5>Завтрак и прогулка по классике</h5>
-                    <p>Айя-София, Голубая мечеть, Цистерна Базилика, красивые улочки и остановка на кофе в Starbucks недалеко от отеля.</p>
-                    <div class="links">
-                      <a href="https://maps.google.com/?q=Ayasofya+Istanbul" target="_blank" rel="noopener">Айя-София</a>
-                      <a href="https://maps.google.com/?q=Starbucks+Divanyolu+Istanbul" target="_blank" rel="noopener">Starbucks</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="activity" data-group="couple optional">
-                  <div class="time">день</div>
-                  <div>
-                    <h5>Обед и обязательная Сулеймание 🕌</h5>
-                    <p><strong>Обязательно:</strong> посещение мечети Сулеймание (Süleymaniye Camii), виды на Золотой Рог и прогулка по окрестностям. На обед — Süleymaniye Lokantası или одна из локант: Değirmencioğlu, Buyruk, Balkan Restaurant Sirkeci. Время посещения мечети сверяем с молитвами.</p><div class="links"><a href="https://www.google.com/maps/search/?api=1&query=Suleymaniye%20Mosque%20Istanbul" target="_blank" rel="noopener">🕌 Сулеймание на карте</a></div>
-                  </div>
-                </div>
-                <div class="activity" data-group="couple optional">
-                  <div class="time">вечер</div>
-                  <div>
-                    <h5>Semaver Cafe с мамой Даши</h5>
-                    <p>Неспешный вечер, кальян и напитки. Формат — втроём: ты, Даша и её мама.</p>
-                    <div class="links">
-                      <a href="https://maps.google.com/?q=Semaver+Cafe+Istanbul" target="_blank" rel="noopener">Открыть на карте</a>
-                      <a href="https://www.semavercafe.com/menu" target="_blank" rel="noopener">Меню</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </article>
-
-            <article class="day-card" data-group="couple">
-              <div class="day-top">
-                <div class="day-title">
-                  <h4>1 декабря · Вторник</h4>
-                  <p>Галата, Каракёй, Сirkeci и романтический вечер вдвоём.</p>
-                </div>
-                <div class="day-number">1</div>
-              </div>
-              <div class="activity-list">
-                <div class="activity" data-group="couple optional">
-                  <div class="time">утро</div>
-                  <div>
-                    <h5>Перейти в сторону Галаты</h5>
-                    <p>Эминёню, Галатский мост, башня Галата, красивые улицы и атмосфера другого берега.</p>
-                    <div class="links">
-                      <a href="https://maps.google.com/?q=Galata+Tower+Istanbul" target="_blank" rel="noopener">Башня Галата</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="activity" data-group="couple optional">
-                  <div class="time">день</div>
-                  <div>
-                    <h5>Купить сухое гранатовое вино</h5>
-                    <p>Искать <strong>sek / yarı sek nar şarabı</strong> в районе Sirkeci или Tekel Bayii. Заодно можно взять сыр, фрукты и сладости на вечер.</p>
-                  </div>
-                </div>
-                <div class="activity" data-group="couple optional">
-                  <div class="time">вечер</div>
-                  <div>
-                    <h5>Уютный вечер вдвоём</h5>
-                    <p>Прогулка, ужин и гранатовое вино в Стамбуле — без лишней суеты, просто красивый вечер для вас двоих.</p>
-                  </div>
-                </div>
-              </div>
-            </article>
-
-            <article class="day-card" data-group="couple family optional">
-              <div class="day-top">
-                <div class="day-title">
-                  <h4>2 декабря · Среда</h4>
-                  <p>IKEA днём и свободный вечер под возможное семейное празднование.</p>
-                </div>
-                <div class="day-number">2</div>
-              </div>
-              <div class="activity-list">
-                <div class="activity" data-group="couple optional">
-                  <div class="time">утро</div>
-                  <div>
-                    <h5>Поездка в IKEA Bayrampaşa</h5>
-                    <p>Лёгкая вылазка: пройтись по магазину, зайти в ресторан, максимум купить что-то небольшое.</p>
-                    <div class="links">
-                      <a href="https://maps.google.com/?q=IKEA+Bayrampasa+Istanbul" target="_blank" rel="noopener">IKEA</a>
-                      <a href="https://maps.google.com/?q=Forum+Istanbul" target="_blank" rel="noopener">Forum İstanbul</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="activity" data-group="couple optional">
-                  <div class="time">день</div>
-                  <div>
-                    <h5>Покупки в Forum İstanbul</h5>
-                    <p>Посмотреть рубашку XL, при желании заглянуть в LC Waikiki или DeFacto. После — сладости и сувениры для родителей.</p>
-                  </div>
-                </div>
-                <div class="activity" data-group="couple optional">
-                  <div class="time">вечер</div>
-                  <div>
-                    <h5>Свободное окно под семейный ужин</h5>
-                    <p>У Тимохи 16-летие. Если семья решит праздновать — вечер уже оставлен свободным.</p>
-                  </div>
-                </div>
-              </div>
-            </article>
-
-            <article class="day-card" data-group="couple family">
-              <div class="day-top">
-                <div class="day-title">
-                  <h4>3 декабря · Четверг</h4>
-                  <p>Финальное утро, сборы и вылет обратно.</p>
-                </div>
-                <div class="day-number">3</div>
-              </div>
-              <div class="activity-list">
-                <div class="activity" data-group="couple optional">
-                  <div class="time">утро</div>
-                  <div>
-                    <h5>Спокойный завтрак и последние покупки</h5>
-                    <p>Если что-то забыли: магнитик, сладости, небольшой сувенир — утром можно быстро докупить рядом.</p>
-                  </div>
-                </div>
-                <div class="activity" data-group="couple optional">
-                  <div class="time">день</div>
-                  <div>
-                    <h5>Выезд в аэропорт</h5>
-                    <p>Лучше ехать заранее, чтобы без спешки добраться до IST и пройти контроль.</p>
-                  </div>
-                </div>
-                <div class="activity" data-group="couple optional">
-                  <div class="time">17:30<br>IST</div>
-                  <div>
-                    <h5>Вылет обратно</h5>
-                    <p>Аэрофлот: 17:30 IST → 22:25 SVO. Ручная кладь до 10 кг, габариты 55 × 40 × 25 см, без багажа.</p>
-                  </div>
-                </div>
-              </div>
-            </article>
-          </div>
-        </section>
-
-
-        <section class="section" id="map">
-          <div class="section-head"><div><h3>Город на ладони</h3><p>Ключевые точки с быстрыми ссылками на маршрут в Google Maps.</p></div></div>
-          <div class="map-frame"><iframe title="Карта района Султанахмет" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=Sultanahmet%20Istanbul&t=&z=12&ie=UTF8&iwloc=&output=embed"></iframe></div>
-          <div class="map-places">
-            <a href="https://www.google.com/maps/search/?api=1&query=Edibe%20Sultan%20Hotel%20Istanbul" target="_blank" rel="noopener">🏨 Edibe Sultan <span>Отель ↗</span></a>
-            <a href="https://www.google.com/maps/search/?api=1&query=Hagia%20Sophia%20Istanbul" target="_blank" rel="noopener">🕌 Айя-София <span>История ↗</span></a>
-            <a href="https://www.google.com/maps/search/?api=1&query=Suleymaniye%20Mosque%20Istanbul" target="_blank" rel="noopener">🕌 Сулеймание <span>Обязательно ↗</span></a>
-            <a href="https://www.google.com/maps/search/?api=1&query=Galata%20Tower" target="_blank" rel="noopener">🌆 Галата <span>Прогулка ↗</span></a>
-            <a href="https://www.google.com/maps/search/?api=1&query=Semaver%20Cafe%20Istanbul" target="_blank" rel="noopener">☕ Semaver Cafe <span>Вечер ↗</span></a>
-            <a href="https://www.google.com/maps/search/?api=1&query=IKEA%20Bayrampasa" target="_blank" rel="noopener">🛍 IKEA Bayrampaşa <span>Шопинг ↗</span></a>
-            <a href="https://www.google.com/maps/search/?api=1&query=Sirkeci%20Istanbul" target="_blank" rel="noopener">🍷 Сиркеджи <span>Вино ↗</span></a>
-          </div>
-          <p class="small muted">Карта показывает общий район; точные часы работы и маршруты стоит проверить перед посещением.</p>
-        </section>
-
-        <section class="section" id="budget">
-          <div class="section-head">
-            <div>
-              <h3>Гибкий бюджет</h3>
-              <p>Перетягивай ползунки — итог сохраняется на этом устройстве.</p>
-            </div>
-          </div>
-          <div class="budget-grid">
-            <div class="budget-line">
-              <div class="row"><div class="name">Еда на двоих в день</div><output id="foodBudgetOut">2200 ₺</output></div>
-              <input id="foodBudget" type="range" min="1000" max="4000" step="100" value="2200" />
-            </div>
-            <div class="budget-line">
-              <div class="row"><div class="name">Транспорт за поездку</div><output id="transportBudgetOut">1600 ₺</output></div>
-              <input id="transportBudget" type="range" min="500" max="4000" step="100" value="1600" />
-            </div>
-            <div class="budget-line">
-              <div class="row"><div class="name">Развлечения и прочее</div><output id="funBudgetOut">4000 ₺</output></div>
-              <input id="funBudget" type="range" min="0" max="12000" step="200" value="4000" />
-            </div>
-            <div class="budget-line">
-              <div class="row"><div class="name">Подарки и покупки</div><output id="giftsBudgetOut">3000 ₺</output></div>
-              <input id="giftsBudget" type="range" min="500" max="10000" step="100" value="3000" />
-            </div>
-            <div class="budget-total">
-              <div class="title">Ориентир на всю поездку</div>
-              <div class="sum" id="budgetSum">15 400 ₺</div>
-              <div class="sub" id="budgetSub">≈ 4 полных/неполных дня для двоих + подарки и транспорт</div>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      <aside>
-        <section class="section">
-          <div class="section-head">
-            <div>
-              <h3>Кто едет</h3>
-              <p>Чтобы понимать, где вы вдвоём, а где пересекаетесь с семьёй.</p>
-            </div>
-          </div>
-          <div class="people-grid">
-            <div class="person-card">
-              <div class="who">Ты + Даша</div>
-              <div class="tagline">Основной формат поездки</div>
-              <p>Главный фокус — время вдвоём, прогулки, уютные вечера и свой ритм.</p>
-            </div>
-            <div class="person-card">
-              <div class="who">Мама Даши</div>
-              <div class="tagline">Отдельная встреча</div>
-              <p>План: Semaver Cafe, кальянный вечер вместе.</p>
-            </div>
-            <div class="person-card">
-              <div class="who">Папа Даши</div>
-              <div class="tagline">Живёт в том же отеле</div>
-              <p>Можно пересекаться на семейных ужинах и прогулках.</p>
-            </div>
-            <div class="person-card">
-              <div class="who">Илюха (11) и Тимоха (16)</div>
-              <div class="tagline">2 декабря — день рождения</div>
-              <p>Вечер лучше держать свободным на случай празднования.</p>
-            </div>
-          </div>
-        </section>
-
-        <section class="section" id="shopping">
-          <div class="section-head">
-            <div>
-              <h3>Покупки и чек-лист</h3>
-              <p>Можно отмечать выполненное — галочки сохраняются локально.</p>
-            </div>
-          </div>
-          <div class="shopping-grid" id="shoppingList">
-            <div class="shopping-item"><label><input type="checkbox" data-store="shopping-magnet"><div><strong>Магнитик из Стамбула</strong><span>Лучше взять ближе к концу поездки.</span><div class="meta"><span class="chip">50–150 ₺</span><span class="chip">легко везти</span></div></div></label></div>
-            <div class="shopping-item"><label><input type="checkbox" data-store="shopping-wine"><div><strong>Сухое гранатовое вино</strong><span>Искать: sek / yarı sek nar şarabı.</span><div class="meta"><span class="chip orange">для вечера в Стамбуле</span></div></div></label></div>
-            <div class="shopping-item"><label><input type="checkbox" data-store="shopping-shirt"><div><strong>Рубашка XL</strong><span>Посмотреть в Forum İstanbul: LC Waikiki / DeFacto.</span><div class="meta"><span class="chip">2 декабря</span></div></div></label></div>
-            <div class="shopping-item"><label><input type="checkbox" data-store="shopping-sweetsmom"><div><strong>Сладости маме</strong><span>Лукум, пахлава, халва — лучше упакованные коробки.</span><div class="meta"><span class="chip">Koska / Hafız Mustafa</span></div></div></label></div>
-            <div class="shopping-item"><label><input type="checkbox" data-store="shopping-souvmom"><div><strong>Сувениры маме</strong><span>Небольшая керамика, назар, чайные стаканчики.</span></div></label></div>
-            <div class="shopping-item"><label><input type="checkbox" data-store="shopping-sweetsdad"><div><strong>Сладости папе</strong><span>Можно взять отдельную коробку с фисташковым лукумом.</span></div></label></div>
-            <div class="shopping-item"><label><input type="checkbox" data-store="shopping-souvdad"><div><strong>Сувенир папе</strong><span>Компактный и небьющийся вариант — лучше для ручной клади.</span></div></label></div>
-          </div>
-        </section>
-
-        <section class="section">
-          <div class="section-head">
-            <div>
-              <h3>Мини-чеклист поездки</h3>
-              <p>Быстрые напоминания перед выездом и по ходу путешествия.</p>
-            </div>
-          </div>
-          <div class="checklist">
-            <label><input type="checkbox" data-store="todo-passports"><div><strong>Паспорта и билеты</strong><span>Проверить перед выездом в аэропорт.</span></div></label>
-            <label><input type="checkbox" data-store="todo-cash"><div><strong>Наличные лиры / карта</strong><span>Чтобы было удобно с локантами и мелкими покупками.</span></div></label>
-            <label><input type="checkbox" data-store="todo-baggage"><div><strong>Следить за весом ручной клади</strong><span>8 кг туда, 10 кг обратно.</span></div></label>
-            <label><input type="checkbox" data-store="todo-family"><div><strong>Уточнить планы на 2 декабря</strong><span>Будет ли семейное празднование 16-летия.</span></div></label>
-          </div>
-        </section>
-
-        <section class="section" id="food">
-          <div class="section-head">
-            <div>
-              <h3>Еда рядом</h3>
-              <p>Твои сохранённые точки — в удобном виде.</p>
-            </div>
-          </div>
-          <div class="food-grid">
-            <div class="food-card">
-              <h4>Lokanta / домашняя еда</h4>
-              <p>Değirmencioğlu · Buyruk Esnaf Lokantası · Balkan Restaurant Sirkeci · Süleymaniye Lokantası</p>
-              <div class="badges"><span>обед</span><span>бюджетно</span><span>турецкая домашняя еда</span></div>
-            </div>
-            <div class="food-card">
-              <h4>Pide / кебаб / кёфте</h4>
-              <p>Hocapaşa Pidecisi · Bitlisli · Köfteci Kadırgalı · Yeni Karadeniz Pide · Ortaklar Kebap</p>
-              <div class="badges"><span>сытно</span><span>рядом</span><span>средние цены</span></div>
-            </div>
-            <div class="food-card">
-              <h4>Уличная еда</h4>
-              <p>Tarihi Dürüm Han · Yılmaz Usta — хороший вариант на прогулке в Эминёню.</p>
-              <div class="badges"><span>быстро</span><span>дёшево</span><span>атмосферно</span></div>
-            </div>
-            <div class="food-card">
-              <h4>Особые точки</h4>
-              <p>Semaver Cafe — кальянка. Starbucks — рядом с отелем. IKEA Restaurant — 2 декабря.</p>
-              <div class="badges"><span>отдельные планы</span></div>
-            </div>
-          </div>
-        </section>
-
-        <section class="section" id="info">
-          <div class="section-head">
-            <div>
-              <h3>Перелёты и полезное</h3>
-              <p>Коротко и по делу.</p>
-            </div>
-          </div>
-          <div class="flight-list">
-            <div class="flight-card">
-              <h4>Туда · 29 ноября</h4>
-              <p><strong>Southwind Airlines</strong><br>LED 14:40 → IST 18:35<br>Ручная кладь: 8 кг · багаж не включён.</p>
-            </div>
-            <div class="flight-card">
-              <h4>Обратно · 3 декабря</h4>
-              <p><strong>Аэрофлот</strong><br>IST 17:30 → SVO 22:25<br>Ручная кладь: 10 кг, 55 × 40 × 25 см · багажа нет.</p>
-            </div>
-            <div class="info-card">
-              <h4>Важно про алкоголь</h4>
-              <p>Раз вы хотите пить вино в самом Стамбуле, а не везти домой — это лучший вариант при путешествии только с ручной кладью.</p>
-            </div>
-            <div class="info-card">
-              <h4>Что можно улучшить дальше</h4>
-              <p>Добавить больше фото, красивую карту районов, отдельные сценарии на случай дождя и точные бюджеты по дням.</p>
-            </div>
-          </div>
-        </section>
-      </aside>
     </div>
-
-    <div class="footer">
-      Istanbul Together · сделано для вашей поездки в Стамбул · можно обновлять дальше хоть каждый день
+    <div class="stack overview-right">
+      <div class="card"><div class="small-label">НАША БАЗА</div><div class="large-val">Edibe Sultan</div><div class="subline">Султанахмет · Завтрак в отеле</div><a class="link-btn" style="display:inline-block;padding:10px 0 0" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Edibe+Sultan+Hotel+Istanbul">Открыть на карте ↗</a></div>
+      <div class="card"><div class="small-label">НАША КОМПАНИЯ</div><div class="large-val">6 человек</div><div class="subline">Вы с Дашей, её родители, Илюха (11) и Тимоха (16).</div></div>
+      <div class="card quick-card"><span class="icon-dot">🛬</span><div><b>29 ноября · Прилёт</b><div class="subline">LED 14:40 → IST 18:35<br>Southwind · ручная кладь 8 кг</div></div></div>
+      <div class="card quick-card"><span class="icon-dot">🛫</span><div><b>3 декабря · Домой</b><div class="subline">IST 17:30 → SVO 22:25<br>Аэрофлот · ручная кладь 10 кг</div></div></div>
+      <div class="side-note"><h3>💛 Как путешествуем</h3><p>Большую часть времени гуляете вдвоём с Дашей. С семьёй — отдельные встречи. Вечер 2 декабря оставляем свободным под 16-летие Тимохи.</p></div>
     </div>
   </div>
-
-  <script>
-    const $ = (id) => document.getElementById(id);
-
-    const sliders = [
-      { id: 'foodBudget', out: 'foodBudgetOut' },
-      { id: 'transportBudget', out: 'transportBudgetOut' },
-      { id: 'funBudget', out: 'funBudgetOut' },
-      { id: 'giftsBudget', out: 'giftsBudgetOut' },
-    ];
-
-    function formatLira(num) {
-      return new Intl.NumberFormat('ru-RU').format(num) + ' ₺';
-    }
-
-    function updateBudget() {
-      let values = {};
-      sliders.forEach(s => {
-        const el = $(s.id);
-        const val = Number(el.value);
-        values[s.id] = val;
-        $(s.out).textContent = formatLira(val);
-        localStorage.setItem('it-' + s.id, val);
-      });
-
-      // 4 дня расходов на еду
-      const total = values.foodBudget * 4 + values.transportBudget + values.funBudget + values.giftsBudget;
-      $('budgetSum').textContent = formatLira(total);
-      $('budgetSub').textContent = 'Оценка: еда × 4 дня + транспорт + развлечения + подарки';
-    }
-
-    sliders.forEach(s => {
-      const saved = localStorage.getItem('it-' + s.id);
-      if (saved) $(s.id).value = saved;
-      $(s.id).addEventListener('input', updateBudget);
-    });
-    updateBudget();
-
-    document.querySelectorAll('input[type="checkbox"][data-store]').forEach(input => {
-      const key = 'it-' + input.dataset.store;
-      input.checked = localStorage.getItem(key) === '1';
-      input.addEventListener('change', () => {
-        localStorage.setItem(key, input.checked ? '1' : '0');
-      });
-    });
-
-    document.querySelectorAll('.mode').forEach(button => {
-      button.addEventListener('click', () => {
-        const mode = button.dataset.mode;
-        document.querySelectorAll('.mode').forEach(b => { const active=b===button; b.classList.toggle('active',active); b.setAttribute('aria-pressed',String(active)); });
-        document.querySelectorAll('.day-card').forEach(card => card.classList.toggle('is-hidden', mode !== 'all' && !card.dataset.group.split(' ').includes(mode)));
-      });
-    });
-  </script>
-</body>
-</html>
+</section>
+<section class="view" id="plan" aria-label="Маршрут" hidden>
+  <div class="timeline-wrap"><aside class="side-panel"><span class="eyebrow">Маршрут поездки</span><h2>День за днём</h2><p>Никакой гонки: главное — комфортный темп и время для вас двоих.</p><div class="day-nav" id="dayNav"></div></aside><div class="day-content"><div class="day-head" id="dayHeader"></div><div id="eventList"></div></div></div>
+</section>
+<section class="view" id="places" aria-label="Места" hidden>
+ <div class="places-top"><div><span class="eyebrow">Сохранённые места</span><h2>Где побывать и поесть</h2><p>Все ваши варианты в одном месте — открывай дорогу прямо в картах.</p></div><input class="search" id="placeSearch" type="search" placeholder="Найти кафе или место…" aria-label="Поиск мест"></div>
+ <div class="chips" id="placeFilters"></div><div class="places-grid" id="placesGrid"></div>
+ <div class="map-banner"><div><strong>Нужно проложить маршрут?</strong><p>Открой район Султанахмета в Google Maps.</p></div><a href="https://www.google.com/maps/search/?api=1&query=Sultanahmet+Istanbul" target="_blank" rel="noopener">Открыть карту ↗</a></div>
+</section>
+<section class="view" id="shopping" aria-label="Покупки" hidden>
+ <div class="shopping-head"><span class="eyebrow">Наши покупки</span><h2>Подарки и мелочи</h2><p>Список для родителей, себя и вечера в Стамбуле.</p></div>
+ <div class="shopping-layout"><div class="card"><div class="section-title"><div><h2>Чек-лист</h2><p id="shoppingProgressText">0 из 0 куплено</p></div><span class="badge">Сохраняется</span></div><div class="progress"><div class="progress-bar" id="shoppingProgress"></div></div><div id="shoppingItems" style="margin-top:12px"></div><form class="add-row" id="addShoppingForm"><input id="newShopping" maxlength="80" placeholder="Добавить свою покупку" aria-label="Новая покупка"><button type="submit">Добавить</button></form></div>
+ <div class="stack"><div class="side-note"><h3>🧳 Помни про ручную кладь</h3><p>На обратном рейсе нет зарегистрированного багажа, только 10 кг ручной клади. Лучше брать компактные сувениры и фабрично упакованные сладости. Вино — чтобы выпить в самом Стамбуле.</p></div><div class="card"><div class="section-title"><h2>Заметки</h2></div><textarea class="notearea" id="notes" placeholder="Что ещё хотим купить или посмотреть…" aria-label="Личные заметки"></textarea><p class="tiny" style="line-height:1.6">Чек-лист и заметки сохраняются только в браузере этого устройства, не синхронизируются между телефонами.</p></div></div></div>
+</section>
+<section class="view" id="budget" aria-label="Бюджет" hidden>
+ <div class="budget-head"><span class="eyebrow">Расходы на двоих</span><h2>Планируем бюджет</h2><p>Здесь примерные суммы, без перелётов и отеля. Цены можно менять вручную.</p></div>
+ <div class="budget-layout"><div class="card" id="moneyInputs"></div><div><div class="budget-total"><div class="eyebrow">Итого за поездку</div><strong id="budgetTotal">—</strong><p>Еда за 4 дня + транспорт + развлечения + покупки</p></div><div class="side-note" style="margin-top:15px"><h3>💡 Как считать</h3><p>Это предварительная оценка, а не цены магазинов. Учти входные билеты, поездки в IST и возможность отдельного семейного ужина 2 декабря.</p></div></div></div>
+</section>
+</main>
+<div class="footer"><span>Сделано для вашей поездки · Istanbul Together</span><span>План можно менять в ChatGPT ✦</span></div>
+</div>
+<nav class="mobile-nav" id="mobileTabs" aria-label="Основная навигация"></nav>
+<script>
+(() => {
+'use strict';
+const I = {
+ home:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M9 21v-8h6v8"/></svg>',
+ plan:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>',
+ places:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>',
+ shopping:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l-1 13H6L5 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg>',
+ budget:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="15" rx="3"/><path d="M2 10h20M16 15h2"/></svg>'
+};
+const tabs=[['overview','Обзор','home'],['plan','Маршрут','plan'],['places','Места','places'],['shopping','Покупки','shopping'],['budget','Бюджет','budget']];
+const days=[
+ {date:'29 ноября',week:'Воскресенье',short:'29 ноя',title:'Привет, Стамбул!',desc:'Первый вечер — прилёт, заселение и прогулка без спешки.',tags:['Вдвоём','Перелёт'],events:[
+  ['14:40','✈️','Вылет из Петербурга','Southwind Airlines: LED → IST. Ручная кладь до 8 кг, без багажа.','Вдвоём'],
+  ['18:35','🛬','Прилёт в IST','Паспортный контроль, получение связи и трансфер в район Султанахмета.','Вдвоём'],
+  ['Вечер','🏨','Edibe Sultan Hotel','Заселение и небольшой отдых после дороги.','Вдвоём','Edibe Sultan Hotel Istanbul'],
+  ['Поздний вечер','🌙','Султанахмет и ужин','Прогуляться у подсвеченных мечетей, поужинать неподалёку, если будут силы.','Вдвоём','Sultanahmet Istanbul']
+ ]},
+ {date:'30 ноября',week:'Понедельник',short:'30 ноя',title:'Старый город',desc:'Исторические символы Стамбула и обязательная мечеть Сулеймание. Вечером — Semaver Cafe с мамой Даши.',tags:['Вдвоём','С мамой Даши'],events:[
+  ['Утро','☕','Завтрак и Starbucks','Завтракаем в отеле, потом кофе и прогулка по Султанахмету.','Вдвоём','Starbucks Sultanahmet Istanbul'],
+  ['До обеда','🕌','Айя-София и Голубая мечеть','Красивые площади и архитектура. Цистерну Базилика можно добавить по желанию.','Вдвоём','Hagia Sophia Istanbul'],
+  ['После обеда','⭐','Мечеть Сулеймание — обязательно','Сходить во двор, полюбоваться панорамой Золотого Рога; время входа сверить с молитвами. Рядом можно поесть в Süleymaniye Lokantası.','Вдвоём','Suleymaniye Mosque Istanbul'],
+  ['Вечер','🫖','Semaver Cafe','Кальянная: вы с Дашей и её мамой. Время и свободные столики уточняем.','С мамой Даши','Semaver Cafe Kennedy Caddesi Istanbul','https://www.semavercafe.com/menu']
+ ]},
+ {date:'1 декабря',week:'Вторник',short:'1 дек',title:'Галата и Босфор',desc:'Городские улочки, виды на воду и вечер только для вас двоих.',tags:['Вдвоём','Прогулка'],events:[
+  ['Утро','🌉','Эминёню и Галатский мост','По пути попробовать балык-экмек или рыбный дюрюм.','Вдвоём','Galata Bridge Istanbul'],
+  ['День','📸','Галата и Каракёй','Прогулка до Галатской башни, уличные кафе и красивые виды.','Вдвоём','Galata Tower Istanbul'],
+  ['После прогулки','🍷','Найти сухое гранатовое вино','Ищем nar şarabı (sek / yarı sek) в Tekel в районе Сиркеджи. Наличие и сухость уточнить у продавца.','Вдвоём','Tekel Sirkeci Istanbul'],
+  ['Вечер','✨','Уютный вечер вдвоём','Ужин, прогулка и вино, если в отеле разрешено употребление собственного алкоголя.','Вдвоём']
+ ]},
+ {date:'2 декабря',week:'Среда',short:'2 дек',title:'IKEA и день рождения',desc:'Небольшой шопинг с Дашей, вечер свободен под семейный праздник Тимохи.',tags:['Вдвоём','Возможен семейный ужин'],events:[
+  ['Утро','🛍️','IKEA Bayrampaşa','Погулять по магазину и поесть в ресторане, без больших покупок.','Вдвоём','IKEA Bayrampasa Istanbul'],
+  ['День','👕','Forum İstanbul','Посмотреть рубашку XL, затем докупить подарки, магнитик и сладости родителям.','Вдвоём','Forum Istanbul Shopping Mall'],
+  ['Вечер','🎂','Тимохе 16 лет!','Пока никаких фиксированных бронирований: оставляем вечер свободным для возможного семейного ужина с Дашей, Илюхой, Тимохой и родителями.','С семьёй']
+ ]},
+ {date:'3 декабря',week:'Четверг',short:'3 дек',title:'До встречи, Стамбул',desc:'Спокойное утро, дорога в аэропорт IST и обратный перелёт.',tags:['Вдвоём','Перелёт'],events:[
+  ['Утро','🥐','Завтрак и сборы','Последние покупки, если что-то осталось, и выезд из отеля.','Вдвоём'],
+  ['11:30–12:00','🚖','Выезд в аэропорт','Ориентир с запасом на дорогу и контроль. Точное время зависит от выбранного транспорта.','Вдвоём','Istanbul Airport IST'],
+  ['17:30','🛫','Аэрофлот IST → SVO','Прилёт в Москву в 22:25. Ручная кладь до 10 кг, без багажа.','Вдвоём']
+ ]}
+];
+const places=[
+ ['Edibe Sultan Hotel','Отель','🏨','Ваша база в Султанахмете. Завтрак включён.','Edibe Sultan Hotel Istanbul'],
+ ['Сулеймание','Смотреть','🕌','Обязательная мечеть с видом на Золотой Рог.','Suleymaniye Mosque Istanbul'],
+ ['Айя-София','Смотреть','🕌','Главная точка исторического центра.','Hagia Sophia Istanbul'],
+ ['Голубая мечеть','Смотреть','🕌','Площадь Султанахмет.','Blue Mosque Istanbul'],
+ ['Цистерна Базилика','Смотреть','🏛️','Подземное водохранилище, вариант по желанию.','Basilica Cistern Istanbul'],
+ ['Галатская башня','Смотреть','📸','Галата, Каракёй и атмосферные улочки.','Galata Tower Istanbul'],
+ ['Semaver Cafe','Кофе и отдых','🫖','Вечер с мамой Даши; меню кальянной.','Semaver Cafe Kennedy Caddesi Istanbul','https://www.semavercafe.com/menu'],
+ ['Starbucks Sultanahmet','Кофе и отдых','☕','Кофе по пути через старый город.','Starbucks Sultanahmet Istanbul'],
+ ['IKEA Bayrampaşa','Магазины','🛍️','Ресторан IKEA и короткая прогулка.','IKEA Bayrampasa Istanbul'],
+ ['Forum İstanbul','Магазины','👕','Рубашка XL и другие небольшие покупки.','Forum Istanbul Shopping Mall'],
+ ['Tekel (Сиркеджи)','Магазины','🍷','Поиск сухого гранатового вина.','Tekel Sirkeci Istanbul'],
+ ['Hafız Mustafa','Магазины','🍬','Коробки лукума и другие сладости.','Hafiz Mustafa Sirkeci Istanbul'],
+ ['Koska','Магазины','🍬','Халва и упакованные сладости.','Koska Istanbul'],
+ ['Değirmencioğlu','Локанты','🍲','Домашняя турецкая еда.','Değirmencioğlu Lokanta Istanbul'],
+ ['Buyruk Esnaf Lokantası','Локанты','🍲','Супы и сытные блюда.','Buyruk Esnaf Lokantasi Istanbul'],
+ ['Balkan Restaurant Sirkeci','Локанты','🥘','Бюджетный обед в Сиркеджи.','Balkan Restaurant Sirkeci Istanbul'],
+ ['Süleymaniye Lokantası','Локанты','🍲','Обед после Сулеймание.','Suleymaniye Lokantasi Istanbul'],
+ ['Hocapaşa Pidecisi','Кебабы и пиде','🥙','Пиде и турецкая выпечка.','Hocapasa Pidecisi Istanbul'],
+ ['Bitlisli','Кебабы и пиде','🍢','Кебабы и мясные блюда.','Bitlisli Istanbul'],
+ ['Köfteci Kadırgalı','Кебабы и пиде','🧆','Кёфте по-турецки.','Kofteci Kadirgali Istanbul'],
+ ['Yeni Karadeniz Pide','Кебабы и пиде','🥙','Ещё один вариант пиде.','Yeni Karadeniz Pide Istanbul'],
+ ['Ortaklar Kebap','Кебабы и пиде','🍢','Кебабная в старом городе.','Ortaklar Kebap Istanbul'],
+ ['Tarihi Dürüm Han','Уличная еда','🐟','Вариант перекуса на прогулке.','Tarihi Durum Han Eminonu Istanbul'],
+ ['Yılmaz Usta','Уличная еда','🐟','Уличная еда в районе Эминёню.','Yilmaz Usta Eminonu Istanbul']
+];
+const defaultShopping=[
+ ['Магнитик','В память о Стамбуле'],['Сувенир маме','Назар, небольшая керамика или чайный стакан'],['Сладости маме','Лукум, пахлава или халва'],['Сувенир папе','Что-то компактное'],['Сладости папе','Фабрично упакованная коробка'],['Рубашка XL папе','Посмотреть в Forum İstanbul'],['Сухое гранатовое вино','Для вечера в Стамбуле — не везём в самолёт']
+];
+const budgetFields=[['food','Еда на двоих, за день',2200,4],['transport','Транспорт за поездку',1600,1],['activities','Развлечения и входные билеты',4000,1],['gifts','Покупки и подарки',3000,1]];
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const mapUrl=name=>'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(name);
+const lira=n=>Number(n||0).toLocaleString('ru-RU')+' ₺';
+function getJSON(k,fallback){try{const v=JSON.parse(localStorage.getItem(k));return v===null?fallback:v}catch{return fallback}}
+function setJSON(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch{}}
+let activeTab='overview',activeDay=0,placeCategory='Все',query='';
+const nav=(container,mobile)=>{container.innerHTML=tabs.map(([id,name,icon])=>`<button type="button" class="${mobile?'':'tab'} ${activeTab===id?'active':''}" data-tab="${id}" aria-current="${activeTab===id?'page':'false'}">${I[icon]}<span>${name}</span></button>`).join('')};
+function go(tab){if(!tabs.some(t=>t[0]===tab))return;activeTab=tab;document.querySelectorAll('.view').forEach(v=>{v.hidden=v.id!==tab});nav($('desktopTabs'),false);nav($('mobileTabs'),true);try{history.replaceState(null,'','#'+tab)}catch{}window.scrollTo({top:0,behavior:'instant'})}
+function showDay(i){activeDay=i;$('dayNav').innerHTML=days.map((d,j)=>`<button type="button" data-day="${j}" class="${j===i?'active':''}"><span><b>${d.short}</b><small>${d.week}</small></span><span class="num">${j===i?'●':'›'}</span></button>`).join('');const d=days[i];$('dayHeader').innerHTML=`<div class="date">${d.date} · ${d.week}</div><h2>${d.title}</h2><p>${d.desc}</p><div class="rowbadges">${d.tags.map(t=>`<span class="badge ${/семь|мамой/i.test(t)?'amber':''}">${esc(t)}</span>`).join('')}</div>`;
+ $('eventList').innerHTML=d.events.map(e=>{const [time,emoji,title,desc,kind,map,extra]=e;return `<div class="entry"><div class="em" aria-hidden="true">${emoji}</div><div class="event"><div class="event-top"><span class="event-time">${esc(time)}</span><span class="badge ${kind.includes('мам')||kind.includes('семь')?'amber':'gray'}">${esc(kind)}</span></div><h3>${esc(title)}</h3><p>${esc(desc)}</p>${map||extra?`<div class="event-links">${map?`<a target="_blank" rel="noopener" href="${mapUrl(map)}">↗ На карте</a>`:''}${extra?`<a target="_blank" rel="noopener" href="${extra}">Меню ↗</a>`:''}</div>`:''}</div></div>`}).join('')}
+function drawHighlights(){$('highlights').innerHTML=[["30 НОЯ","🕌 Сулеймание","Обязательная остановка, виды на Золотой Рог","Вдвоём"],["30 НОЯ","🫖 Semaver Cafe","Вечер с мамой Даши","С семьёй"],["2 ДЕК","🎂 День рождения Тимохи","16 лет · вечер пока свободен","По желанию"]].map(h=>`<div class="preview"><span class="date">${h[0]}</span><h3>${h[1]}</h3><p>${h[2]}</p><div class="foot">${h[3]}</div></div>`).join('')}
+function drawPlaces(){const cats=['Все','Смотреть','Локанты','Кебабы и пиде','Уличная еда','Кофе и отдых','Магазины'];$('placeFilters').innerHTML=cats.map(x=>`<button type="button" class="filter ${placeCategory===x?'active':''}" data-cat="${esc(x)}">${esc(x)}</button>`).join('');const q=query.trim().toLocaleLowerCase('ru');const filtered=places.filter(p=>(placeCategory==='Все'||p[1]===placeCategory)&&(!q||(p[0]+' '+p[1]+' '+p[3]).toLocaleLowerCase('ru').includes(q)));$('placesGrid').innerHTML=filtered.length?filtered.map(p=>`<div class="place"><div class="place-top"><div class="symbol">${p[2]}</div><span class="badge gray">${esc(p[1])}</span></div><h3>${esc(p[0])}</h3><p>${esc(p[3])}</p><a target="_blank" rel="noopener" href="${mapUrl(p[4])}">Открыть на карте ↗</a></div>`).join(''):'<p class="subline">Ничего не найдено. Попробуй другой запрос.</p>'}
+function drawShopping(){const checks=getJSON('it-shopping-v5',{}),custom=getJSON('it-custom-v5',[]);const items=[...defaultShopping.map((x,i)=>['s'+i,...x]),...custom.map((x,i)=>['c'+i,x,'Добавлено тобой'])];$('shoppingItems').innerHTML=items.map(([key,t,desc])=>`<label class="check-row"><input type="checkbox" data-shopping="${key}" ${checks[key]?'checked':''}><div><b>${esc(t)}</b><span class="detail">${esc(desc)}</span></div></label>`).join('');const done=items.filter(x=>checks[x[0]]).length;$('shoppingProgressText').textContent=`${done} из ${items.length} куплено`;$('shoppingProgress').style.width=(items.length?done/items.length*100:0)+'%'}
+function drawBudget(){$('moneyInputs').innerHTML=budgetFields.map(([key,label,initial,qty])=>{const num=Number(getJSON('it-budget-v5-'+key,initial));return `<div class="money-line"><label for="money-${key}">${label}<span style="color:var(--teal)">${qty>1?'× '+qty+' дня':''}</span></label><input id="money-${key}" type="number" min="0" max="1000000" step="100" inputmode="numeric" data-money="${key}" value="${Number.isFinite(num)?num:initial}"></div>`}).join('');updateBudget()}
+function updateBudget(){let total=0;for(const [key,,def,qty] of budgetFields){const field=$('money-'+key);if(!field)continue;const n=Math.max(0,Number(field.value)||0);total+=n*qty;setJSON('it-budget-v5-'+key,n)}$('budgetTotal').textContent=lira(total)}
+function init(){nav($('desktopTabs'),false);nav($('mobileTabs'),true);drawHighlights();showDay(activeDay);drawPlaces();drawShopping();drawBudget();$('notes').value=localStorage.getItem('it-notes-v5')||'';const h=location.hash.slice(1);go(tabs.some(t=>t[0]===h)?h:'overview')}
+document.addEventListener('click',e=>{const tab=e.target.closest('[data-tab]');if(tab){go(tab.dataset.tab);return}const bt=e.target.closest('[data-go]');if(bt){go(bt.dataset.go);return}const day=e.target.closest('[data-day]');if(day){showDay(Number(day.dataset.day));return}const cat=e.target.closest('[data-cat]');if(cat){placeCategory=cat.dataset.cat;drawPlaces()}});
+$('placeSearch').addEventListener('input',e=>{query=e.target.value;drawPlaces()});
+$('shoppingItems').addEventListener('change',e=>{if(!e.target.matches('[data-shopping]'))return;const checks=getJSON('it-shopping-v5',{});checks[e.target.dataset.shopping]=e.target.checked;setJSON('it-shopping-v5',checks);drawShopping()});
+$('addShoppingForm').addEventListener('submit',e=>{e.preventDefault();const v=$('newShopping').value.trim();if(!v)return;const c=getJSON('it-custom-v5',[]);if(c.length>=30)return;c.push(v);setJSON('it-custom-v5',c);$('newShopping').value='';drawShopping()});
+$('notes').addEventListener('input',e=>{try{localStorage.setItem('it-notes-v5',e.target.value)}catch{}});
+$('moneyInputs').addEventListener('input',updateBudget);
+window.addEventListener('hashchange',()=>{const h=location.hash.slice(1);if(tabs.some(t=>t[0]===h))go(h)});
+init();
+})();
+</script>
+</body></html>
