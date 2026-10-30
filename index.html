@@ -166,7 +166,7 @@ const places=[
  ['Посетить мечеть Сулеймание','Смотреть','🕌','Обязательная мечеть с видом на Золотой Рог.','Suleymaniye Mosque Istanbul'],
  ['Посетить Айя-Софию','Смотреть','🕌','Главная точка исторического центра.','Hagia Sophia Istanbul'],
  ['Посетить Голубую мечеть','Смотреть','🕌','Площадь Султанахмет.','Blue Mosque Istanbul'],
- ['Спуститься в Цистерну Базилика','Смотреть','🏛️','Подземное водохранилище, вариант по желанию.','Basilica Cistern Istanbul'],
+ ['Спуститься в Цистерну Базилика','Смотреть','🏛️','Подземное водохранилище, запланировано к посещению.','Basilica Cistern Istanbul'],
  ['Посмотреть Галатскую башню','Смотреть','📸','Галата, Каракёй и атмосферные улочки.','Galata Tower Istanbul'],
  ['Зайти в Semaver Cafe','Кофе и отдых','🫖','Кафе и кальянная.','Semaver Cafe Kennedy Caddesi Istanbul','https://www.semavercafe.com/menu'],
  ['Выпить кофе в Starbucks Sultanahmet','Кофе и отдых','☕','Кофе по пути через старый город.','Starbucks Sultanahmet Istanbul'],
@@ -320,7 +320,7 @@ function drawBudget(){
  $('moneyInputs').innerHTML=
   '<h3 class="budget-group">Еда и напитки · по дням</h3>'+
   budgetMeals.map(budgetRow).join('')+
-  '<h3 class="budget-group">Транспорт, покупки и все запланированные билеты</h3>'+
+  '<h3 class="budget-group">Транспорт, покупки, ужин и билеты</h3>'+
   '<p class="budget-small">Все позиции учтены в общей сумме на двоих. Их можно редактировать.</p>'+
   budgetOther.map(budgetRow).join('');
  updateBudget();
