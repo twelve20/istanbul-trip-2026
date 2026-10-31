@@ -74,7 +74,7 @@
   </div>
 </section>
 <section class="view" id="plan" aria-label="Маршрут" hidden>
-  <div class="timeline-wrap"><aside class="side-panel"><span class="eyebrow">Маршрут поездки</span><h2>День за днём</h2><div class="price-disclaimer">После завтрака: обед + один ужин и 1–2 перекуса. В карточках с вариантами выбираем один вариант. В дни перелётов — короткая программа.</div><div class="day-nav" id="dayNav"></div></aside><div class="day-content"><div class="day-head" id="dayHeader"></div><div id="eventList"></div></div></div>
+  <div class="timeline-wrap"><aside class="side-panel"><span class="eyebrow">Маршрут поездки</span><h2>День за днём</h2><div class="price-disclaimer">После завтрака ориентируемся на обед, ужин и 1–2 перекуса. Все карточки — идеи по маршруту, можно заглянуть в несколько мест. В дни перелётов — короткая программа.</div><div class="day-nav" id="dayNav"></div></aside><div class="day-content"><div class="day-head" id="dayHeader"></div><div id="eventList"></div></div></div>
 </section>
 <section class="view" id="places" aria-label="Места" hidden>
  <div class="places-top"><div><span class="eyebrow">Сохранённые места</span><h2>Где побывать и поесть</h2></div><input class="search" id="placeSearch" type="search" placeholder="Найти кафе или место…" aria-label="Поиск мест"></div>
@@ -123,7 +123,7 @@ const days=[
   ['Вечер','🍽️','Ужинаем в Ortaklar Kebap Restaurant','','Вдвоём','Ortaklar Kebap Restaurant Peykhane 27A Istanbul'],
   ['Вечер','🌙','Гуляем по вечернему Султанахмету','','Вдвоём','Sultanahmet Istanbul']
  ]},
- {date:'30 ноября',week:'Понедельник',short:'30 ноя',title:'Старый город',desc:'Обед, один перекус и один ужин на выбор: Balkan либо Semaver Cafe.',tags:['Вдвоём','Кафе'],events:[
+ {date:'30 ноября',week:'Понедельник',short:'30 ноя',title:'Старый город',desc:'Обед, перекусы и вечерние варианты: Balkan и Semaver Cafe.',tags:['Вдвоём','Кафе'],events:[
   ['Утро','🥐','Завтракаем в Edibe Sultan Hotel — оплачено','','Вдвоём'],
   ['Утро','🕌','Посещаем Айя-Софию и Голубую мечеть','','Вдвоём','Hagia Sophia Istanbul'],
   ['Утро','🏛️','Посещаем Цистерну Базилика','','Музей','Basilica Cistern Istanbul'],
@@ -134,10 +134,10 @@ const days=[
   ['День','☕','Кофейни по маршруту','','Напиток',null,null,'coffee30'],
   ['День','🌶️','Заходим на Египетский базар специй','','Достопримечательность','Mısır Çarşısı Spice Bazaar Istanbul'],
   ['Вечер','🌊','Гуляем вдоль Золотого Рога в Эминёню','','Прогулка','Eminönü waterfront Istanbul'],
-  ['Вечер','🥙','Перекус — выбираем один вариант','','Перекус',null,null,'snack30'],
-  ['Вечер','🍽️','Ужин — выбираем один вариант','','Ужин',null,null,'dinner30'],
+  ['Вечер','🥙','Перекусы — варианты по пути','','Перекус',null,null,'snack30'],
+  ['Вечер','🍽️','Ужин — варианты','','Ужин',null,null,'dinner30'],
  ]},
- {date:'1 декабря',week:'Вторник',short:'1 дек',title:'Галата и Босфор',desc:'Обед, один перекус и один ужин на выбор: пиде или романтический вечер в номере.',tags:['Вдвоём','Прогулка'],events:[
+ {date:'1 декабря',week:'Вторник',short:'1 дек',title:'Галата и Босфор',desc:'Обед, уличная еда, пиде и романтический вечер в номере.',tags:['Вдвоём','Прогулка'],events:[
   ['Утро','🥐','Завтракаем в Edibe Sultan Hotel — оплачено','','Вдвоём'],
   ['Утро','🚋','Едем на T1 в Эминёню','','Трамвай','Eminönü tram station Istanbul'],
   ['Утро','🌉','Гуляем по Эминёню и Галатскому мосту','','Вдвоём','Galata Bridge Istanbul'],
@@ -145,18 +145,18 @@ const days=[
   ['День','🗼','Смотрим на Галатскую башню снаружи','','Достопримечательность','Galata Tower Istanbul'],
   ['День','🍲','Обедаем в Emek Restaurant (Каракёй)','','Вдвоём','Emek Restaurant Yeni Merdiven Sokak 9 Karakoy Istanbul'],
   ['День','🚇','Едем на M2 от Şişhane до Taksim','','Метро','Taksim M2 metro station Istanbul'],
-  ['День','🥙','Перекус — выбираем один вариант','','Перекус',null,null,'snack01'],
+  ['День','🥙','Перекусы — варианты по пути','','Перекус',null,null,'snack01'],
   ['Вечер','🚇','Возвращаемся на метро M2 и трамвае T1 в Сиркеджи','','Метро и трамвай','Sirkeci tram station Istanbul'],
   ['Вечер','🍷','Для вар. 2 покупаем гранатовое вино в Tekel (Сиркеджи)','','Вдвоём','Tekel Sirkeci Istanbul'],
   ['Вечер','🛒','Для вар. 2 покупаем закуски: инжир, виноград, beyaz peynir, фисташки, тёмный шоколад и пахлаву','','Продуктовый магазин','Migros Sultanahmet Istanbul'],
-  ['Вечер','🍽️','Ужин — выбираем один вариант','','Ужин',null,null,'dinner01'],
+  ['Вечер','🍽️','Ужин — варианты','','Ужин',null,null,'dinner01'],
  ]},
- {date:'2 декабря',week:'Среда',short:'2 дек',title:'IKEA и день рождения',desc:'Обед, один перекус на выбор, покупки и ужин в Bitlisli.',tags:['Вдвоём','Возможен семейный ужин'],events:[
+ {date:'2 декабря',week:'Среда',short:'2 дек',title:'IKEA и день рождения',desc:'Обед, перекусы, покупки и ужин в Bitlisli.',tags:['Вдвоём','Возможен семейный ужин'],events:[
   ['Утро','🥐','Завтракаем в Edibe Sultan Hotel — оплачено','','Вдвоём'],
   ['Утро','🚇','Едем в IKEA на трамвае T1 и метро M1','','Метро и трамвай','IKEA Bayrampasa Istanbul'],
   ['День','🍽️','Обедаем в IKEA Restaurant','','Вдвоём','IKEA Restaurant Bayrampasa Forum Istanbul'],
   ['День','👕','Идём за покупками в Forum İstanbul','','Вдвоём','Forum Istanbul Shopping Mall'],
-  ['День','🥨','Перекус в Forum İstanbul — выбираем один вариант','','Перекус',null,null,'snack02'],
+  ['День','🥨','Перекус в Forum İstanbul — варианты','','Перекус',null,null,'snack02'],
   ['День','🚇','Возвращаемся из IKEA на метро M1 и трамвае T1','','Метро и трамвай','Sultanahmet tram station Istanbul'],
   ['Вечер','🛒','Покупаем еду в дорогу в SHOW Supermarket','','Супермаркет','SHOW Supermarket Çemberlitaş Peykhane Sokak 6 Istanbul'],
   ['Вечер','🎂','Ужинаем в Bitlisli на дне рождения Тимохи','','С семьёй','Bitlisli Hoca Camii Sokak Sirkeci Istanbul']
@@ -203,8 +203,7 @@ const mealVariants={
 function renderMealVariants(key){
  const variants=mealVariants[key];
  if(!variants)return '';
- const drink=key==='coffee30',dinner=key.startsWith('dinner');
- return (drink?'':'<p class="choice-hint">'+(dinner?'Один ужин на выбор, не оба.':'Выбираем только один вариант. Остальное оставляем на другой раз.')+'</p>')+'<div class="variant-list">'+variants.map(([name,details,map],i)=>
+ return '<div class="variant-list">'+variants.map(([name,details,map],i)=>
  '<div class="variant-card"><div class="variant-heading"><span class="variant-num">Вар. '+(i+1)+'</span><b>'+esc(name)+'</b></div><div class="variant-desc">'+esc(details)+'</div>'+priceNote(name)+'<a class="variant-map" target="_blank" rel="noopener" href="'+mapUrl(map)+'">↗ На карте</a></div>'
  ).join('')+'</div>';
 }
@@ -259,11 +258,11 @@ const defaultShopping=[
 ];
 const budgetMeals=[
  ['d29','29 ноя · Ortaklar Kebap (ужин)',1000],
- ['d30choice','30 ноя · обед, кофе и один ужин (Balkan / Semaver)',3000],
- ['d30snack1','30 ноя · один перекус (балык-экмек / чий-кёфте)',650],
- ['d01choice','1 дек · Emek, напитки и один ужин (пиде / в номере)',3900],
- ['d01snack1','1 дек · один перекус из четырёх вариантов',1100],
- ['d02food2','2 дек · IKEA, один перекус и еда на вылет',1600]
+ ['d30choice','30 ноя · обед, кофе и вечерние заведения (ориентир)',3000],
+ ['d30snack1','30 ноя · перекусы по пути (ориентир)',650],
+ ['d01choice','1 дек · Emek, напитки и вечер (ориентир)',3900],
+ ['d01snack1','1 дек · уличная еда (ориентир)',1100],
+ ['d02food2','2 дек · IKEA, перекус и еда на вылет',1600]
 ];
 const budgetOther=[
  ['transport','Метро, трамваи и две Istanbulkart (с небольшим запасом)',1950],
