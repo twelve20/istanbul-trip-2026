@@ -170,7 +170,8 @@ const mealVariants={
  ],
  snack30:[
   ['Балык-экмек в Derya Balıkçısı','Эминёню · сэндвич с рыбой','Derya Balik Ekmek Ragip Gumuspala Caddesi 2/3 Eminonu Istanbul'],
-  ['Чий-кёфте в Çiğköftem Sirkeci','Сиркеджи · булгур, зелень, лаваш','Cigkoftem Hoca Pasa Orhaniye Caddesi 18 Sirkeci Istanbul']
+  ['Чий-кёфте в Çiğköftem Sirkeci','Сиркеджи · булгур, зелень, лаваш','Cigkoftem Hoca Pasa Orhaniye Caddesi 18 Sirkeci Istanbul'],
+  ['Лахмаджун в Tarihi Şanlıurfa Kebap ve Lahmacun Evi','Эминёню / Сиркеджи · тонкая хрустящая лепёшка с мясом и специями','Tarihi Sanliurfa Kebap ve Lahmacun Evi Yali Kosku Caddesi 4 Istanbul']
  ],
  snack01:[
   ['Мидии-долма в Tarihi Eminönü Midyecisi','Галата · попробовать после обеда, до метро','Tarihi Eminonu Midyecisi Yuksek Kaldirim Caddesi 14 Beyoglu Istanbul'],
@@ -233,6 +234,7 @@ const places=[
  ['Попробовать уличную еду у Yılmaz Usta','Уличная еда','🐟','Уличная еда в районе Эминёню.','Yilmaz Usta Eminonu Istanbul'],
  ['Попробовать балык-экмек в Derya Balıkçısı','Уличная еда','🐟','Рыбный сэндвич с набережной Эминёню.','Derya Balik Ekmek Ragip Gumuspala Caddesi 2/3 Eminonu Istanbul'],
  ['Попробовать чий-кёфте в Çiğköftem Sirkeci','Уличная еда','🌶️','Булгур, специи, лаваш.','Cigkoftem Hoca Pasa Orhaniye Caddesi 18 Sirkeci Istanbul'],
+ ['Попробовать лахмаджун в Tarihi Şanlıurfa','Кебабы и пиде','🍕','Турецкая пицца: тонкая лепёшка с мясом, овощами и специями.','Tarihi Sanliurfa Kebap ve Lahmacun Evi Yali Kosku Caddesi 4 Istanbul'],
  ['Попробовать мокрые бургеры в Kızılkayalar Taksim','Фастфуд','🍔','Маленькие бургеры в соусе.','Kizilkayalar Taksim Siraselviler Caddesi 2/C Istanbul'],
  ['Попробовать шердан в Şırdancı Mehmet Beyoğlu','Рестораны','🍲','Фаршированный бараний желудок.','Sirdanci Mehmet Kamer Hatun Caddesi 35A Beyoglu Istanbul'],
  ['Выпить турецкий кофе в Çinili Cafe','Кофе и отдых','☕','Кофейня на Гранд-базаре.','Cinili Cafe Halicilar Caddesi 97 Grand Bazaar Istanbul'],
@@ -329,6 +331,7 @@ function venueType(name){
  return type?'<div class="venue-type">'+esc(type[1])+'</div>':'';
 }
 const priceRules=[
+ [/Лахмаджун в Tarihi Şanlıurfa/i,'В среднем 200–350 ₺/чел. (оценка)','https://menuburada.com/tarihi-sanliurfa-kebap-ve-lahmacun-evi-sirkeci-istanbul/'],
  [/Романтический ужин в номере Edibe Sultan Hotel/i,'Около 900 ₺/чел. · вино и закуски (оценка)',''],
  [/Мокрый бургер в Kızılkayalar/i,'В среднем 150–250 ₺/чел.','https://menu.kizilkayalar.com.tr/'],
  [/Балык-экмек в Derya/i,'В среднем 330 ₺/чел.','https://www.deryabalikekmek.com/menu/'],
