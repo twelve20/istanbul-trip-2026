@@ -67,8 +67,8 @@
     <div class="stack overview-right">
       <div class="card"><div class="small-label">НАША БАЗА</div><div class="large-val">Edibe Sultan Hotel</div><a class="link-btn" style="display:inline-block;padding:10px 0 0" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Edibe+Sultan+Hotel+Istanbul">Открыть на карте ↗</a></div>
       <div class="card"><div class="small-label">НАША КОМПАНИЯ</div><div class="large-val">6 человек</div></div>
-      <div class="card quick-card"><span class="icon-dot">🛬</span><div><b>29 ноября · Прилетаем в Стамбул</b><div class="subline">LED → IST<br>Southwind · ручная кладь 8 кг</div></div></div>
-      <div class="card quick-card"><span class="icon-dot">🛫</span><div><b>3 декабря · Вылетаем в Москву</b><div class="subline">IST → SVO<br>Аэрофлот · ручная кладь 10 кг</div></div></div>
+      <div class="card quick-card"><span class="icon-dot">🛬</span><div><b>29 ноября · Прилетаем в Стамбул</b><div class="subline">LED 14:40 → IST 18:35<br>Southwind · ручная кладь 8 кг</div></div></div>
+      <div class="card quick-card"><span class="icon-dot">🛫</span><div><b>3 декабря · Вылетаем в Москву</b><div class="subline">IST 17:30 → SVO 22:25<br>Аэрофлот · ручная кладь 10 кг</div></div></div>
       
     </div>
   </div>
@@ -115,8 +115,8 @@ const I = {
 const tabs=[['overview','Обзор','home'],['plan','Маршрут','plan'],['places','Места','places'],['shopping','Покупки','shopping'],['budget','Бюджет','budget']];
 const days=[
  {date:'29 ноября',week:'Воскресенье',short:'29 ноя',title:'Привет, Стамбул!',desc:'Первый вечер — прилёт, заселение и прогулка без спешки.',tags:['Вдвоём','Перелёт'],events:[
-  ['День','✈️','Вылетаем из Петербурга','Southwind Airlines: LED → IST. Ручная кладь до 8 кг, без багажа.','Вдвоём'],
-  ['Вечер','🛬','Прилетаем в Стамбул (IST)','Паспортный контроль, получение связи и трансфер в район Султанахмета.','Вдвоём'],
+  ['День','✈️','14:40 · Вылетаем из Петербурга','Southwind Airlines: LED → IST. Ручная кладь до 8 кг, без багажа.','Вдвоём'],
+  ['Вечер','🛬','18:35 · Прилетаем в Стамбул (IST)','Паспортный контроль, получение связи и трансфер в район Султанахмета.','Вдвоём'],
   ['Вечер','🎫','Покупаем Istanbulkart для поездок','','Транспортная карта','Istanbul Airport Metro M11 station'],
   ['Вечер','🚇','Едем на метро M11 → M2 и трамвае T1','','Метро и трамвай','Sultanahmet tram stop Istanbul'],
   ['Вечер','🏨','Заселение в Edibe Sultan Hotel','','Вдвоём','Edibe Sultan Hotel Istanbul'],
@@ -128,10 +128,10 @@ const days=[
   ['Утро','🕌','Посещаем Айя-Софию и Голубую мечеть','','Вдвоём','Hagia Sophia Istanbul'],
   ['Утро','🏛️','Посещаем Цистерну Базилика','','Музей','Basilica Cistern Istanbul'],
   ['День','🚋','Едем на T1 до Эминёню','','Трамвай','Eminönü tram station Istanbul'],
-  ['День','⭐','Посещаем мечеть Сулеймание — обязательно','','Вдвоём','Suleymaniye Mosque Istanbul'],
+  ['День','⭐','Посещаем мечеть Сулеймание','','Вдвоём','Suleymaniye Mosque Istanbul'],
   ['День','🍲','Обедаем в Süleymaniye Lokantası','','Вдвоём','Süleymaniye Lokantası Istanbul Molla Hüsrev'],
   ['День','🏺','Гуляем по Гранд-базару','','Достопримечательность','Grand Bazaar Kapalıçarşı Istanbul'],
-  ['День','☕','Кофе — выбираем один вариант','','Напиток',null,null,'coffee30'],
+  ['День','☕','Кофейни по маршруту','','Напиток',null,null,'coffee30'],
   ['День','🌶️','Заходим на Египетский базар специй','','Достопримечательность','Mısır Çarşısı Spice Bazaar Istanbul'],
   ['Вечер','🌊','Гуляем вдоль Золотого Рога в Эминёню','','Прогулка','Eminönü waterfront Istanbul'],
   ['Вечер','🥙','Перекус — выбираем один вариант','','Перекус',null,null,'snack30'],
@@ -166,7 +166,8 @@ const days=[
   ['Утро','🧳','Собираем вещи и выезжаем из отеля','','Вдвоём'],
   ['День','🚇','Едем в аэропорт: трамвай T1 → метро M2 → M11','','Метро и трамвай','Istanbul Airport IST'],
   ['День','🥪','Перекусываем едой, купленной накануне','','Еда с собой'],
-  ['Вечер','🛫','Вылетаем в Москву рейсом Аэрофлота','','Вдвоём']
+  ['Вечер','🛫','17:30 · Вылетаем в Москву рейсом Аэрофлота','','Вдвоём'],
+  ['Вечер','🛬','22:25 · Прилетаем в Москву (SVO)','','Перелёт']
  ]}
 ];
 
@@ -203,14 +204,14 @@ function renderMealVariants(key){
  const variants=mealVariants[key];
  if(!variants)return '';
  const drink=key==='coffee30',dinner=key.startsWith('dinner');
- return '<p class="choice-hint">'+(drink?'Выбираем одну кофейню, не обе.':dinner?'Один ужин на выбор, не оба.':'Выбираем только один вариант. Остальное оставляем на другой раз.')+'</p><div class="variant-list">'+variants.map(([name,details,map],i)=>
+ return (drink?'':'<p class="choice-hint">'+(dinner?'Один ужин на выбор, не оба.':'Выбираем только один вариант. Остальное оставляем на другой раз.')+'</p>')+'<div class="variant-list">'+variants.map(([name,details,map],i)=>
  '<div class="variant-card"><div class="variant-heading"><span class="variant-num">Вар. '+(i+1)+'</span><b>'+esc(name)+'</b></div><div class="variant-desc">'+esc(details)+'</div>'+priceNote(name)+'<a class="variant-map" target="_blank" rel="noopener" href="'+mapUrl(map)+'">↗ На карте</a></div>'
  ).join('')+'</div>';
 }
 
 const places=[
  ['Наш отель — Edibe Sultan Hotel','Отель','🏨','Ваша база в Султанахмете. Завтрак включён.','Edibe Sultan Hotel Istanbul'],
- ['Посетить мечеть Сулеймание','Смотреть','🕌','Обязательная мечеть с видом на Золотой Рог.','Suleymaniye Mosque Istanbul'],
+ ['Посетить мечеть Сулеймание','Смотреть','🕌','Мечеть с видом на Золотой Рог.','Suleymaniye Mosque Istanbul'],
  ['Посетить Айя-Софию','Смотреть','🕌','Главная точка исторического центра.','Hagia Sophia Istanbul'],
  ['Посетить Голубую мечеть','Смотреть','🕌','Площадь Султанахмет.','Blue Mosque Istanbul'],
  ['Спуститься в Цистерну Базилика','Смотреть','🏛️','Подземное водохранилище, запланировано к посещению.','Basilica Cistern Istanbul'],
