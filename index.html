@@ -67,7 +67,7 @@
   </div>
 </section>
 <section class="view" id="plan" aria-label="Маршрут" hidden>
-  <div class="timeline-wrap"><aside class="side-panel"><span class="eyebrow">Маршрут поездки</span><h2>День за днём</h2><div class="price-disclaimer">После завтрака: 2 основных приёма пищи + 1–2 перекуса в полный день. В карточках с вариантами выбираем один, а не все. В дни перелётов — по времени.</div><div class="day-nav" id="dayNav"></div></aside><div class="day-content"><div class="day-head" id="dayHeader"></div><div id="eventList"></div></div></div>
+  <div class="timeline-wrap"><aside class="side-panel"><span class="eyebrow">Маршрут поездки</span><h2>День за днём</h2><div class="price-disclaimer">После завтрака: обед + один ужин и 1–2 перекуса. В карточках с вариантами выбираем один вариант. В дни перелётов — по времени.</div><div class="day-nav" id="dayNav"></div></aside><div class="day-content"><div class="day-head" id="dayHeader"></div><div id="eventList"></div></div></div>
 </section>
 <section class="view" id="places" aria-label="Места" hidden>
  <div class="places-top"><div><span class="eyebrow">Сохранённые места</span><h2>Где побывать и поесть</h2></div><input class="search" id="placeSearch" type="search" placeholder="Найти кафе или место…" aria-label="Поиск мест"></div>
@@ -116,7 +116,7 @@ const days=[
   ['≈ 21:30','🍽️','Ужинаем в Ortaklar Kebap Restaurant','','Вдвоём','Ortaklar Kebap Restaurant Peykhane 27A Istanbul'],
   ['После ужина','🌙','Гуляем по вечернему Султанахмету','','Вдвоём','Sultanahmet Istanbul']
  ]},
- {date:'30 ноября',week:'Понедельник',short:'30 ноя',title:'Старый город',desc:'Обед, ужин и один перекус на выбор; вечером — Semaver Cafe.',tags:['Вдвоём','Кафе'],events:[
+ {date:'30 ноября',week:'Понедельник',short:'30 ноя',title:'Старый город',desc:'Обед, один перекус и один ужин на выбор: Balkan либо Semaver Cafe.',tags:['Вдвоём','Кафе'],events:[
   ['Утро','🥐','Завтракаем в Edibe Sultan Hotel — оплачено','','Вдвоём'],
   ['В течение дня','☕','Кофе — выбираем один вариант','','Напиток',null,null,'coffee30'],
   ['Утро','🕌','Посещаем Айя-Софию и Голубую мечеть','','Вдвоём','Hagia Sophia Istanbul'],
@@ -128,10 +128,9 @@ const days=[
   ['≈ 16:15','🌶️','Заходим на Египетский базар специй','','Достопримечательность','Mısır Çarşısı Spice Bazaar Istanbul'],
   ['≈ 17:15','🌊','Гуляем вдоль Золотого Рога в Эминёню','','Прогулка','Eminönü waterfront Istanbul'],
   ['≈ 17:45–19:00','🥙','Перекус — выбираем один вариант','','Перекус',null,null,'snack30'],
-  ['≈ 20:30','🍽️','Ужинаем в Balkan Lokantası','','Вдвоём','Balkan Lokantasi Sirkeci Hoca Pasa Sokak Istanbul'],
-  ['После ужина · ≈ 22:00','🫖','Заходим в Semaver Cafe','','Кафе','Semaver Cafe Kennedy Caddesi Istanbul','https://www.semavercafe.com/menu']
+  ['Вечер · с 20:30','🍽️','Ужин — выбираем один вариант','','Ужин',null,null,'dinner30'],
  ]},
- {date:'1 декабря',week:'Вторник',short:'1 дек',title:'Галата и Босфор',desc:'Обед, ужин и два лёгких перекуса: один на прогулке, второй — в номере.',tags:['Вдвоём','Прогулка'],events:[
+ {date:'1 декабря',week:'Вторник',short:'1 дек',title:'Галата и Босфор',desc:'Обед, один перекус и один ужин на выбор: пиде или романтический вечер в номере.',tags:['Вдвоём','Прогулка'],events:[
   ['Утро','🥐','Завтракаем в Edibe Sultan Hotel — оплачено','','Вдвоём'],
   ['После завтрака','🚋','Едем на T1 в Эминёню','','Трамвай','Eminönü tram station Istanbul'],
   ['Утро','🌉','Гуляем по Эминёню и Галатскому мосту','','Вдвоём','Galata Bridge Istanbul'],
@@ -141,10 +140,9 @@ const days=[
   ['≈ 15:00','🚇','Едем на M2 от Şişhane до Taksim','','Метро','Taksim M2 metro station Istanbul'],
   ['≈ 15:30–17:30','🥙','Перекус — выбираем один вариант','','Перекус',null,null,'snack01'],
   ['≈ 18:05','🚇','Возвращаемся на метро M2 и трамвае T1 в Сиркеджи','','Метро и трамвай','Sirkeci tram station Istanbul'],
-  ['После метро','🍷','Ищем гранатовое вино в Tekel (Сиркеджи)','','Вдвоём','Tekel Sirkeci Istanbul'],
-  ['19:15','🛒','Покупаем закуски для вечера: инжир, виноград, beyaz peynir, фисташки, тёмный шоколад и пахлаву','','Продуктовый магазин','Migros Sultanahmet Istanbul'],
-  ['≈ 20:30','🍽️','Ужинаем в Yeni Karadeniz Pide','','Вдвоём','Yeni Karadeniz Pide Kebap Salonu Cagaloglu Hamami Sokak Istanbul'],
-  ['22:30','🌹','Романтический вечер в номере: вино и лёгкие закуски','','Вдвоём','Edibe Sultan Hotel Istanbul'],
+  ['После метро','🍷','Для вар. 2 покупаем гранатовое вино в Tekel (Сиркеджи)','','Вдвоём','Tekel Sirkeci Istanbul'],
+  ['19:15','🛒','Для вар. 2 покупаем закуски: инжир, виноград, beyaz peynir, фисташки, тёмный шоколад и пахлаву','','Продуктовый магазин','Migros Sultanahmet Istanbul'],
+  ['Вечер · 20:30 / 22:30','🍽️','Ужин — выбираем один вариант','','Ужин',null,null,'dinner01'],
  ]},
  {date:'2 декабря',week:'Среда',short:'2 дек',title:'IKEA и день рождения',desc:'Обед, один перекус на выбор, покупки и ужин в Bitlisli.',tags:['Вдвоём','Возможен семейный ужин'],events:[
   ['Утро','🥐','Завтракаем в Edibe Sultan Hotel — оплачено','','Вдвоём'],
@@ -180,6 +178,14 @@ const mealVariants={
   ['Кокореч в Şampiyon Kokoreç','Истикляль · горячий сэндвич','Sampiyon Kokorec Huseyinaga Sahne Sokak 21 Beyoglu Istanbul'],
   ['Шердан в Şırdancı Mehmet Beyoğlu','Бейоглу · фаршированный бараний желудок','Sirdanci Mehmet Kamer Hatun Caddesi 35A Beyoglu Istanbul']
  ],
+ dinner30:[
+  ['Balkan Lokantası Sirkeci','20:30 · полноценный ужин: можно попробовать эзогелин, сарму и сютлач','Balkan Lokantasi Sirkeci Hoca Pasa Sokak Istanbul'],
+  ['Semaver Cafe','≈ 22:00 · поздний ужин или чай с закусками','Semaver Cafe Kennedy Caddesi Istanbul']
+ ],
+ dinner01:[
+  ['Yeni Karadeniz Pide','20:30 · ужинаем пиде в ресторане','Yeni Karadeniz Pide Kebap Salonu Cagaloglu Hamami Sokak Istanbul'],
+  ['Романтический ужин в номере Edibe Sultan Hotel','22:30 · гранатовое вино, инжир, виноград, beyaz peynir, фисташки, шоколад и пахлава; продукты покупаем заранее','Edibe Sultan Hotel Istanbul']
+ ],
  snack02:[
   ['Симит и чай','Forum İstanbul · лёгкий перекус','Forum Istanbul Shopping Mall Bayrampasa'],
   ['Пахлава и турецкий кофе','Forum İstanbul · сладкий перекус','Forum Istanbul Shopping Mall Bayrampasa']
@@ -188,8 +194,8 @@ const mealVariants={
 function renderMealVariants(key){
  const variants=mealVariants[key];
  if(!variants)return '';
- const drink=key==='coffee30';
- return '<p class="choice-hint">'+(drink?'Выбираем одну кофейню, не обе.':'Выбираем только один вариант. Остальное оставляем на другой раз.')+'</p><div class="variant-list">'+variants.map(([name,details,map],i)=>
+ const drink=key==='coffee30',dinner=key.startsWith('dinner');
+ return '<p class="choice-hint">'+(drink?'Выбираем одну кофейню, не обе.':dinner?'Один ужин на выбор, не оба.':'Выбираем только один вариант. Остальное оставляем на другой раз.')+'</p><div class="variant-list">'+variants.map(([name,details,map],i)=>
  '<div class="variant-card"><div class="variant-heading"><span class="variant-num">Вар. '+(i+1)+'</span><b>'+esc(name)+'</b></div><div class="variant-desc">'+esc(details)+'</div>'+priceNote(name)+'<a class="variant-map" target="_blank" rel="noopener" href="'+mapUrl(map)+'">↗ На карте</a></div>'
  ).join('')+'</div>';
 }
@@ -243,11 +249,10 @@ const defaultShopping=[
 ];
 const budgetMeals=[
  ['d29','29 ноя · Ortaklar Kebap (ужин)',1000],
- ['d30','30 ноя · обед, ужин, кофе и Semaver',3500],
+ ['d30choice','30 ноя · обед, кофе и один ужин (Balkan / Semaver)',3000],
  ['d30snack1','30 ноя · один перекус (балык-экмек / чий-кёфте)',650],
- ['d01','1 дек · обед, ужин, вино и напитки',3600],
+ ['d01choice','1 дек · Emek, напитки и один ужин (пиде / в номере)',3900],
  ['d01snack1','1 дек · один перекус из четырёх вариантов',1100],
- ['d01grocery','1 дек · лёгкие закуски в номер (2-й перекус)',900],
  ['d02food2','2 дек · IKEA, один перекус и еда на вылет',1600]
 ];
 const budgetOther=[
@@ -324,6 +329,7 @@ function venueType(name){
  return type?'<div class="venue-type">'+esc(type[1])+'</div>':'';
 }
 const priceRules=[
+ [/Романтический ужин в номере Edibe Sultan Hotel/i,'Около 900 ₺/чел. · вино и закуски (оценка)',''],
  [/Мокрый бургер в Kızılkayalar/i,'В среднем 150–250 ₺/чел.','https://menu.kizilkayalar.com.tr/'],
  [/Балык-экмек в Derya/i,'В среднем 330 ₺/чел.','https://www.deryabalikekmek.com/menu/'],
  [/Чий-кёфте в Çiğköftem/i,'В среднем 100–200 ₺/чел.','https://cigkoftem.com/tr/subeler/istanbul-sirkeci'],
