@@ -149,7 +149,7 @@ const days=[
   ['День','🚇','Едем на M2 от Şişhane до Taksim','','Метро','Taksim M2 metro station Istanbul'],
   ['День','🥙','Перекусы — варианты по пути','','Перекус',null,null,'snack01'],
   ['Вечер','🚇','Возвращаемся на метро M2 и трамвае T1 в Сиркеджи','','Метро и трамвай','Sirkeci tram station Istanbul'],
-  ['Вечер','🍷','Для вар. 2 покупаем гранатовое вино в Tekel (Сиркеджи)','','Вдвоём','Tekel Sirkeci Istanbul'],
+  ['Вечер','🍷','Для вар. 2 ищем гранатовое вино в Güven Tekel Sirkeci','Адрес: Hoca Paşa, Nöbethane Cd. No:19, Sirkeci. Ориентир: бутылка 750 мл за 450–650 ₺ (пример: Vinova Nar 450 ₺, Biricik Nar 570 ₺ по справочникам). Наличие гранатового вина и сухого варианта не подтверждено — уточняем в магазине.','Магазин напитков','Guven Tekel Nobethane Caddesi No 19 Sirkeci Istanbul'],
   ['Вечер','🛒','Для вар. 2 покупаем закуски в Peker Market (Кючюк-Айясофья) · около 900 ₺ за всё','Инжир, виноград, beyaz peynir, фисташки, тёмный шоколад и пахлава. Ориентир: инжир 90 ₺, виноград 90 ₺, сыр 150 ₺, фисташки 230 ₺, шоколад 70 ₺, пахлава 220 ₺ — всего примерно 850 ₺, заложено 900 ₺. Наличие товаров и точные цены уточняем на месте.','Продуктовый магазин','Peker Market Kucuk Ayasofya Caddesi Aksakal Sokak 14 Fatih Istanbul'],
   ['Вечер','🍽️','Ужин — варианты','','Ужин',null,null,'dinner01'],
  ]},
@@ -230,7 +230,7 @@ const places=[
  ['Выпить кофе в Starbucks Sultanahmet','Кофе и отдых','☕','Кофе по пути через старый город.','Starbucks Sultanahmet Istanbul'],
  ['Сходить в IKEA Bayrampaşa','Магазины','🛍️','Ресторан IKEA и короткая прогулка.','IKEA Bayrampasa Istanbul'],
  ['Погулять по Forum İstanbul','Магазины','👕','Торговый центр, без запланированных покупок подарков.','Forum Istanbul Shopping Mall'],
- ['Найти гранатовое вино в Tekel (Сиркеджи)','Магазины','🍷','Поиск сухого гранатового вина.','Tekel Sirkeci Istanbul'],
+ ['Найти гранатовое вино в Güven Tekel Sirkeci','Магазины','🍷','Hoca Paşa, Nöbethane Cd. No:19. Ориентир 450–650 ₺ за 750 мл; наличие сухого гранатового вина уточняем.','Guven Tekel Nobethane Caddesi No 19 Sirkeci Istanbul'],
  ['Купить сладости в Hafız Mustafa','Магазины','🍬','Коробки лукума и другие сладости.','Hafiz Mustafa Sirkeci Istanbul'],
  ['Заглянуть за сладостями в Koska','Магазины','🍬','Халва и упакованные сладости.','Koska Istanbul'],
  ['Пообедать в Değirmencioğlu','Локанты','🍲','Домашняя турецкая еда.','Değirmencioğlu Lokanta Istanbul'],
@@ -351,6 +351,8 @@ function venueType(name){
  return type?'<div class="venue-type">'+esc(type[1])+'</div>':'';
 }
 const priceRules=[
+ [/Для вар\. 2 ищем гранатовое вино в Güven Tekel/i,'Ориентир 450–650 ₺ за бутылку 750 мл (225–325 ₺/чел.) · оценка, ассортимент не подтверждён','https://alkolog.com/urun/biricik-nar-sarabi-75-cl'],
+ [/Найти гранатовое вино в Güven Tekel/i,'Ориентир 450–650 ₺ за бутылку 750 мл (225–325 ₺/чел.) · оценка, ассортимент не подтверждён','https://www.tekellist.com.tr/sarap'],
  [/Для вар\. 2 покупаем закуски в Peker Market/i,'Продукты на вечер: ≈450 ₺/чел. · около 900 ₺ за всю корзину (оценка)','https://gosultanahmet.com/en/shop/peker-market'],
  [/Al Fakher · кальян и чай/i,'350 ₺/чел. · по присланному меню',''],
  [/Adalya · кальян и чай/i,'375 ₺/чел. · по присланному меню',''],
