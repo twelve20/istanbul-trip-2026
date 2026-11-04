@@ -49,6 +49,7 @@
 .period-group .entry{padding:11px 0}
 .period-group .event h3{margin:0 0 5px}
 .period-group .entry:last-child:before{display:none}
+.optional-line{margin-top:10px}.optional-amount{color:var(--sub);font-size:13px;padding:10px 0 0}.optional-line label span{color:var(--sub);font-size:11px;font-weight:500}
 </style>
 </head>
 <body>
@@ -94,7 +95,7 @@
    <div class="eyebrow">Итого на двоих</div>
    <strong id="budgetTotal">—</strong>
    <p id="budgetEach">—</p>
-   <div class="budget-buffer"><span>С запасом 15%</span><b id="budgetSafe">—</b></div>
+   <div class="budget-buffer"><span>Остаток до лимита 25 000 ₽</span><b id="budgetSafe">—</b></div>
   </div>
  </div>
 </section>
@@ -125,8 +126,8 @@ const days=[
  ]},
  {date:'30 ноября',week:'Понедельник',short:'30 ноя',title:'Старый город',desc:'Обед, перекусы и вечерние варианты: Balkan и Semaver Cafe.',tags:['Вдвоём','Кафе'],events:[
   ['Утро','🥐','Завтракаем в Edibe Sultan Hotel — оплачено','','Вдвоём'],
-  ['Утро','🕌','Смотрим Айя-Софию снаружи и посещаем Голубую мечеть','','Вдвоём','Hagia Sophia Istanbul'],
-  ['Утро','🏛️','Посещаем Цистерну Базилика','','Музей','Basilica Cistern Istanbul'],
+  ['Утро','🕌','Посещаем Айя-Софию и Голубую мечеть','','Вдвоём','Hagia Sophia Istanbul'],
+  ['Утро','🏛️','Цистерна Базилика — если хватит денег','','Музей','Basilica Cistern Istanbul'],
   ['День','🚋','Едем на T1 до Эминёню','','Трамвай','Eminönü tram station Istanbul'],
   ['День','⭐','Посещаем мечеть Сулеймание','','Вдвоём','Suleymaniye Mosque Istanbul'],
   ['День','🍲','Обедаем в Süleymaniye Lokantası','','Вдвоём','Süleymaniye Lokantası Istanbul Molla Hüsrev'],
@@ -211,9 +212,9 @@ function renderMealVariants(key){
 const places=[
  ['Наш отель — Edibe Sultan Hotel','Отель','🏨','Ваша база в Султанахмете. Завтрак включён.','Edibe Sultan Hotel Istanbul'],
  ['Посетить мечеть Сулеймание','Смотреть','🕌','Мечеть с видом на Золотой Рог.','Suleymaniye Mosque Istanbul'],
- ['Посмотреть Айя-Софию снаружи','Смотреть','🕌','Главная точка исторического центра. Без платного входа.','Hagia Sophia Istanbul'],
+ ['Посетить Айя-Софию','Смотреть','🕌','Главная точка исторического центра. Вход в туристическую галерею платный.','Hagia Sophia Istanbul'],
  ['Посетить Голубую мечеть','Смотреть','🕌','Площадь Султанахмет.','Blue Mosque Istanbul'],
- ['Спуститься в Цистерну Базилика','Смотреть','🏛️','Подземное водохранилище, запланировано к посещению.','Basilica Cistern Istanbul'],
+ ['Спуститься в Цистерну Базилика — если хватит денег','Смотреть','🏛️','Подземное водохранилище. Посещение только при наличии свободного бюджета.','Basilica Cistern Istanbul'],
  ['Посмотреть Галатскую башню','Смотреть','📸','Галата, Каракёй и атмосферные улочки.','Galata Tower Istanbul'],
  ['Прогуляться по Гранд-базару','Смотреть','🏺','Крытый исторический базар.','Grand Bazaar Kapalıçarşı Istanbul'],
  ['Посетить Египетский базар специй','Смотреть','🌶️','Турецкие специи и сладости.','Mısır Çarşısı Spice Bazaar Istanbul'],
@@ -257,20 +258,25 @@ const defaultShopping=[
  ['Купить рубашку XL папе','Посмотреть в Forum İstanbul']
 ];
 const budgetMeals=[
- ['d29','29 ноя · ужин (экономный заказ на двоих)',500],
- ['d30choice','30 ноя · обед, ужин и напитки (экономно)',950],
- ['d30snack1','30 ноя · перекус по маршруту',250],
- ['d01choice','1 дек · обед, ужин и напитки (экономно)',1100],
- ['d01snack1','1 дек · перекус по маршруту',300],
- ['d02food2','2 дек · IKEA, перекус и еда в дорогу',700]
+ ['d29','29 ноя · ужин Ortaklar Kebap',650],
+ ['d30choice','30 ноя · обед, вечерние заведения и напитки',1900],
+ ['d30snack1','30 ноя · перекусы по маршруту',450],
+ ['d01choice','1 дек · Emek, вечерние заведения и напитки',2200],
+ ['d01snack1','1 дек · уличная еда',600],
+ ['d02food2','2 дек · IKEA, перекус и продукты в дорогу',950]
 ];
 const budgetOther=[
- ['transport','Метро, трамваи и Istanbulkart на двоих',1600],
- ['gifts','Сувениры и сладости (рубашка XL может не уложиться)',600],
- ['hagia','Айя-София · осмотр снаружи, без билетов',0],
- ['bitlisli','Bitlisli · экономный ужин на двоих',2000],
+ ['transport','Метро, трамваи и Istanbulkart на двоих',1900],
+ ['gifts','Рубашка XL, сладости и сувениры',1600],
+ ['hagia','Айя-София · два билета (50 € ≈ 2 800 ₺)',2800],
+ ['bitlisli','Bitlisli · ужин на двоих',1400]
+];
+const optionalExpenses=[
  ['cistern','Цистерна Базилика · два билета',3900]
 ];
+const budgetRubLimit=25000;
+const estimatedRubPerLira=1.635;
+const budgetTryLimit=Math.floor(budgetRubLimit/estimatedRubPerLira/10)*10;
 const $=id=>document.getElementById(id);
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const mapUrl=name=>'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(name);
@@ -314,11 +320,11 @@ const venueTypes=[
  [/Hafız Mustafa/i,'Кондитерская'],
  [/Koska/i,'Магазин сладостей'],
  [/Tekel/i,'Магазин напитков'],
- [/Айя-Софию снаружи и посещаем Голубую мечеть/i,'Исторические мечети'],
+ [/Айя-Софию и Голубую мечеть/i,'Исторические мечети'],
  [/Айя-Софию/i,'Мечеть · туристическая галерея'],
  [/Голубую мечеть/i,'Мечеть'],
  [/Сулеймание/i,'Мечеть'],
- [/Цистерну Базилика/i,'Музей · подземная цистерна'],
+ [/Цистерна Базилика|Цистерну Базилика/i,'Музей · подземная цистерна'],
  [/Галатскую башню/i,'Историческая башня · осмотр снаружи'],
  [/Галате и Каракёю/i,'Прогулка · исторический район'],
  [/Гранд-базару|Гранд-базару/i,'Исторический крытый базар'],
@@ -363,10 +369,10 @@ const priceRules=[
  [/трамвай T1 → метро M2 → M11/i,'Istanbulkart: ≈158,80 ₺/чел.','https://www.airportstransferturkey.com/ru/guides/istanbul-airport-metro-m11'],
  [/Едем на T1 до Эминёню|Едем на T1 в Эминёню|Возвращаемся на T1 в Сиркеджи/i,'Istanbulkart: 46,20 ₺/чел.','https://www.metro.istanbul/SeferDurumlari/BiletUcretleri'],
  [/Едем в IKEA на трамвае T1 и метро M1|Возвращаемся из IKEA на метро M1 и трамвае T1/i,'Istanbulkart: 92,40 ₺/чел.','https://www.metro.istanbul/SeferDurumlari/BiletUcretleri'],
- [/Айя-Софию снаружи и посещаем Голубую мечеть/i,'Снаружи бесплатно · Голубая мечеть бесплатно','https://muze.gen.tr/muze-detay/ayasofya'],
- [/Айя-Софию/i,'Снаружи бесплатно · галерея платная','https://muze.gen.tr/muze-detay/ayasofya'],
+ [/Айя-Софию и Голубую мечеть/i,'Айя-София: 25 €/чел. · Голубая мечеть бесплатно','https://muze.gen.tr/muze-detay/ayasofya'],
+ [/Айя-Софию/i,'25 €/чел. · туристическая галерея','https://muze.gen.tr/muze-detay/ayasofya'],
  [/Голубую мечеть/i,'Бесплатно','https://www.sultanahmetcami.org/sayfa.php?s=ziyaretci-rehberi'],
- [/Цистерну Базилика/i,'1 950 ₺/чел. днём','https://kultur.istanbul/yerebatan-sarnici-muzesi/'],
+ [/Цистерна Базилика|Цистерну Базилика/i,'1 950 ₺/чел. · если хватит денег','https://kultur.istanbul/yerebatan-sarnici-muzesi/'],
  [/Сулеймание/i,'Бесплатно','https://istanbul.travel/en/suleymaniye-mosque?gruppe=moscheen'],
  [/Ortaklar Kebap/i,'В среднем 400–600 ₺/чел.','https://restoranim.net/istanbul/fatih/kebapci/ortaklar-kebap-restaurant'],
  [/Emek Restaurant/i,'В среднем 600–1 000 ₺/чел.','https://restaurantguru.com/Emek-Restaurant-Istanbul'],
@@ -424,7 +430,7 @@ function showDay(i){
 function drawPlaces(){const cats=['Все','Смотреть','Локанты','Рестораны','Кебабы и пиде','Фастфуд','Уличная еда','Кофе и отдых','Магазины'];$('placeFilters').innerHTML=cats.map(x=>`<button type="button" class="filter ${placeCategory===x?'active':''}" data-cat="${esc(x)}">${esc(x)}</button>`).join('');const q=query.trim().toLocaleLowerCase('ru');const filtered=places.filter(p=>(placeCategory==='Все'||p[1]===placeCategory)&&(!q||(p[0]+' '+p[1]+' '+p[3]).toLocaleLowerCase('ru').includes(q)));$('placesGrid').innerHTML=filtered.length?filtered.map(p=>`<div class="place"><div class="place-top"><div class="symbol">${p[2]}</div><span class="badge gray">${esc(p[1])}</span></div><h3>${esc(p[0])}</h3>${venueType(p[0])}${priceNote(p[0])}<a target="_blank" rel="noopener" href="${mapUrl(p[4])}">Открыть на карте ↗</a></div>`).join(''):'<p class="subline">Ничего не найдено. Попробуй другой запрос.</p>'}
 function drawShopping(){const checks=getJSON('it-shopping-v5',{}),custom=getJSON('it-custom-v5',[]);const items=[...defaultShopping.map((x,i)=>['s'+i,...x]),...custom.map((x,i)=>['c'+i,x,'Добавлено тобой'])];$('shoppingItems').innerHTML=items.map(([key,t,desc])=>`<label class="check-row"><input type="checkbox" data-shopping="${key}" ${checks[key]?'checked':''}><div><b>${esc(t)}</b></div></label>`).join('');const done=items.filter(x=>checks[x[0]]).length;$('shoppingProgressText').textContent=`${done} из ${items.length} куплено`;$('shoppingProgress').style.width=(items.length?done/items.length*100:0)+'%'}
 function budgetValue(key,def){
- const stored=getJSON('it-budget-v7-'+key,null);
+ const stored=getJSON('it-budget-v8-'+key,null);
  const num=stored===null?def:Number(stored);
  return Number.isFinite(num)?Math.min(1000000,Math.max(0,num)):def;
 }
@@ -436,8 +442,9 @@ function drawBudget(){
   '<h3 class="budget-group">Еда и напитки · по дням</h3>'+
   budgetMeals.map(budgetRow).join('')+
   '<h3 class="budget-group">Транспорт, покупки, ужин и билеты</h3>'+
-  '<p class="budget-small">Все позиции учтены в общей сумме на двоих. Их можно редактировать.</p>'+
-  budgetOther.map(budgetRow).join('');
+  ''+
+  budgetOther.map(budgetRow).join('')+
+  '<h3 class="budget-group">Если хватит денег</h3>'+optionalExpenses.map(([key,label,amount])=>`<div class="money-line optional-line"><label>${esc(label)}<span>дополнительно, на двоих</span></label><div class="optional-amount">${lira(amount)} · не включено в общий бюджет</div></div>`).join('');
  updateBudget();
 }
 function updateBudget(){
@@ -446,12 +453,12 @@ function updateBudget(){
   const el=$('money-'+key);
   if(!el)continue;
   const n=Math.min(1000000,Math.max(0,Number(el.value)||0));
-  setJSON('it-budget-v7-'+key,n);
+  setJSON('it-budget-v8-'+key,n);
   total+=n;
  }
  $('budgetTotal').textContent=lira(total);
  $('budgetEach').textContent='На человека: '+lira(total/2);
- $('budgetSafe').textContent=lira(Math.ceil(total*1.15/50)*50);
+ $('budgetSafe').textContent=total<=budgetTryLimit?lira(budgetTryLimit-total):'Превышение '+lira(total-budgetTryLimit);
 }
 function init(){nav($('desktopTabs'),false);nav($('mobileTabs'),true);showDay(activeDay);drawPlaces();drawShopping();drawBudget();try{$('notes').value=localStorage.getItem('it-notes-v5')||''}catch{};const h=location.hash.slice(1);go(tabs.some(t=>t[0]===h)?h:'overview')}
 document.addEventListener('click',e=>{const tab=e.target.closest('[data-tab]');if(tab){go(tab.dataset.tab);return}const bt=e.target.closest('[data-go]');if(bt){go(bt.dataset.go);return}const day=e.target.closest('[data-day]');if(day){showDay(Number(day.dataset.day));return}const cat=e.target.closest('[data-cat]');if(cat){placeCategory=cat.dataset.cat;drawPlaces()}});
