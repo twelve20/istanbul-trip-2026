@@ -152,7 +152,7 @@ const days=[
   ['Вечер','🛒','Для вар. 2 покупаем закуски: инжир, виноград, beyaz peynir, фисташки, тёмный шоколад и пахлаву','','Продуктовый магазин','Migros Sultanahmet Istanbul'],
   ['Вечер','🍽️','Ужин — варианты','','Ужин',null,null,'dinner01'],
  ]},
- {date:'2 декабря',week:'Среда',short:'2 дек',title:'IKEA и день рождения',desc:'Обед, перекусы, покупки и ужин в Bitlisli.',tags:['Вдвоём','Возможен семейный ужин'],events:[
+ {date:'2 декабря',week:'Среда',short:'2 дек',title:'IKEA и день рождения',desc:'Обед, покупки и ужин в кафе по случаю дня рождения Тимохи.',tags:['Вдвоём','Возможен семейный ужин'],events:[
   ['Утро','🥐','Завтракаем в Edibe Sultan Hotel — оплачено','','Вдвоём'],
   ['Утро','🚇','Едем в IKEA на трамвае T1 и метро M1','','Метро и трамвай','IKEA Bayrampasa Istanbul'],
   ['День','🍽️','Обедаем в IKEA Restaurant','','Вдвоём','IKEA Restaurant Bayrampasa Forum Istanbul'],
@@ -160,7 +160,7 @@ const days=[
   ['День','🥨','Перекус в Forum İstanbul — варианты','','Перекус',null,null,'snack02'],
   ['День','🚇','Возвращаемся из IKEA на метро M1 и трамвае T1','','Метро и трамвай','Sultanahmet tram station Istanbul'],
   ['Вечер','🛒','Покупаем еду в дорогу в SHOW Supermarket','','Супермаркет','SHOW Supermarket Çemberlitaş Peykhane Sokak 6 Istanbul'],
-  ['Вечер','🎂','Ужинаем в Bitlisli на дне рождения Тимохи','','С семьёй','Bitlisli Hoca Camii Sokak Sirkeci Istanbul']
+  ['Вечер','🎂','Ужин в честь дня рождения Тимохи — кафе по маршруту','','Ресторан',null,null,'birthday02']
  ]},
  {date:'3 декабря',week:'Четверг',short:'3 дек',title:'До встречи, Стамбул',desc:'Спокойное утро, дорога в аэропорт IST и обратный перелёт.',tags:['Вдвоём','Перелёт'],events:[
   ['Утро','🥐','Завтракаем в Edibe Sultan Hotel — оплачено','','Вдвоём'],
@@ -195,6 +195,11 @@ const mealVariants={
  dinner01:[
   ['Yeni Karadeniz Pide','Пиде в ресторане','Yeni Karadeniz Pide Kebap Salonu Cagaloglu Hamami Sokak Istanbul'],
   ['Романтический ужин в номере Edibe Sultan Hotel','Гранатовое вино, инжир, виноград, beyaz peynir, фисташки, шоколад и пахлава; продукты покупаем заранее','Edibe Sultan Hotel Istanbul']
+ ],
+ birthday02:[
+  ['Buyruk Esnaf Lokantası','Домашняя турецкая кухня в Сиркеджи; простой бюджетный вариант','Buyruk Esnaf Lokantasi Hocapasa Camii Sokak 12 Sirkeci Istanbul'],
+  ['TurguT Restaurant Sirkeci','Кебабы и турецкие блюда; можно посидеть за общим столом','Turgut Restaurant Ebussuud Caddesi 34A Sirkeci Istanbul'],
+  ['Ortaklar Kebap Restaurant','Кебабы и пиде; уже знакомое кафе рядом с отелем','Ortaklar Kebap Restaurant Peykhane 27A Istanbul']
  ],
  snack02:[
   ['Симит и чай','Forum İstanbul · лёгкий перекус','Forum Istanbul Shopping Mall Bayrampasa'],
@@ -232,7 +237,7 @@ const places=[
  ['Пообедать в Süleymaniye Lokantası','Локанты','🍲','Обед после Сулеймание.','Suleymaniye Lokantasi Istanbul'],
  ['Пообедать в Emek Restaurant','Локанты','🍲','Обед в Каракёе.','Emek Restaurant Yeni Merdiven Sokak Karakoy Istanbul'],
  ['Попробовать пиде в Hocapaşa Pidecisi','Кебабы и пиде','🥙','Пиде и турецкая выпечка.','Hocapasa Pidecisi Istanbul'],
- ['Поужинать в Bitlisli','Кебабы и пиде','🍢','Кебабы и мясные блюда.','Bitlisli Hoca Camii Sokak Sirkeci Istanbul'],
+ ['Ужин в кафе на день рождения Тимохи','Рестораны','🎂','Варианты: Buyruk Esnaf Lokantası, TurguT Restaurant или Ortaklar Kebap.','Buyruk Esnaf Lokantasi Hocapasa Camii Sokak 12 Sirkeci Istanbul'],
  ['Попробовать кёфте в Köfteci Kadırgalı','Кебабы и пиде','🧆','Кёфте по-турецки.','Kofteci Kadirgali Istanbul'],
  ['Поужинать в Yeni Karadeniz Pide','Кебабы и пиде','🥙','Ещё один вариант пиде.','Yeni Karadeniz Pide Istanbul'],
  ['Поужинать в Ortaklar Kebap','Кебабы и пиде','🍢','Кебабная в старом городе.','Ortaklar Kebap Restaurant Peykhane 27A Istanbul'],
@@ -269,7 +274,7 @@ const budgetOther=[
  ['transport','Метро, трамваи и Istanbulkart на двоих',1900],
  ['gifts','Рубашка XL, сладости и сувениры',1600],
  ['hagia','Айя-София · два билета (50 € ≈ 2 800 ₺)',2800],
- ['bitlisli','Bitlisli · ужин на двоих',1400]
+ ['birthdayCafe','2 дек · кафе на день рождения (наши две порции)',1000]
 ];
 const optionalExpenses=[
  ['cistern','Цистерна Базилика · два билета',3900]
@@ -344,6 +349,8 @@ function venueType(name){
  return type?'<div class="venue-type">'+esc(type[1])+'</div>':'';
 }
 const priceRules=[
+ [/Buyruk Esnaf Lokantası/i,'Ориентир 250–450 ₺/чел. · цены уточнить по меню',''],
+ [/TurguT Restaurant Sirkeci/i,'Цена зависит от заказа · проверить меню на месте',''],
  [/Лахмаджун в Tarihi Şanlıurfa/i,'В среднем 200–350 ₺/чел. (оценка)','https://menuburada.com/tarihi-sanliurfa-kebap-ve-lahmacun-evi-sirkeci-istanbul/'],
  [/Романтический ужин в номере Edibe Sultan Hotel/i,'Около 900 ₺/чел. · вино и закуски (оценка)',''],
  [/Мокрый бургер в Kızılkayalar/i,'В среднем 150–250 ₺/чел.','https://menu.kizilkayalar.com.tr/'],
