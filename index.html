@@ -131,7 +131,7 @@ const days=[
   ['День','🚋','Едем на T1 до Эминёню','','Трамвай','Eminönü tram station Istanbul'],
   ['День','⭐','Посещаем мечеть Сулеймание','','Вдвоём','Suleymaniye Mosque Istanbul'],
   ['День','🍲','Обедаем в Süleymaniye Lokantası','','Вдвоём','Süleymaniye Lokantası Istanbul Molla Hüsrev'],
-  ['День','🏺','Гуляем по Гранд-базару и покупаем сувениры родителям и рубашку XL папе','','Достопримечательность','Grand Bazaar Kapalıçarşı Istanbul'],
+  ['День','🏺','Гуляем по Гранд-базару: общий сувенир, сладости, магнитик для мамы, папы и сестры, рубашка XL папе','','Достопримечательность','Grand Bazaar Kapalıçarşı Istanbul'],
   ['День','☕','Кофейни по маршруту','','Напиток',null,null,'coffee30'],
   ['День','🌶️','Заходим на Египетский базар специй','','Достопримечательность','Mısır Çarşısı Spice Bazaar Istanbul'],
   ['Вечер','🌊','Гуляем вдоль Золотого Рога в Эминёню','','Прогулка','Eminönü waterfront Istanbul'],
@@ -223,7 +223,7 @@ const places=[
  ['Посетить Голубую мечеть','Смотреть','🕌','Площадь Султанахмет.','Blue Mosque Istanbul'],
  ['Спуститься в Цистерну Базилика — если хватит денег','Смотреть','🏛️','Подземное водохранилище. Посещение только при наличии свободного бюджета.','Basilica Cistern Istanbul'],
  ['Посмотреть Галатскую башню','Смотреть','📸','Галата, Каракёй и атмосферные улочки.','Galata Tower Istanbul'],
- ['Прогуляться по Гранд-базару и купить подарки родителям','Смотреть','🏺','Здесь покупаем сувениры маме и папе, а также рубашку XL папе.','Grand Bazaar Kapalıçarşı Istanbul'],
+ ['Прогуляться по Гранд-базару и купить подарки семье','Смотреть','🏺','Один сувенир, одна упаковка сладостей и один магнитик на маму, папу и сестру; отдельно рубашка XL папе.','Grand Bazaar Kapalıçarşı Istanbul'],
  ['Посетить Египетский базар специй','Смотреть','🌶️','Турецкие специи и сладости.','Mısır Çarşısı Spice Bazaar Istanbul'],
  ['Погулять по набережной Эминёню','Смотреть','🌊','Вид на Золотой Рог.','Eminönü waterfront Istanbul'],
  ['Зайти в Semaver Cafe на чай и кальян','Кофе и отдых','🫖','Турецкий чай и кальян, без полноценного ужина.','Semaver Cafe Kennedy Caddesi Istanbul','https://www.semavercafe.com/menu'],
@@ -257,11 +257,9 @@ const places=[
  ['Попробовать кокореч в Şampiyon Kokoreç','Уличная еда','🥙','Турецкий сэндвич с жареными субпродуктами.','Sampiyon Kokorec Huseyinaga Sahne Sokak 21 Beyoglu Istanbul']
 ];
 const defaultShopping=[
- ['Купить магнитик','В память о Стамбуле'],
- ['Выбрать сувенир маме на Гранд-базаре','Назар, небольшая керамика или чайный стакан'],
- ['Купить сладости маме','Лукум, пахлава или халва'],
- ['Выбрать сувенир папе на Гранд-базаре','Что-то компактное'],
- ['Купить сладости папе','Фабрично упакованная коробка'],
+ ['Один общий сувенир маме, папе и сестре','Покупаем на Гранд-базаре'],
+ ['Одна общая упаковка сладостей маме, папе и сестре','Лукум, пахлава или халва'],
+ ['Один общий магнитик маме, папе и сестре','Покупаем на Гранд-базаре'],
  ['Купить рубашку XL папе на Гранд-базаре','Размер XL']
 ];
 const budgetMeals=[
@@ -276,7 +274,7 @@ const budgetMeals=[
 ];
 const budgetOther=[
  ['transport','Метро, трамваи и Istanbulkart на двоих',1900],
- ['gifts','Рубашка XL, сладости и сувениры',1600],
+ ['gifts','Общие сувенир, сладости и магнитик на троих + рубашка XL папе',1600],
  ['hagia','Айя-София · два билета (50 € ≈ 2 800 ₺)',2800],
  ['birthdayCafe','2 дек · кафе на день рождения (наши две порции)',1000]
 ];
@@ -443,7 +441,7 @@ function showDay(i){
  }).join('');
 }
 function drawPlaces(){const cats=['Все','Смотреть','Локанты','Рестораны','Кебабы и пиде','Фастфуд','Уличная еда','Кофе и отдых','Магазины'];$('placeFilters').innerHTML=cats.map(x=>`<button type="button" class="filter ${placeCategory===x?'active':''}" data-cat="${esc(x)}">${esc(x)}</button>`).join('');const q=query.trim().toLocaleLowerCase('ru');const filtered=places.filter(p=>(placeCategory==='Все'||p[1]===placeCategory)&&(!q||(p[0]+' '+p[1]+' '+p[3]).toLocaleLowerCase('ru').includes(q)));$('placesGrid').innerHTML=filtered.length?filtered.map(p=>`<div class="place"><div class="place-top"><div class="symbol">${p[2]}</div><span class="badge gray">${esc(p[1])}</span></div><h3>${esc(p[0])}</h3>${venueType(p[0])}${priceNote(p[0])}<a target="_blank" rel="noopener" href="${mapUrl(p[4])}">Открыть на карте ↗</a></div>`).join(''):'<p class="subline">Ничего не найдено. Попробуй другой запрос.</p>'}
-function drawShopping(){const checks=getJSON('it-shopping-v5',{}),custom=getJSON('it-custom-v5',[]);const items=[...defaultShopping.map((x,i)=>['s'+i,...x]),...custom.map((x,i)=>['c'+i,x,'Добавлено тобой'])];$('shoppingItems').innerHTML=items.map(([key,t,desc])=>`<label class="check-row"><input type="checkbox" data-shopping="${key}" ${checks[key]?'checked':''}><div><b>${esc(t)}</b></div></label>`).join('');const done=items.filter(x=>checks[x[0]]).length;$('shoppingProgressText').textContent=`${done} из ${items.length} куплено`;$('shoppingProgress').style.width=(items.length?done/items.length*100:0)+'%'}
+function drawShopping(){const checks=getJSON('it-shopping-v6',{}),custom=getJSON('it-custom-v5',[]);const items=[...defaultShopping.map((x,i)=>['s'+i,...x]),...custom.map((x,i)=>['c'+i,x,'Добавлено тобой'])];$('shoppingItems').innerHTML=items.map(([key,t,desc])=>`<label class="check-row"><input type="checkbox" data-shopping="${key}" ${checks[key]?'checked':''}><div><b>${esc(t)}</b></div></label>`).join('');const done=items.filter(x=>checks[x[0]]).length;$('shoppingProgressText').textContent=`${done} из ${items.length} куплено`;$('shoppingProgress').style.width=(items.length?done/items.length*100:0)+'%'}
 function budgetValue(key,def){
  const stored=getJSON('it-budget-v8-'+key,null);
  const num=stored===null?def:Number(stored);
@@ -478,7 +476,7 @@ function updateBudget(){
 function init(){nav($('desktopTabs'),false);nav($('mobileTabs'),true);showDay(activeDay);drawPlaces();drawShopping();drawBudget();try{$('notes').value=localStorage.getItem('it-notes-v5')||''}catch{};const h=location.hash.slice(1);go(tabs.some(t=>t[0]===h)?h:'overview')}
 document.addEventListener('click',e=>{const tab=e.target.closest('[data-tab]');if(tab){go(tab.dataset.tab);return}const bt=e.target.closest('[data-go]');if(bt){go(bt.dataset.go);return}const day=e.target.closest('[data-day]');if(day){showDay(Number(day.dataset.day));return}const cat=e.target.closest('[data-cat]');if(cat){placeCategory=cat.dataset.cat;drawPlaces()}});
 $('placeSearch').addEventListener('input',e=>{query=e.target.value;drawPlaces()});
-$('shoppingItems').addEventListener('change',e=>{if(!e.target.matches('[data-shopping]'))return;const checks=getJSON('it-shopping-v5',{});checks[e.target.dataset.shopping]=e.target.checked;setJSON('it-shopping-v5',checks);drawShopping()});
+$('shoppingItems').addEventListener('change',e=>{if(!e.target.matches('[data-shopping]'))return;const checks=getJSON('it-shopping-v6',{});checks[e.target.dataset.shopping]=e.target.checked;setJSON('it-shopping-v6',checks);drawShopping()});
 $('addShoppingForm').addEventListener('submit',e=>{e.preventDefault();const v=$('newShopping').value.trim();if(!v)return;const c=getJSON('it-custom-v5',[]);if(c.length>=30)return;c.push(v);setJSON('it-custom-v5',c);$('newShopping').value='';drawShopping()});
 $('notes').addEventListener('input',e=>{try{localStorage.setItem('it-notes-v5',e.target.value)}catch{}});
 $('moneyInputs').addEventListener('input',updateBudget);
