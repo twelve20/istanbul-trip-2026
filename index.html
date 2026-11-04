@@ -137,7 +137,7 @@ const days=[
   ['Вечер','🌊','Гуляем вдоль Золотого Рога в Эминёню','','Прогулка','Eminönü waterfront Istanbul'],
   ['Вечер','🥙','Перекусы — варианты по пути','','Перекус',null,null,'snack30'],
   ['Вечер','🍽️','Ужинаем в Balkan Lokantası','','Ресторан','Balkan Lokantasi Sirkeci Hoca Pasa Sokak Istanbul'],
-  ['Вечер','🫖','Semaver Cafe — кальян и турецкий чай','','Кафе','Semaver Cafe Kennedy Caddesi Istanbul','https://www.semavercafe.com/menu'],
+  ['Вечер','🫖','Semaver Cafe — кальян и турецкий чай','','Кафе','Semaver Cafe Kennedy Caddesi Istanbul','https://www.semavercafe.com/menu','semaver30'],
  ]},
  {date:'1 декабря',week:'Вторник',short:'1 дек',title:'Галата и Босфор',desc:'Обед, уличная еда, пиде и романтический вечер в номере.',tags:['Вдвоём','Прогулка'],events:[
   ['Утро','🥐','Завтракаем в Edibe Sultan Hotel — оплачено','','Вдвоём'],
@@ -197,6 +197,11 @@ const mealVariants={
   ['Buyruk Esnaf Lokantası','Домашняя турецкая кухня в Сиркеджи; простой бюджетный вариант','Buyruk Esnaf Lokantasi Hocapasa Camii Sokak 12 Sirkeci Istanbul'],
   ['TurguT Restaurant Sirkeci','Кебабы и турецкие блюда; можно посидеть за общим столом','Turgut Restaurant Ebussuud Caddesi 34A Sirkeci Istanbul'],
   ['Ortaklar Kebap Restaurant','Кебабы и пиде; уже знакомое кафе рядом с отелем','Ortaklar Kebap Restaurant Peykhane 27A Istanbul']
+ ],
+ semaver30:[
+  ['Al Fakher · кальян и чай','600 ₺ за один кальян, 2 стаканчика чая по 50 ₺','Semaver Cafe Kennedy Caddesi Istanbul'],
+  ['Adalya · кальян и чай','650 ₺ за один кальян, 2 стаканчика чая по 50 ₺','Semaver Cafe Kennedy Caddesi Istanbul'],
+  ['Авторская смесь · кальян и чай','750 ₺ за один кальян, 2 стаканчика чая по 50 ₺','Semaver Cafe Kennedy Caddesi Istanbul']
  ],
  snack02:[
   ['Симит и чай','Forum İstanbul · лёгкий перекус','Forum Istanbul Shopping Mall Bayrampasa'],
@@ -261,7 +266,8 @@ const defaultShopping=[
 ];
 const budgetMeals=[
  ['d29','29 ноя · ужин Ortaklar Kebap',650],
- ['d30choice','30 ноя · обед, ужин Balkan, чай и кальян Semaver',1900],
+ ['d30choice','30 ноя · обед и ужин Balkan',1050],
+ ['d30semaver','30 ноя · Semaver: один кальян и два чая (ориентир)',850],
  ['d30snack1','30 ноя · перекусы по маршруту',450],
  ['d01choice','1 дек · Emek, вечерние заведения и напитки',2200],
  ['d01snack1','1 дек · уличная еда',600],
@@ -346,6 +352,9 @@ function venueType(name){
  return type?'<div class="venue-type">'+esc(type[1])+'</div>':'';
 }
 const priceRules=[
+ [/Al Fakher · кальян и чай/i,'350 ₺/чел. · по присланному меню',''],
+ [/Adalya · кальян и чай/i,'375 ₺/чел. · по присланному меню',''],
+ [/Авторская смесь · кальян и чай/i,'425 ₺/чел. · по присланному меню',''],
  [/Buyruk Esnaf Lokantası/i,'Ориентир 250–450 ₺/чел. · цены уточнить по меню',''],
  [/TurguT Restaurant Sirkeci/i,'Цена зависит от заказа · проверить меню на месте',''],
  [/Лахмаджун в Tarihi Şanlıurfa/i,'В среднем 200–350 ₺/чел. (оценка)','https://menuburada.com/tarihi-sanliurfa-kebap-ve-lahmacun-evi-sirkeci-istanbul/'],
@@ -385,7 +394,7 @@ const priceRules=[
  [/Bitlisli/i,'В среднем 1 000–1 600 ₺/чел.','https://restaurantguru.com/Birecikli-Istanbul?com=900143'],
  [/Balkan Restaurant|Balkan Lokantası/i,'В среднем 350–600 ₺/чел. за суп, сарму и десерт (оценка)','https://www.sirkecibalkanlokantasi.com.tr/sirkeci-balkan-menu/'],
  [/Süleymaniye Lokantası/i,'В среднем 200–400 ₺/чел.','https://es.restaurantguru.com/Suleymaniye-Lokantasi-Istanbul-3'],
- [/Semaver Cafe/i,'Кальян на двоих и 2 чая: ориентир 300–500 ₺/чел. (цена не подтверждена)','https://www.semavercafe.com/menu'],
+ [/Semaver Cafe/i,'Кальян с двумя чаями: 350–425 ₺/чел. по присланному меню','https://www.semavercafe.com/menu'],
  [/SHOW Supermarket/i,'Продукты в дорогу: около 250 ₺/чел. (оценка)',''],
  [/Starbucks/i,'Дорого · в среднем 200–400 ₺/чел.','https://turkpidya.com/starbucks-prices-in-turkey/'],
  [/Hocapaşa Pidecisi/i,'В среднем 400–600 ₺/чел.','https://restaurantguru.com/Hocapasa-Pidecisi-Istanbul'],
