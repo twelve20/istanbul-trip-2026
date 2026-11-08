@@ -19,6 +19,7 @@
 .route-top{display:flex;align-items:center;justify-content:space-between;gap:9px;flex-wrap:wrap;margin-bottom:6px}
 .route-top>span{font-size:11px;font-weight:800;color:var(--teal);text-transform:uppercase}
 .route-top a{font-size:12px;color:var(--teal);font-weight:750}
+.route-time{font-size:12px;font-weight:850;color:var(--ink);margin-left:7px;white-space:nowrap;letter-spacing:0;text-transform:none}
 .route-path{font-size:13px;line-height:1.5;display:flex;flex-wrap:wrap;align-items:center;gap:6px}
 .route-path strong{font-weight:750}
 .route-arrow{color:var(--teal);font-size:17px;font-weight:800}
@@ -450,31 +451,36 @@ const routeLegs=[
    "Терминал IST",
    "Станция метро M11",
    "walk",
-   "По указателям Metro после паспортного контроля."
+   "По указателям Metro после паспортного контроля.",
+   "12–20 мин"
   ],
   "2": [
    "Станция M11 аэропорта",
    "Sultanahmet (T1)",
    "transit",
-   "M11 → Gayrettepe; M2 → Vezneciler; пешком до Laleli-Üniversite; T1 до Sultanahmet."
+   "M11 → Gayrettepe; M2 → Vezneciler; пешком до Laleli-Üniversite; T1 до Sultanahmet.",
+   "70–95 мин"
   ],
   "3": [
    "Sultanahmet (T1)",
    "Edibe Sultan Hotel",
    "walk",
-   ""
+   "",
+   "6–10 мин"
   ],
   "4": [
    "Edibe Sultan Hotel",
    "Ortaklar Kebap Restaurant",
    "walk",
-   ""
+   "",
+   "5–10 мин"
   ],
   "5": [
    "Ortaklar Kebap",
    "Площадь Султанахмет",
    "walk",
-   "Вечерняя прогулка по центру."
+   "Вечерняя прогулка по центру.",
+   "7–12 мин"
   ]
  },
  {
@@ -482,79 +488,92 @@ const routeLegs=[
    "Edibe Sultan Hotel",
    "Айя-София",
    "walk",
-   ""
+   "",
+   "8–12 мин"
   ],
   "1": [
    "Айя-София",
    "Голубая мечеть",
    "walk",
-   "Через площадь Султанахмет."
+   "Через площадь Султанахмет.",
+   "5–8 мин"
   ],
   "2": [
    "Голубая мечеть",
    "Цистерна Базилика",
    "walk",
-   "Дополнительный пункт, если хватит денег. Без Цистерны можно сразу идти к T1."
+   "Дополнительный пункт, если хватит денег. Без Цистерны можно сразу идти к T1.",
+   "4–7 мин"
   ],
   "3": [
    "Цистерна / Голубая мечеть",
-   "Sultanahmet (T1)",
-   "walk",
-   "К трамваю для поездки в Эминёню."
+   "Эминёню (T1)",
+   "transit",
+   "Пешком до Sultanahmet (T1), затем трамвай до Eminönü. Цистерна — дополнительная остановка, её можно пропустить.",
+   "12–22 мин"
   ],
   "4": [
    "Эминёню (T1)",
    "Мечеть Сулеймание",
    "walk",
-   "Пешком вверх от набережной через кварталы старого города."
+   "Пешком вверх от набережной через кварталы старого города.",
+   "15–25 мин"
   ],
   "5": [
    "Мечеть Сулеймание",
    "Süleymaniye Lokantası",
    "walk",
-   ""
+   "",
+   "3–7 мин"
   ],
   "6": [
    "Süleymaniye Lokantası",
    "Гранд-базар",
    "walk",
-   "Через район Беязыт."
+   "Через район Беязыт.",
+   "12–18 мин"
   ],
   "7": [
    "Гранд-базар",
    "Кофейни по маршруту",
    "walk",
-   "Çinili Cafe на базаре; Starbucks Sultanahmet возле площади."
+   "До Çinili Cafe на базаре 3–7 минут; до Starbucks Sultanahmet — 15–20 минут пешком.",
+   "3–20 мин"
   ],
   "8": [
    "Район Гранд-базара",
    "Египетский базар специй",
    "walk",
-   "По торговым улочкам в сторону Эминёню."
+   "По торговым улочкам в сторону Эминёню.",
+   "15–25 мин"
   ],
   "9": [
    "Египетский базар",
    "Набережная Эминёню",
    "walk",
-   "К Золотому Рогу."
+   "К Золотому Рогу.",
+   "3–6 мин"
   ],
   "10": [
    "Набережная Эминёню",
    "Точки уличной еды",
    "walk",
-   "Балык-экмек у воды; чий-кёфте и лахмаджун по пути в Сиркеджи."
+   "Балык-экмек у воды; чий-кёфте и лахмаджун по пути в Сиркеджи.",
+   "3–20 мин"
   ],
   "11": [
    "Эминёню / Сиркеджи",
    "Balkan Lokantası",
    "walk",
-   ""
+   "",
+   "10–18 мин"
   ],
   "12": [
    "Balkan Lokantası",
    "Semaver Cafe",
    "walk",
-   "На чай и кальян после ужина."
+   "На чай и кальян после ужина.",
+   "25–35 мин"
   ]
  },
  {
@@ -562,73 +581,85 @@ const routeLegs=[
    "Edibe Sultan Hotel",
    "Sultanahmet (T1)",
    "walk",
-   ""
+   "",
+   "6–10 мин"
   ],
   "1": [
-   "Эминёню (T1)",
-   "Галатский мост",
-   "walk",
-   ""
+   "Sultanahmet (T1)",
+   "Галатский мост через Эминёню",
+   "transit",
+   "T1 до Eminönü, затем пешком к Галатскому мосту; ожидание учтено.",
+   "10–18 мин"
   ],
   "2": [
    "Галатский мост",
    "Каракёй",
    "walk",
-   "Переходим Золотой Рог."
+   "Переходим Золотой Рог.",
+   "8–12 мин"
   ],
   "3": [
    "Каракёй",
    "Галатская башня",
    "walk",
-   "Подъём пешком."
+   "Подъём пешком.",
+   "8–15 мин"
   ],
   "4": [
    "Галатская башня",
    "Emek Restaurant (Каракёй)",
    "walk",
-   "Спускаемся к ресторану."
+   "Спускаемся к ресторану.",
+   "5–10 мин"
   ],
   "5": [
    "Emek Restaurant",
    "Şişhane (M2)",
    "walk",
-   "Поднимаемся к метро."
+   "Поднимаемся к метро.",
+   "12–18 мин"
   ],
   "6": [
-   "Taksim (M2)",
-   "Перекусы на Таксим / Истикляль",
-   "walk",
-   "Едем от Şişhane на M2 до Taksim; точки уличной еды по пути."
+   "Şişhane (M2)",
+   "Перекусы в Таксиме / на Истикляль",
+   "transit",
+   "Метро M2 до Taksim, затем прогулка к местам уличной еды.",
+   "8–20 мин"
   ],
   "7": [
    "Таксим / Бейоглу",
    "Предполагаемая могила Ибрагима-паши",
    "walk",
-   "Спускаемся к Фындыклы, Canfeda Çıkmazı."
+   "Спускаемся к Фындыклы, Canfeda Çıkmazı.",
+   "12–20 мин"
   ],
   "8": [
    "Canfeda Çıkmazı",
    "Fındıklı (T1)",
    "walk",
-   "К трамвайной остановке у набережной."
+   "К трамвайной остановке у набережной.",
+   "3–8 мин"
   ],
   "9": [
    "Fındıklı (T1)",
    "Sirkeci (T1)",
    "transit",
-   "Прямой трамвай T1; дальше покупки только для вечера в номере."
+   "Прямой трамвай T1; дальше покупки только для вечера в номере.",
+   "15–25 мин"
   ],
   "10": [
    "Güven Tekel (Сиркеджи)",
    "Peker Market",
    "walk",
-   "Для вечера в номере: от вина к продуктам."
+   "Только если планируете ужин в номере: от Güven Tekel в Сиркеджи идём к Peker Market за продуктами.",
+   "18–30 мин"
   ],
   "11": [
    "Peker Market / Сиркеджи",
    "Edibe Sultan Hotel / Yeni Karadeniz Pide",
    "walk",
-   "К отелю или к ресторану — в зависимости от плана ужина."
+   "До отеля от Peker Market около 7–12 минут; до Yeni Karadeniz Pide — отдельный пеший маршрут. Покупки можно пропустить при ужине в ресторане.",
+   "7–20 мин"
   ]
  },
  {
@@ -636,43 +667,50 @@ const routeLegs=[
    "Edibe Sultan Hotel",
    "Sultanahmet (T1)",
    "walk",
-   ""
+   "",
+   "6–10 мин"
   ],
   "1": [
-   "Kocatepe (M1)",
+   "Sultanahmet (T1)",
    "IKEA Bayrampaşa",
-   "walk",
-   "T1 до Yusufpaşa, переход к Aksaray, M1 до Kocatepe; далее пешком."
+   "transit",
+   "T1 до Yusufpaşa → пешком до Aksaray → M1 до Kocatepe → пешком до IKEA. Время с ожиданием и пересадкой.",
+   "40–55 мин"
   ],
   "2": [
    "IKEA Restaurant",
    "Forum İstanbul",
    "walk",
-   "Рядом, в торговом комплексе."
+   "Рядом, в торговом комплексе.",
+   "3–8 мин"
   ],
   "3": [
    "Forum İstanbul",
    "Места перекуса в Forum İstanbul",
    "walk",
-   "В пределах торгового центра."
+   "В пределах торгового центра.",
+   "3–8 мин"
   ],
   "4": [
    "Forum İstanbul",
-   "Kocatepe (M1)",
-   "walk",
-   "Отсюда M1 и T1 обратно в Султанахмет."
+   "Sultanahmet (T1)",
+   "transit",
+   "Пешком к Kocatepe → M1 до Aksaray → пешком к Yusufpaşa → T1 до Sultanahmet. С ожиданием.",
+   "40–55 мин"
   ],
   "5": [
    "Sultanahmet (T1)",
    "SHOW Supermarket Çemberlitaş",
    "walk",
-   ""
+   "",
+   "8–12 мин"
   ],
   "6": [
    "SHOW Supermarket",
    "Кафе на день рождения Тимохи",
    "walk",
-   "Варианты: Buyruk и TurguT в Сиркеджи; Ortaklar рядом с отелем."
+   "До Ortaklar рядом с отелем около 10–15 минут; до Buyruk и TurguT в Сиркеджи примерно 15–25 минут.",
+   "10–25 мин"
   ]
  },
  {
@@ -680,31 +718,35 @@ const routeLegs=[
    "Edibe Sultan Hotel",
    "Sultanahmet (T1)",
    "walk",
-   "После выселения из отеля."
+   "После выселения из отеля.",
+   "6–10 мин"
   ],
   "2": [
    "Sultanahmet (T1)",
    "Аэропорт IST",
    "transit",
-   "T1 до Laleli-Üniversite; пешком к Vezneciler; M2 до Gayrettepe; M11 до аэропорта."
+   "T1 до Laleli-Üniversite; пешком к Vezneciler; M2 до Gayrettepe; M11 до аэропорта.",
+   "75–100 мин"
   ],
   "3": [
    "Метро M11 в IST",
    "Терминал вылета IST",
    "walk",
-   "По указателям Departures."
+   "По указателям Departures.",
+   "12–20 мин"
   ],
   "4": [
    "Терминал вылета",
    "Гейт на Москву",
    "walk",
-   "После перекуса проходим к выходу на посадку."
+   "После перекуса проходим к выходу на посадку.",
+   "10–25 мин"
   ]
  }
 ];
 const routeDirUrl=(a,b,mode)=>'https://www.google.com/maps/dir/?api=1&origin='+encodeURIComponent(a)+'&destination='+encodeURIComponent(b)+'&travelmode='+(mode==='transit'?'transit&transit_mode=subway%7Ctram%7Crail':'walking');
-function renderRouteLeg(day,index){const x=routeLegs[day]&&routeLegs[day][index];if(!x)return '';const [from,to,mode,note]=x;const isTransit=mode==='transit';
-return '<div class="route-leg"><div class="route-symbol" aria-hidden="true">'+(isTransit?'🚋':'🚶')+'</div><div class="route-card"><div class="route-top"><span>'+(isTransit?'Метро / трамвай':'Пешком')+'</span><a target="_blank" rel="noopener" href="'+routeDirUrl(from,to,mode)+'">Маршрут на карте ↗</a></div><div class="route-path"><strong>'+esc(from)+'</strong><span class="route-arrow">→</span><strong>'+esc(to)+'</strong></div>'+(note?'<p class="route-note">'+esc(note)+'</p>':'')+'</div></div>';
+function renderRouteLeg(day,index){const x=routeLegs[day]&&routeLegs[day][index];if(!x)return '';const [from,to,mode,note,duration]=x;const isTransit=mode==='transit';
+return '<div class="route-leg"><div class="route-symbol" aria-hidden="true">'+(isTransit?'🚋':'🚶')+'</div><div class="route-card"><div class="route-top"><span>'+(isTransit?'Метро / трамвай':'Пешком')+' <strong class="route-time">≈ '+esc(duration)+'</strong></span><a target="_blank" rel="noopener" href="'+routeDirUrl(from,to,mode)+'">Маршрут на карте ↗</a></div><div class="route-path"><strong>'+esc(from)+'</strong><span class="route-arrow">→</span><strong>'+esc(to)+'</strong></div>'+(note?'<p class="route-note">'+esc(note)+'</p>':'')+'</div></div>';
 }
 function showDay(i){
  activeDay=i;
