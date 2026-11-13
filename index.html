@@ -141,7 +141,7 @@ const days=[
   ['Утро','🥐','Завтракаем в Edibe Sultan Hotel — оплачено','','Вдвоём'],
   ['Утро','🕌','Осматриваем Айя-Софию снаружи','','Достопримечательность','Hagia Sophia Istanbul'],
   ['Утро','🕌','Посещаем Голубую мечеть','','Вдвоём','Blue Mosque Istanbul'],
-  ['Утро','🏛️','Цистерна Базилика — если хватит денег','','Музей','Basilica Cistern Istanbul'],
+  ['Утро','🏛️','Цистерна Базилика — по желанию','','Музей','Basilica Cistern Istanbul'],
   ['День','🚋','Едем на T1 до Эминёню','','Трамвай','Eminönü tram station Istanbul'],
   ['День','⭐','Посещаем мечеть Сулеймание','','Вдвоём','Suleymaniye Mosque Istanbul'],
   ['День','🍲','Обедаем в Süleymaniye Lokantası','','Вдвоём','Süleymaniye Lokantası Istanbul Molla Hüsrev'],
@@ -236,7 +236,7 @@ const places=[
  ['Посетить мечеть Сулеймание','Смотреть','🕌','Мечеть с видом на Золотой Рог.','Suleymaniye Mosque Istanbul'],
  ['Посмотреть Айя-Софию снаружи','Смотреть','🕌','Осмотр с площади в основном маршруте; туристическая галерея — дополнительный платный вариант.','Hagia Sophia Istanbul'],
  ['Посетить Голубую мечеть','Смотреть','🕌','Площадь Султанахмет.','Blue Mosque Istanbul'],
- ['Спуститься в Цистерну Базилика — если хватит денег','Смотреть','🏛️','Подземное водохранилище. Посещение только при наличии свободного бюджета.','Basilica Cistern Istanbul'],
+ ['Спуститься в Цистерну Базилика — по желанию','Смотреть','🏛️','Подземное водохранилище. Вход по отдельному билету.','Basilica Cistern Istanbul'],
  ['Посмотреть Галатскую башню','Смотреть','📸','Галата, Каракёй и атмосферные улочки.','Galata Tower Istanbul'],
  ['Посетить предполагаемую могилу Паргалы Ибрагима-паши','Смотреть','🏛️','Фындыклы, Canfeda Çıkmazı у Meclis-i Mebusan Cd. 71A. Атрибуция захоронения спорная.','Canfeda Cikmazi Meclis-i Mebusan Caddesi 71A Findikli Beyoglu Istanbul'],
  ['Прогуляться по Гранд-базару и купить подарки семье','Смотреть','🏺','Один сувенир, одна упаковка сладостей и один магнитик на маму, папу и сестру; отдельно рубашка XL папе.','Grand Bazaar Kapalıçarşı Istanbul'],
@@ -407,7 +407,7 @@ const priceRules=[
  [/Айя-Софию снаружи/i,'Осмотр с площади без билета · галерея 25 €/чел. дополнительно','https://muze.gen.tr/muze-detay/ayasofya'],
  [/Айя-Софию/i,'25 €/чел. · туристическая галерея','https://muze.gen.tr/muze-detay/ayasofya'],
  [/Голубую мечеть/i,'Бесплатно','https://www.sultanahmetcami.org/sayfa.php?s=ziyaretci-rehberi'],
- [/Цистерна Базилика|Цистерну Базилика/i,'1 950 ₺/чел. · если хватит денег','https://kultur.istanbul/yerebatan-sarnici-muzesi/'],
+ [/Цистерна Базилика|Цистерну Базилика/i,'1 950 ₺/чел. · вход по билету, посещение по желанию','https://kultur.istanbul/yerebatan-sarnici-muzesi/'],
  [/Сулеймание/i,'Бесплатно','https://istanbul.travel/en/suleymaniye-mosque?gruppe=moscheen'],
  [/Ortaklar Kebap/i,'В среднем 400–600 ₺/чел.','https://restoranim.net/istanbul/fatih/kebapci/ortaklar-kebap-restaurant'],
  [/Karaköy Çorba Evi/i,'Ориентир 200–350 ₺/чел. · цена по меню не подтверждена',''],
@@ -506,7 +506,7 @@ const routeLegs=[
    "Голубая мечеть",
    "Цистерна Базилика",
    "walk",
-   "Дополнительный пункт, если хватит денег. Без Цистерны можно сразу идти к T1.",
+   "Посещение по желанию. Также можно сразу направиться к трамваю T1.",
    "4–7 мин"
   ],
   "3": [
@@ -779,7 +779,7 @@ function drawBudget(){
   ''+
   budgetOther.map(budgetRow).join('')+
   '<p class="budget-caveat">Экономный план: завтраки уже оплачены, на еду заложены простые блюда и небольшие перекусы. Курс для расчёта: 1 ₺ ≈ 1,65 ₽. Реальные цены и курс обмена могут отличаться. Оплаченные перелёт и отель не включены.</p>'+
-  '<h3 class="budget-group">Дополнительно · вне лимита</h3>'+optionalExpenses.map(([key,label,amount])=>`<div class="money-line optional-line"><label>${esc(label)}<span>дополнительно, на двоих</span></label><div class="optional-amount">${lira(amount)} · не включено в общий бюджет</div></div>`).join('');
+  '<h3 class="budget-group">Другие варианты и билеты</h3>'+optionalExpenses.map(([key,label,amount])=>`<div class="money-line optional-line"><label>${esc(label)}<span>дополнительно, на двоих</span></label><div class="optional-amount">${lira(amount)} · отдельно от основного расчёта</div></div>`).join('');
  updateBudget();
 }
 function updateBudget(){
