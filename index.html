@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#F8F8F6">
+<meta name="theme-color" content="#192537">
 <meta name="description" content="Стамбул вдвоём: персональный маршрут 29 ноября — 3 декабря 2026">
 <title>Стамбул · Даша и Даниил</title>
 <style>
@@ -63,6 +63,146 @@
 .period-group .event h3{margin:0 0 5px}
 .period-group .entry:last-child:before{display:none}
 .optional-line{margin-top:10px}.optional-amount{color:var(--sub);font-size:13px;padding:10px 0 0}.optional-line label span{color:var(--sub);font-size:11px;font-weight:500}
+
+
+/* Istanbul Together — high-contrast editorial redesign */
+:root{--bg:#f3f1ec;--ink:#192537;--sub:#485467;--muted:#687586;--line:#d4dae1;--tint:#e9edf2;--teal:#245b86;--deep:#173b5c;--soft:#edf3fa;--orange:#aa5038;--gold:#fff1d5;--shadow:0 3px 9px rgba(27,40,57,.035);--r:14px;--accent:#ffc85c;--food:#b75d45;--travel:#315d92}
+body{background:var(--bg);color:var(--ink);font-size:15px;line-height:1.52;letter-spacing:-.08px}
+.page{max-width:1180px;padding:26px 27px 95px}
+.top{margin-bottom:23px;padding-bottom:16px;border-bottom:1px solid #d1d8df}
+.mark{background:var(--ink);color:var(--accent);border-radius:9px}
+.brand b{font-size:17px;font-weight:850}
+.brand small{font-size:12px;color:var(--sub)}
+.pill{border-color:#c7d0d9;border-radius:9px;color:var(--ink)}
+.main-tabs{background:var(--ink);border-radius:11px;padding:6px;gap:3px;margin-bottom:29px}
+.tab{color:#dce3eb;font-size:13px;font-weight:750;border-radius:7px;padding:12px 17px}
+.tab.active{background:var(--accent);color:var(--ink);box-shadow:none}
+.tab:not(.active):hover{background:#35475d;color:#fff}
+.card,.preview,.place{border:1px solid #d2d9df;box-shadow:none;border-radius:12px}
+.hero{min-height:395px;border-radius:14px;padding:32px;background-image:linear-gradient(95deg,rgba(9,20,35,.9),rgba(9,20,35,.23)),url('https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1600&q=85')}
+.hero-badge{background:var(--accent);color:var(--ink);border:0;border-radius:6px;font-weight:850;backdrop-filter:none}
+.hero h1{font-size:clamp(40px,5vw,61px);font-weight:850;line-height:1.03;letter-spacing:-2.5px}
+.hero .start{background:var(--accent);color:var(--ink);border-radius:8px;padding:14px 19px;font-weight:850}
+.hero .start:hover{background:#ffda84}
+.large-val{font-weight:850;font-size:20px}
+.small-label{font-size:11px;font-weight:850;letter-spacing:.6px;color:#647289}
+.subline{font-size:13px;color:var(--sub)}
+.quick-card{border-left:4px solid var(--travel)}
+.quick-card b{font-size:15px}
+.icon-dot{border-radius:9px;background:#e7edf7}
+.timeline-wrap{grid-template-columns:225px minmax(0,1fr);gap:30px}
+.side-panel h2{font-size:26px;font-weight:850}
+.day-nav{margin-top:18px;gap:7px}
+.day-nav button{background:#fff;border:1px solid #d1d9e0;border-radius:9px;color:var(--ink);padding:13px 15px}
+.day-nav button.active{background:var(--ink);color:white;border-color:var(--ink);box-shadow:none}
+.day-nav b{font-size:14px}.day-nav small{font-size:12px;color:#66778c}
+.day-nav button.active small{color:#c7d2df}
+.day-nav .num{color:var(--teal)}.day-nav button.active .num{color:var(--accent)}
+.day-head{background:var(--ink);color:#fff;border-color:var(--ink);border-radius:13px;padding:25px 27px;margin-bottom:19px}
+.day-head .date{color:var(--accent);font-weight:850;font-size:12px;text-transform:uppercase;letter-spacing:.5px}
+.day-head h2{color:#fff;font-weight:850;font-size:31px;letter-spacing:-1.15px;margin:0}
+.day-head p{color:#d5e0ec;font-size:14px;margin:9px 0 0;line-height:1.6}
+.period-heading{font-size:14px;letter-spacing:.6px;text-transform:uppercase;color:#3f4e62;margin:18px 0 13px;font-weight:900}
+.period-heading:after{height:2px;background:#cbd4df}
+.entry,.route-leg{grid-template-columns:46px minmax(0,1fr);gap:12px}
+.entry,.period-group .entry{padding:9px 0 5px}
+.entry:not(:last-child):before{left:22px;background:#c4ced9;top:48px}
+.entry .em{width:44px;height:44px;border-radius:9px;background:#e8eef6;border:1px solid #d2dce7;box-shadow:none}
+.entry .event{background:#fff;border:1px solid #d2d9e0;border-left:4px solid #a26b35;border-radius:10px;padding:17px 19px;box-shadow:none}
+.entry.tone-food .event{border-left-color:#b75d45}.entry.tone-food .em{background:#fbe9e3;border-color:#ecd1c8}
+.entry.tone-shop .event{border-left-color:#8263a2}.entry.tone-shop .em{background:#f0eafa;border-color:#dcd0ed}
+.entry.tone-hotel .event{border-left-color:#428275}.entry.tone-hotel .em{background:#e8f5ee}
+.entry.tone-flight .event{border-left-color:#315d92}.entry.tone-flight .em{background:#e5eefb}
+.entry.tone-sight .em{background:#fff1d8;border-color:#f1debb}
+.entry .event h3{font-size:17px;line-height:1.38;font-weight:800;letter-spacing:-.35px;margin:0 0 5px;overflow-wrap:anywhere}
+.event p,.event-desc{font-size:13px;color:var(--sub);line-height:1.66}
+.event-desc{margin:8px 0 2px;overflow-wrap:anywhere}
+.venue-type{color:#657389;font-size:12px}
+.event-links{margin-top:12px;gap:8px}
+.event-links a{border:1px solid #dbe6f1;background:#edf3fa;color:var(--teal);font-size:12px;font-weight:800;border-radius:7px;padding:8px 11px}
+.event-detail{margin-top:11px;padding-top:10px;border-top:1px solid #e1e5eb}
+.event-detail summary{font-size:13px;font-weight:800;color:var(--teal);cursor:pointer}
+.event-detail p{font-size:13px;line-height:1.7;color:var(--sub);margin:8px 0 0}
+.route-leg{padding:2px 0 6px}
+.route-leg:before{left:22px;top:-5px;bottom:-8px;border-left:1px dashed #bfc9d5}
+.route-symbol{width:30px;height:30px;margin-left:8px;border:1px solid #c5d4e7;border-radius:50%;background:#e5eefb;font-size:14px}
+.route-card{padding:6px 0 9px 0;background:transparent;border:0;border-bottom:1px dashed #cbd5df;border-radius:0}
+.route-top{margin-bottom:5px;gap:7px}
+.route-top>span{color:var(--travel);font-size:11px;font-weight:850;display:flex;align-items:center;flex-wrap:wrap;gap:6px}
+.route-top a{color:var(--travel);font-size:12px;font-weight:800}
+.route-time{margin:0;background:#deeaf7;border-radius:5px;padding:3px 7px;color:#183f6b;font-size:12px}
+.route-path{font-size:13px;color:#405066;line-height:1.5}
+.route-arrow{color:#55759b}
+.route-note{font-size:12px;color:#61718a}
+.route-card .price-note{margin-top:7px}
+.price-note{margin-top:10px;font-size:12px;color:var(--ink)}
+.price-note .amount,.place .price-note .amount{background:#fff0d6;color:#5b401b;border:1px solid #efdcb9;border-radius:6px;padding:6px 9px;font-size:12px;font-weight:750}
+.price-note .source{color:var(--teal);font-size:12px;font-weight:700}
+.variant-list{gap:10px;margin-top:13px}
+.variant-card{background:#f8f9fb;border:1px solid #d6dde5;border-radius:9px;padding:14px;gap:8px}
+.variant-heading b{font-size:14px;font-weight:800}
+.variant-num{background:#253d59;color:#fff;font-size:11px;border-radius:5px;padding:4px 7px}
+.variant-desc{font-size:13px;color:#536174}
+.variant-map{font-size:12px;color:var(--teal);font-weight:800}
+.places-top h2,.shopping-head h2,.budget-head h2{font-size:29px;font-weight:850}
+.filter{border:1px solid #cdd5dd;background:#fff;color:#45546a;border-radius:7px;font-weight:750}
+.filter.active{background:var(--ink);border-color:var(--ink);color:#fff}
+.search,.notearea,.add-row input,.money-line input{background:#fff;border-color:#cbd3dc;border-radius:8px;color:var(--ink)}
+.place{border-radius:10px;padding:19px;min-height:175px}
+.place .symbol{background:#e8eff7;border:1px solid #dbe3eb;border-radius:9px}
+.place h3{font-size:16px;font-weight:800}
+.badge.gray{background:#edf1f5;color:#4f5e71}
+.map-banner{background:#e5eaf1;border:1px solid #ccd6e1;border-radius:10px}
+.map-banner a,.add-row button{background:var(--ink);border-radius:7px}
+.check-row b{font-size:15px}
+.progress{background:#e0e6ec}.progress-bar{background:var(--travel)}
+.budget-group{font-size:17px;font-weight:850;padding-bottom:9px;margin:22px 0 13px;border-bottom:2px solid #dce2e9}
+.money-line{display:grid;grid-template-columns:minmax(0,1fr) 130px;align-items:center;gap:14px;border-bottom:1px solid #e4e9ed;padding:12px 0;margin:0}
+.money-line label{display:block;font-size:13px;font-weight:750;color:var(--ink);line-height:1.4}
+.money-line label span{display:block;margin-top:4px;color:var(--sub);font-size:11px;font-weight:500}
+.money-line input{width:100%;background:#fafbfd;text-align:right;font-size:15px;font-weight:800;padding:10px 12px}
+.optional-amount{font-size:13px;color:var(--sub);line-height:1.5;padding:0}
+.budget-total{background:var(--ink);color:#fff;border-radius:12px;border:1px solid var(--ink);position:sticky;top:20px}
+.budget-total .eyebrow{color:var(--accent)}
+.budget-total strong{color:#fff;font-weight:900}
+.budget-total p{color:#d0d9e4;font-size:13px}
+.budget-buffer{color:#e3ebf3;border-top:1px solid #4b5c71}
+.budget-buffer b{color:var(--accent)}
+.budget-caveat{background:#e8eef5;color:#4b5e75;border-radius:8px;font-size:13px}
+.footer{color:#5d6978}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid #dda62e;outline-offset:3px}
+@media(max-width:900px){
+ .page{padding:22px 20px 90px}.timeline-wrap{grid-template-columns:190px minmax(0,1fr);gap:19px}
+ .budget-layout{grid-template-columns:1fr}.budget-total{position:static}
+}
+@media(max-width:650px){
+ body{font-size:14px}.page{padding:16px 14px 103px}.top{margin-bottom:17px;padding-bottom:12px}
+ .brand b{font-size:16px}.brand small{font-size:11px}
+ .mobile-nav{background:#fff;border-top:2px solid var(--ink);backdrop-filter:none;box-shadow:0 -4px 12px rgba(22,38,54,.12)}
+ .mobile-nav button{color:#58687a;font-weight:750}.mobile-nav button.active{background:#fff1d6;color:var(--ink);border-radius:8px}
+ .hero{min-height:350px;border-radius:11px;padding:23px}.hero h1{font-size:clamp(37px,9vw,49px)}
+ .overview-right{grid-template-columns:1fr 1fr;gap:10px}.overview-right .card{padding:14px}
+ .overview-right .quick-card{grid-column:1/-1}
+ .timeline-wrap{display:block}.side-panel h2{font-size:23px}
+ .day-nav{margin:13px -14px 20px;padding:0 14px 8px}.day-nav button{border-radius:8px;min-width:94px}
+ .day-head{padding:20px 18px;border-radius:10px}.day-head h2{font-size:27px}.day-head p{font-size:13px}
+ .period-heading{font-size:13px}
+ .entry,.route-leg{grid-template-columns:36px minmax(0,1fr);gap:9px}
+ .entry,.period-group .entry{padding:9px 0 4px}.entry .em{width:35px;height:35px;font-size:16px;border-radius:8px}
+ .entry:not(:last-child):before{left:17px;top:36px}
+ .entry .event{padding:14px 12px;border-radius:9px;border-left-width:3px}
+ .entry .event h3{font-size:15px;line-height:1.4}
+ .route-leg:before{left:17px;top:-5px}.route-symbol{width:27px;height:27px;margin-left:4px}
+ .route-card{padding:5px 0 9px}.route-top a{font-size:11px}.route-top>span{font-size:11px}
+ .route-time{font-size:11px}.route-path{font-size:12px}.route-note{font-size:12px}
+ .event-links a{font-size:12px}.variant-list{grid-template-columns:1fr}
+ .variant-card{padding:12px}.variant-heading b{font-size:13px}.variant-desc{font-size:12px}
+ .places-grid{grid-template-columns:1fr}.place{min-height:0}
+ .money-line{grid-template-columns:minmax(0,1fr) 105px;gap:9px}.money-line label{font-size:12px}
+ .money-line input{font-size:14px;padding:10px 7px}.budget-total{position:static}
+}
+@media(max-width:370px){.overview-right{grid-template-columns:1fr}.overview-right .quick-card{grid-column:auto}.route-top{display:block}.route-top a{display:inline-block;margin-top:5px}}
+
 </style>
 </head>
 <body>
@@ -747,14 +887,26 @@ function renderRouteLeg(day,index){
  const fare=fareEvent?priceNote(fareEvent[2]):'';
  return '<div class="route-leg"><div class="route-symbol" aria-hidden="true">'+(isTransit?'🚋':'🚶')+'</div><div class="route-card"><div class="route-top"><span>'+(isTransit?'Метро / трамвай':'Пешком')+' <strong class="route-time">≈ '+esc(duration)+'</strong></span><a target="_blank" rel="noopener" href="'+routeDirUrl(from,to,mode)+'">Маршрут на карте ↗</a></div><div class="route-path"><strong>'+esc(from)+'</strong><span class="route-arrow">→</span><strong>'+esc(to)+'</strong></div>'+(note?'<p class="route-note">'+esc(note)+'</p>':'')+fare+'</div></div>';
 }
+function eventTone(title){
+ if(/завтрак|обеда|ужин|перекус|кафе|пиде|кебаб|чай|кальян|кофейни|локант|ресторан/i.test(title))return 'food';
+ if(/покупаем|магазин|вино|базар|IKEA|Forum|сувенир/i.test(title))return 'shop';
+ if(/прилетаем|вылетаем|аэропорт|Istanbulkart/i.test(title))return 'flight';
+ if(/отел|Hotel|заселение/i.test(title))return 'hotel';
+ return 'sight';
+}
+function eventDesc(title,desc){
+ if(!desc)return '';
+ if(desc.length>110)return '<details class="event-detail"><summary>'+(title.includes('Peker Market')?'Состав и цены':'Подробнее')+'</summary><p>'+esc(desc)+'</p></details>';
+ return '<p class="event-desc">'+esc(desc)+'</p>';
+}
 function showDay(i){
  activeDay=i;
  $('dayNav').innerHTML=days.map((d,j)=>`<button type="button" data-day="${j}" class="${j===i?'active':''}"><span><b>${d.short}</b><small>${d.week}</small></span><span class="num">${j===i?'●':'›'}</span></button>`).join('');
  const d=days[i];
- $('dayHeader').innerHTML=`<div class="date">${d.date} · ${d.week}</div><h2>${d.title}</h2>`;
+ $('dayHeader').innerHTML=`<div class="date">${d.date} · ${d.week}</div><h2>${d.title}</h2><p>${esc(d.desc)}</p>`;
  const renderEvent=e=>{
   const [period,emoji,title,desc,kind,map,extra]=e;
-  return `<div class="entry"><div class="em" aria-hidden="true">${emoji}</div><div class="event"><h3>${esc(title)}</h3>${e[7]?renderMealVariants(e[7]):venueType(title)+priceNote(title)+transportTip(title)}${map||extra?`<div class="event-links">${map?`<a target="_blank" rel="noopener" href="${mapUrl(map)}">↗ На карте</a>`:''}${extra?`<a target="_blank" rel="noopener" href="${extra}">Меню ↗</a>`:''}</div>`:''}</div></div>`;
+  return `<div class="entry tone-${eventTone(title)}"><div class="em" aria-hidden="true">${emoji}</div><div class="event"><h3>${esc(title)}</h3>${e[7]?renderMealVariants(e[7]):venueType(title)+priceNote(title)+transportTip(title)}${eventDesc(title,desc)}${map||extra?`<div class="event-links">${map?`<a target="_blank" rel="noopener" href="${mapUrl(map)}">↗ На карте</a>`:''}${extra?`<a target="_blank" rel="noopener" href="${extra}">Меню ↗</a>`:''}</div>`:''}</div></div>`;
  };
  $('eventList').innerHTML=['Утро','День','Вечер'].map(period=>{
   const events=d.events.map((e,index)=>({e,index})).filter(x=>x.e[0]===period);
