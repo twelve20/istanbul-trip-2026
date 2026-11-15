@@ -232,7 +232,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
   <div class="timeline-wrap"><aside class="side-panel"><span class="eyebrow">Маршрут поездки</span><h2>День за днём</h2><div class="day-nav" id="dayNav"></div></aside><div class="day-content"><div class="day-head" id="dayHeader"></div><div id="eventList"></div></div></div>
 </section>
 <section class="view" id="places" aria-label="Места" hidden>
- <div class="places-top"><div><span class="eyebrow">Сохранённые места</span><h2>Где побывать и поесть</h2></div><input class="search" id="placeSearch" type="search" placeholder="Найти кафе или место…" aria-label="Поиск мест"></div>
+ <div class="places-top"><div><span class="eyebrow">Сохранённые места</span><h2>Где побывать и поесть</h2><p>Магазины в духе Day to Day — в фильтре «Дискаунтеры».</p></div><input class="search" id="placeSearch" type="search" placeholder="Найти кафе или место…" aria-label="Поиск мест"></div>
  <div class="price-disclaimer">Билеты — на человека. Для еды указаны ориентиры на одного гостя по картам и отзывам, а не точный счёт.</div><div class="chips" id="placeFilters"></div><div class="places-grid" id="placesGrid"></div>
  <div class="map-banner"><div><strong>Нужно проложить маршрут?</strong></div><a href="https://www.google.com/maps/search/?api=1&query=Sultanahmet+Istanbul" target="_blank" rel="noopener">Открыть карту ↗</a></div>
 </section>
@@ -288,7 +288,7 @@ const days=[
   ['День','🍲','Обедаем в Süleymaniye Lokantası','','Вдвоём','Süleymaniye Lokantası Istanbul Molla Hüsrev'],
   ['День','🏺','Гуляем по Гранд-базару: общий сувенир, сладости, магнитик для мамы, папы и сестры, рубашка XL папе','','Достопримечательность','Grand Bazaar Kapalıçarşı Istanbul'],
   ['День','☕','Кофейни по маршруту','','Напиток',null,null,'coffee30'],
-  ['День','🌶️','Заходим на Египетский базар специй','','Достопримечательность','Mısır Çarşısı Spice Bazaar Istanbul'],
+  ['День','🛍️','Египетский базар, Tahtakale и Şark Han — недорогие магазины','За Египетским базаром находятся улочки с товарами для дома, сувенирами и аксессуарами. Заглянем в торговый пассаж Şark Han на Vasıf Çınar Cd. 17. На покупки можно выделить 30–45 минут.','Дискаунтеры','Şark Han Vasif Cinar Caddesi 17 Fatih Istanbul'],
   ['Вечер','🌊','Гуляем вдоль Золотого Рога в Эминёню','','Прогулка','Eminönü waterfront Istanbul'],
   ['Вечер','🥙','Перекусы — варианты по пути','','Перекус',null,null,'snack30'],
   ['Вечер','🍽️','20:30 · Ужинаем в Buyruk Esnaf Lokantası','','Ресторан','Buyruk Esnaf Lokantasi Hocapasa Camii Sokak 12 Sirkeci Istanbul'],
@@ -387,6 +387,14 @@ const places=[
  ['Выпить кофе в Starbucks Sultanahmet','Кофе и отдых','☕','Кофе по пути через старый город.','Starbucks Sultanahmet Istanbul'],
  ['Сходить в IKEA Bayrampaşa','Магазины','🛍️','Ресторан IKEA и короткая прогулка.','IKEA Bayrampasa Istanbul'],
  ['Погулять по Forum İstanbul','Магазины','👕','Торговый центр, без запланированных покупок подарков.','Forum Istanbul Shopping Mall'],
+ ['Tahtakale — торговые улочки','Дискаунтеры','🧺','За Египетским базаром: недорогая посуда, хозяйственные товары, игрушки и сувениры. 30 ноября по маршруту.','Tahtakale Caddesi Hasircilar Caddesi Fatih Istanbul'],
+ ['Şark Han — торговый пассаж','Дискаунтеры','🛒','Vasıf Çınar Cd. 17: подарки, аксессуары, декор и мелочи. 30 ноября по маршруту.','Şark Han Vasif Cinar Caddesi 17 Fatih Istanbul'],
+ ['Mahmutpaşa — недорогая одежда','Дискаунтеры','👕','Между Гранд-базаром и Эминёню: рубашки, одежда, текстиль и аксессуары. По пути 30 ноября.','Mahmutpasa Caddesi Fatih Istanbul'],
+ ['MR.DIY Osmanbey — аналог Day to Day','Дискаунтеры','🧰','Halaskargazi Cd. 141A/28. Большой дискаунтер с товарами для дома, канцелярией и инструментами. Отдельная поездка до M2 Osmanbey.','MR.DIY Osmanbey Halaskargazi Caddesi 141A Sisli Istanbul'],
+ ['TEDi Şehremini — недорогие мелочи','Дискаунтеры','🎁','Vezir Cd. 6, Fatih. Игрушки, товары для дома, косметика, текстиль и аксессуары. Не на основном маршруте.','Tedi Odabasi Sehremini Vezir Caddesi 6 Fatih Istanbul'],
+ ['BİM Mercan — бюджетные продукты','Дискаунтеры','🥫','Tacirhane Sk. 21/B, рядом с Tahtakale. Продукты, вода и бытовые мелочи.','BIM Mercan Tacirhane Sokak Kazova Han 21B Fatih Istanbul'],
+ ['A101 Kadırga — бюджетные продукты','Дискаунтеры','🧃','Kadırga Limanı Cd. 98, Fatih. Продукты, напитки и бытовые мелочи недалеко от Султанахмета.','A101 Kadirga Limani Caddesi 98 Fatih Istanbul'],
+ ['ŞOK Peykhane — рядом с отелем','Дискаунтеры','🥤','Peykhane Sok. 41, Binbirdirek. Вода, снеки и продукты рядом с Edibe Sultan Hotel.','Sok Market Peykhane Sokak 41 Binbirdirek Fatih Istanbul'],
   ['Купить закуски к вечеру в номере в Peker Market','Магазины','🍇','Фрукты, сыр, фисташки и сладости на 1 декабря — дополнительная остановка.','Peker Market Kucuk Ayasofya Caddesi Aksakal Sokak 14 Fatih Istanbul'],
  ['Купить сладости в Hafız Mustafa','Магазины','🍬','Коробки лукума и другие сладости.','Hafiz Mustafa Sirkeci Istanbul'],
  ['Заглянуть за сладостями в Koska','Магазины','🍬','Халва и упакованные сладости.','Koska Istanbul'],
@@ -693,11 +701,11 @@ const routeLegs=[
    "15–25 мин"
   ],
   "9": [
-   "Египетский базар",
+   "Египетский базар и Tahtakale",
    "Набережная Эминёню",
    "walk",
-   "К Золотому Рогу.",
-   "3–6 мин"
+   "Через недорогие магазины Tahtakale и Şark Han к Золотому Рогу.",
+   "10–20 мин"
   ],
   "10": [
    "Набережная Эминёню",
@@ -914,7 +922,7 @@ function showDay(i){
   return events.length?`<section class="period-group"><h3 class="period-heading">${period}</h3>${events.map(({e,index})=>(mergedTransportEvents[i]?.includes(index)?'':renderEvent(e))+renderRouteLeg(i,index)).join('')}</section>`:'';
  }).join('');
 }
-function drawPlaces(){const cats=['Все','Смотреть','Локанты','Рестораны','Кебабы и пиде','Фастфуд','Уличная еда','Кофе и отдых','Магазины'];$('placeFilters').innerHTML=cats.map(x=>`<button type="button" class="filter ${placeCategory===x?'active':''}" data-cat="${esc(x)}">${esc(x)}</button>`).join('');const q=query.trim().toLocaleLowerCase('ru');const filtered=places.filter(p=>(placeCategory==='Все'||p[1]===placeCategory)&&(!q||(p[0]+' '+p[1]+' '+p[3]).toLocaleLowerCase('ru').includes(q)));$('placesGrid').innerHTML=filtered.length?filtered.map(p=>`<div class="place"><div class="place-top"><div class="symbol">${p[2]}</div><span class="badge gray">${esc(p[1])}</span></div><h3>${esc(p[0])}</h3>${venueType(p[0])}${priceNote(p[0])}<a target="_blank" rel="noopener" href="${mapUrl(p[4])}">Открыть на карте ↗</a></div>`).join(''):'<p class="subline">Ничего не найдено. Попробуй другой запрос.</p>'}
+function drawPlaces(){const cats=['Все','Смотреть','Локанты','Рестораны','Кебабы и пиде','Фастфуд','Уличная еда','Кофе и отдых','Дискаунтеры','Магазины'];$('placeFilters').innerHTML=cats.map(x=>`<button type="button" class="filter ${placeCategory===x?'active':''}" data-cat="${esc(x)}">${esc(x)}</button>`).join('');const q=query.trim().toLocaleLowerCase('ru');const filtered=places.filter(p=>(placeCategory==='Все'||p[1]===placeCategory)&&(!q||(p[0]+' '+p[1]+' '+p[3]).toLocaleLowerCase('ru').includes(q)));$('placesGrid').innerHTML=filtered.length?filtered.map(p=>`<div class="place"><div class="place-top"><div class="symbol">${p[2]}</div><span class="badge gray">${esc(p[1])}</span></div><h3>${esc(p[0])}</h3>${venueType(p[0])}<p>${esc(p[3])}</p>${priceNote(p[0])}<a target="_blank" rel="noopener" href="${mapUrl(p[4])}">Открыть на карте ↗</a></div>`).join(''):'<p class="subline">Ничего не найдено. Попробуй другой запрос.</p>'}
 function drawShopping(){const checks=getJSON('it-shopping-v6',{}),custom=getJSON('it-custom-v5',[]);const items=[...defaultShopping.map((x,i)=>['s'+i,...x]),...custom.map((x,i)=>['c'+i,x,'Добавлено тобой'])];$('shoppingItems').innerHTML=items.map(([key,t,desc])=>`<label class="check-row"><input type="checkbox" data-shopping="${key}" ${checks[key]?'checked':''}><div><b>${esc(t)}</b></div></label>`).join('');const done=items.filter(x=>checks[x[0]]).length;$('shoppingProgressText').textContent=`${done} из ${items.length} куплено`;$('shoppingProgress').style.width=(items.length?done/items.length*100:0)+'%'}
 function budgetValue(key,def){
  const stored=getJSON('it-budget-v12-'+key,null);
