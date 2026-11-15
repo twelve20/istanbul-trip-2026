@@ -221,7 +221,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
     <div class="stack overview-right">
       <div class="card"><div class="small-label">НАША БАЗА</div><div class="large-val">Edibe Sultan Hotel</div><a class="link-btn" style="display:inline-block;padding:10px 0 0" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Edibe+Sultan+Hotel+Istanbul">Открыть на карте ↗</a></div>
       <div class="card"><div class="small-label">НАША КОМПАНИЯ</div><div class="large-val">6 человек</div></div>
-      <div class="card"><div class="small-label">НАКОПЛЕНО НА ПОЕЗДКУ</div><div class="large-val">12 000 ₽</div><div class="subline">На расходы Даши и Даниила в городе. Перелёт и отель уже оплачены.</div></div>
+      <div class="card"><div class="small-label">НАКОПЛЕНО НА ПОЕЗДКУ</div><div class="large-val">15 000 ₽</div><div class="subline">На расходы Даши и Даниила в городе. Перелёт и отель уже оплачены.</div></div>
       <div class="card quick-card"><span class="icon-dot">🛬</span><div><b>29 ноября · Прилетаем в Стамбул</b><div class="subline">LED 14:40 → IST 18:35<br>Southwind · ручная кладь 8 кг</div></div></div>
       <div class="card quick-card"><span class="icon-dot">🛫</span><div><b>3 декабря · Вылетаем в Москву</b><div class="subline">IST 17:30 → SVO 22:25<br>Аэрофлот · ручная кладь 10 кг</div></div></div>
       
@@ -242,14 +242,14 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
  <div class="stack"><div class="card"><div class="section-title"><h2>Заметки</h2></div><textarea class="notearea" id="notes" placeholder="Какие ещё сувениры и подарки привезём домой…" aria-label="Личные заметки"></textarea><p class="tiny" style="line-height:1.6">Чек-лист и заметки сохраняются только в браузере этого устройства, не синхронизируются между телефонами.</p></div></div></div>
 </section>
 <section class="view" id="budget" aria-label="Бюджет" hidden>
- <div class="budget-head"><span class="eyebrow">Накоплено 12 000 ₽</span><h2>Бюджет на двоих</h2><p>Планируем на уже отложенную сумму. Новые накопления учтём, когда они появятся.</p></div>
+ <div class="budget-head"><span class="eyebrow">Накоплено 15 000 ₽</span><h2>Бюджет на двоих</h2><p>Планируем на уже отложенную сумму. Дополнительные 3 000 ₽ распределены между едой и вечером 1 декабря; новые накопления пока не закладываем.</p></div>
  <div class="budget-layout">
   <div class="card" id="moneyInputs"></div>
   <div class="budget-total">
    <div class="eyebrow">Итого на двоих</div>
    <strong id="budgetTotal">—</strong>
    <p id="budgetEach">—</p>
-   <div class="budget-buffer"><span>Остаток от накопленных 12 000 ₽</span><b id="budgetSafe">—</b></div>
+   <div class="budget-buffer"><span>Остаток от накопленных 15 000 ₽</span><b id="budgetSafe">—</b></div>
   </div>
  </div>
 </section>
@@ -294,7 +294,7 @@ const days=[
   ['Вечер','🍽️','20:30 · Ужинаем в Buyruk Esnaf Lokantası','','Ресторан','Buyruk Esnaf Lokantasi Hocapasa Camii Sokak 12 Sirkeci Istanbul'],
   ['Вечер','🫖','Semaver Cafe — кальян и турецкий чай','','Кафе','Semaver Cafe Kennedy Caddesi Istanbul','https://www.semavercafe.com/menu','semaver30'],
  ]},
- {date:'1 декабря',week:'Вторник',short:'1 дек',title:'Галата и Босфор',desc:'Галата и Бейоглу, недорогой обед и пиде; вечер в номере — дополнительный вариант.',tags:['Вдвоём','Прогулка'],events:[
+ {date:'1 декабря',week:'Вторник',short:'1 дек',title:'Галата и Босфор',desc:'Галата и Бейоглу, обед и пиде; в 22:30 — романтический перекус в номере.',tags:['Вдвоём','Прогулка'],events:[
   ['Утро','🥐','Завтракаем в Edibe Sultan Hotel — оплачено','','Вдвоём'],
   ['Утро','🚋','Едем на T1 в Эминёню','','Трамвай','Eminönü tram station Istanbul'],
   ['Утро','🌉','Гуляем по Эминёню и Галатскому мосту','','Вдвоём','Galata Bridge Istanbul'],
@@ -305,9 +305,9 @@ const days=[
   ['День','🥙','Перекусы — варианты по пути','','Перекус',null,null,'snack01'],
   ['День','🏛️','Посещаем предполагаемую могилу Паргалы Ибрагима-паши','Район Фындыклы, Canfeda Çıkmazı, у Meclis-i Mebusan Cd. 71A. Место традиционно связывают с Ибрагимом-пашой, но точное захоронение исторически не установлено. От Таксима можно спуститься пешком.','Историческое место','Canfeda Cikmazi Meclis-i Mebusan Caddesi 71A Findikli Beyoglu Istanbul'],
   ['Вечер','🚋','Возвращаемся на трамвае T1 от Fındıklı до Sirkeci','','Трамвай','Sirkeci tram station Istanbul'],
-  ['Вечер','🛒','Продукты для вечера в номере — дополнительная остановка','Можно купить немного фруктов, сыра и сладостей по пути. Покупки вне базового расчёта на 12 000 ₽.','Продуктовый магазин','Peker Market Kucuk Ayasofya Caddesi Aksakal Sokak 14 Fatih Istanbul'],
+  ['Вечер','🛒','Продукты для вечера в номере — дополнительная остановка','Можно купить немного фруктов, сыра и сладостей по пути. На покупку продуктов заложено 900 ₺ на двоих в бюджете.','Продуктовый магазин','Peker Market Kucuk Ayasofya Caddesi Aksakal Sokak 14 Fatih Istanbul'],
   ['Вечер','🍽️','20:30 · Ужин — варианты','','Ужин',null,null,'dinner01'],
-  ['Вечер','🍇','22:30 · Романтический перекус в номере — дополнительный вариант','Инжир, виноград, beyaz peynir, фисташки, тёмный шоколад и пахлава. Ориентир 900 ₺ на двоих, отдельно от основных расходов.','Вечер в отеле','Edibe Sultan Hotel Istanbul'],
+  ['Вечер','🍇','22:30 · Романтический перекус в номере','Инжир, виноград, beyaz peynir, фисташки, тёмный шоколад и пахлава. На продуктовый набор заложено 900 ₺ на двоих — сумма уже учтена в бюджете.','Вечер в отеле','Edibe Sultan Hotel Istanbul'],
  ]},
  {date:'2 декабря',week:'Среда',short:'2 дек',title:'IKEA и день рождения',desc:'Обед, покупки и ужин в кафе по случаю дня рождения Тимохи.',tags:['Вдвоём','Возможен семейный ужин'],events:[
   ['Утро','🥐','Завтракаем в Edibe Sultan Hotel — оплачено','','Вдвоём'],
@@ -420,25 +420,25 @@ const defaultShopping=[
  ['Купить рубашку XL папе на Гранд-базаре','Размер XL']
 ];
 const budgetMeals=[
- ['d29','29 ноя · ужин Ortaklar',800],
- ['d30choice','30 ноя · обед Süleymaniye и ужин Buyruk',800],
- ['d30semaver','30 ноя · Semaver: общий кальян и 2 чая',700],
- ['d30snack1','30 ноя · один общий перекус',150],
- ['d01choice','1 дек · обед Karaköy Çorba Evi и ужин с пиде',800],
- ['d01snack1','1 дек · один общий перекус',150],
- ['d02food2','2 дек · IKEA, перекус и продукты в дорогу',500]
+  ['d29','29 ноя · ужин Ortaklar',900],
+  ['d30choice','30 ноя · обед Süleymaniye и ужин Buyruk',900],
+  ['d30semaver','30 ноя · Semaver: общий кальян и 2 чая',700],
+  ['d30snack1','30 ноя · перекус по пути',200],
+  ['d01choice','1 дек · обед Karaköy Çorba Evi и ужин с пиде',900],
+  ['d01snack1','1 дек · перекус по пути',200],
+  ['d02food2','2 дек · IKEA, перекус и продукты в дорогу',550]
 ];
 const budgetOther=[
- ['transport','Метро, трамваи и Istanbulkart на двоих',1700],
- ['gifts','Сувенир, сладости, магнит на троих + рубашка XL',900],
- ['birthdayCafe','2 дек · кафе на день рождения (наши две порции)',600]
+  ['transport','Метро, трамваи и Istanbulkart на двоих',1700],
+  ['gifts','Сувенир, сладости, магнит на троих + рубашка XL',900],
+  ['birthdayCafe','2 дек · кафе на день рождения (наши две порции)',650],
+  ['roomSnack','1 дек · романтический перекус в номере после ужина',900]
 ];
 const optionalExpenses=[
  ['hagia','Айя-София · туристическая галерея на двоих (50 €)',2800],
  ['cistern','Цистерна Базилика · два билета',3900],
- ['room','1 дек · закуски в номере после ужина, на двоих',900]
 ];
-const budgetRubLimit=12000;
+const budgetRubLimit=15000;
 const estimatedRubPerLira=1.65;
 const budgetTryLimit=Math.floor(budgetRubLimit/estimatedRubPerLira/10)*10;
 const $=id=>document.getElementById(id);
@@ -917,7 +917,7 @@ function showDay(i){
 function drawPlaces(){const cats=['Все','Смотреть','Локанты','Рестораны','Кебабы и пиде','Фастфуд','Уличная еда','Кофе и отдых','Магазины'];$('placeFilters').innerHTML=cats.map(x=>`<button type="button" class="filter ${placeCategory===x?'active':''}" data-cat="${esc(x)}">${esc(x)}</button>`).join('');const q=query.trim().toLocaleLowerCase('ru');const filtered=places.filter(p=>(placeCategory==='Все'||p[1]===placeCategory)&&(!q||(p[0]+' '+p[1]+' '+p[3]).toLocaleLowerCase('ru').includes(q)));$('placesGrid').innerHTML=filtered.length?filtered.map(p=>`<div class="place"><div class="place-top"><div class="symbol">${p[2]}</div><span class="badge gray">${esc(p[1])}</span></div><h3>${esc(p[0])}</h3>${venueType(p[0])}${priceNote(p[0])}<a target="_blank" rel="noopener" href="${mapUrl(p[4])}">Открыть на карте ↗</a></div>`).join(''):'<p class="subline">Ничего не найдено. Попробуй другой запрос.</p>'}
 function drawShopping(){const checks=getJSON('it-shopping-v6',{}),custom=getJSON('it-custom-v5',[]);const items=[...defaultShopping.map((x,i)=>['s'+i,...x]),...custom.map((x,i)=>['c'+i,x,'Добавлено тобой'])];$('shoppingItems').innerHTML=items.map(([key,t,desc])=>`<label class="check-row"><input type="checkbox" data-shopping="${key}" ${checks[key]?'checked':''}><div><b>${esc(t)}</b></div></label>`).join('');const done=items.filter(x=>checks[x[0]]).length;$('shoppingProgressText').textContent=`${done} из ${items.length} куплено`;$('shoppingProgress').style.width=(items.length?done/items.length*100:0)+'%'}
 function budgetValue(key,def){
- const stored=getJSON('it-budget-v11-'+key,null);
+ const stored=getJSON('it-budget-v12-'+key,null);
  const num=stored===null?def:Number(stored);
  return Number.isFinite(num)?Math.min(1000000,Math.max(0,num)):def;
 }
@@ -931,7 +931,7 @@ function drawBudget(){
   '<h3 class="budget-group">Транспорт, покупки, ужин и билеты</h3>'+
   ''+
   budgetOther.map(budgetRow).join('')+
-   '<p class="budget-caveat">Бюджет — уже отложенные 12 000 ₽. Завтраки, перелёт и отель оплачены. Еда и подарки заложены по нижней границе ориентиров, реальные цены и курс обмена могут отличаться. Платные музеи и набор для вечера в номере считаются отдельно. Курс для расчёта: 1 ₺ ≈ 1,65 ₽.</p>'+
+   '<p class="budget-caveat">Бюджет — уже накопленные 15 000 ₽ на двоих. Завтраки, перелёт и отель уже оплачены. Ужин, перекусы, транспорт, сувениры и романтический вечер 1 декабря включены в расчёт. Платные музеи остаются дополнительными вариантами. Курс для планирования: 1 ₺ ≈ 1,65 ₽; фактический обменный курс и цены могут отличаться.</p>'+
   '<h3 class="budget-group">Другие варианты и билеты</h3>'+optionalExpenses.map(([key,label,amount])=>`<div class="money-line optional-line"><label>${esc(label)}<span>дополнительно, на двоих</span></label><div class="optional-amount">${lira(amount)} · отдельно от основного расчёта</div></div>`).join('');
  updateBudget();
 }
@@ -941,12 +941,13 @@ function updateBudget(){
   const el=$('money-'+key);
   if(!el)continue;
   const n=Math.min(1000000,Math.max(0,Number(el.value)||0));
-  setJSON('it-budget-v11-'+key,n);
+  setJSON('it-budget-v12-'+key,n);
   total+=n;
  }
  $('budgetTotal').textContent=lira(total);
- $('budgetEach').textContent='На человека: '+lira(total/2);
- $('budgetSafe').textContent=total<=budgetTryLimit?lira(budgetTryLimit-total):'Превышение '+lira(total-budgetTryLimit);
+ $('budgetEach').textContent='≈ '+Math.round(total*estimatedRubPerLira).toLocaleString('ru-RU')+' ₽ на двоих · '+lira(total/2)+' на человека';
+ const balanceRub=Math.round(budgetRubLimit-total*estimatedRubPerLira);
+ $('budgetSafe').textContent=balanceRub>=0?balanceRub.toLocaleString('ru-RU')+' ₽':'Превышение '+Math.abs(balanceRub).toLocaleString('ru-RU')+' ₽';
 }
 function init(){nav($('desktopTabs'),false);nav($('mobileTabs'),true);showDay(activeDay);drawPlaces();drawShopping();drawBudget();try{$('notes').value=localStorage.getItem('it-notes-v5')||''}catch{};const h=location.hash.slice(1);go(tabs.some(t=>t[0]===h)?h:'overview')}
 document.addEventListener('click',e=>{const tab=e.target.closest('[data-tab]');if(tab){go(tab.dataset.tab);return}const bt=e.target.closest('[data-go]');if(bt){go(bt.dataset.go);return}const day=e.target.closest('[data-day]');if(day){showDay(Number(day.dataset.day));return}const cat=e.target.closest('[data-cat]');if(cat){placeCategory=cat.dataset.cat;drawPlaces()}});
