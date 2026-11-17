@@ -221,7 +221,6 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
     <div class="stack overview-right">
       <div class="card"><div class="small-label">НАША БАЗА</div><div class="large-val">Edibe Sultan Hotel</div><a class="link-btn" style="display:inline-block;padding:10px 0 0" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Edibe+Sultan+Hotel+Istanbul">Открыть на карте ↗</a></div>
       <div class="card"><div class="small-label">НАША КОМПАНИЯ</div><div class="large-val">6 человек</div></div>
-      <div class="card"><div class="small-label">БЮДЖЕТ НА ГОРОД</div><div class="large-val">18 000 ₽</div><div class="subline">На расходы Даши и Даниила в городе. Перелёт и отель уже оплачены.</div></div>
       <div class="card quick-card"><span class="icon-dot">🛬</span><div><b>29 ноября · Прилетаем в Стамбул</b><div class="subline">LED 14:40 → IST 18:35<br>Southwind · ручная кладь 8 кг</div></div></div>
       <div class="card quick-card"><span class="icon-dot">🛫</span><div><b>3 декабря · Вылетаем в Москву</b><div class="subline">IST 17:30 → SVO 22:25<br>Аэрофлот · ручная кладь 10 кг</div></div></div>
       
@@ -242,14 +241,13 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
  <div class="stack"><div class="card"><div class="section-title"><h2>Заметки</h2></div><textarea class="notearea" id="notes" placeholder="Какие ещё сувениры и подарки привезём домой…" aria-label="Личные заметки"></textarea><p class="tiny" style="line-height:1.6">Чек-лист и заметки сохраняются только в браузере этого устройства, не синхронизируются между телефонами.</p></div></div></div>
 </section>
 <section class="view" id="budget" aria-label="Бюджет" hidden>
- <div class="budget-head"><span class="eyebrow">Лимит · 18 000 ₽</span><h2>Бюджет на двоих</h2><p>План расходов на двоих: питание, транспорт, покупки, ужин 2 декабря и резерв.</p></div>
+ <div class="budget-head"><span class="eyebrow">Расходы по поездке</span><h2>Бюджет на двоих</h2><p>План расходов: питание, транспорт, покупки и вечерние мероприятия.</p></div>
  <div class="budget-layout">
   <div class="card" id="moneyInputs"></div>
   <div class="budget-total">
    <div class="eyebrow">Итого на двоих</div>
    <strong id="budgetTotal">—</strong>
    <p id="budgetEach">—</p>
-   <div class="budget-buffer"><span>Остаток бюджета</span><b id="budgetSafe">—</b></div>
   </div>
  </div>
 </section>
@@ -446,9 +444,7 @@ const optionalExpenses=[
  ['hagia','Айя-София · туристическая галерея на двоих (50 €)',2800],
  ['cistern','Цистерна Базилика · два билета',3900],
 ];
-const budgetRubLimit=18000;
 const estimatedRubPerLira=1.65;
-const budgetTryLimit=Math.floor(budgetRubLimit/estimatedRubPerLira/10)*10;
 const $=id=>document.getElementById(id);
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const mapUrl=name=>'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(name);
@@ -939,7 +935,7 @@ function drawBudget(){
   '<h3 class="budget-group">Транспорт, покупки, ужин и билеты</h3>'+
   ''+
   budgetOther.map(budgetRow).join('')+
-   '<p class="budget-caveat">Расчётный бюджет на двоих — 18 000 ₽. Завтраки, перелёт и отель оплачены. В смету включены еда, подарки, ужин на день рождения 2 декабря и романтический перекус 1 декабря. Платные музеи указаны отдельно. Курс для планирования: 1 ₺ ≈ 1,65 ₽; цены и фактический курс обмена могут отличаться.</p>'+
+   '<p class="budget-caveat">Завтраки, перелёт и отель оплачены. В смету включены еда, подарки, ужин на день рождения 2 декабря и романтический перекус 1 декабря. Платные музеи указаны отдельно. Курс для планирования: 1 ₺ ≈ 1,65 ₽; цены и фактический курс обмена могут отличаться.</p>'+
   '<h3 class="budget-group">Другие варианты и билеты</h3>'+optionalExpenses.map(([key,label,amount])=>`<div class="money-line optional-line"><label>${esc(label)}<span>дополнительно, на двоих</span></label><div class="optional-amount">${lira(amount)} · отдельно от основного расчёта</div></div>`).join('');
  updateBudget();
 }
@@ -954,8 +950,6 @@ function updateBudget(){
  }
  $('budgetTotal').textContent=lira(total);
  $('budgetEach').textContent='≈ '+Math.round(total*estimatedRubPerLira).toLocaleString('ru-RU')+' ₽ на двоих · '+lira(total/2)+' на человека';
- const balanceRub=Math.round(budgetRubLimit-total*estimatedRubPerLira);
- $('budgetSafe').textContent=balanceRub>=0?balanceRub.toLocaleString('ru-RU')+' ₽':'Превышение '+Math.abs(balanceRub).toLocaleString('ru-RU')+' ₽';
 }
 function init(){nav($('desktopTabs'),false);nav($('mobileTabs'),true);showDay(activeDay);drawPlaces();drawShopping();drawBudget();try{$('notes').value=localStorage.getItem('it-notes-v5')||''}catch{};const h=location.hash.slice(1);go(tabs.some(t=>t[0]===h)?h:'overview')}
 document.addEventListener('click',e=>{const tab=e.target.closest('[data-tab]');if(tab){go(tab.dataset.tab);return}const bt=e.target.closest('[data-go]');if(bt){go(bt.dataset.go);return}const day=e.target.closest('[data-day]');if(day){showDay(Number(day.dataset.day));return}const cat=e.target.closest('[data-cat]');if(cat){placeCategory=cat.dataset.cat;drawPlaces()}});
