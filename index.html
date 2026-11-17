@@ -221,7 +221,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
     <div class="stack overview-right">
       <div class="card"><div class="small-label">НАША БАЗА</div><div class="large-val">Edibe Sultan Hotel</div><a class="link-btn" style="display:inline-block;padding:10px 0 0" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Edibe+Sultan+Hotel+Istanbul">Открыть на карте ↗</a></div>
       <div class="card"><div class="small-label">НАША КОМПАНИЯ</div><div class="large-val">6 человек</div></div>
-      <div class="card"><div class="small-label">НАКОПЛЕНО НА ПОЕЗДКУ</div><div class="large-val">15 000 ₽</div><div class="subline">На расходы Даши и Даниила в городе. Перелёт и отель уже оплачены.</div></div>
+      <div class="card"><div class="small-label">НАКОПЛЕНО НА ПОЕЗДКУ</div><div class="large-val">18 000 ₽</div><div class="subline">На расходы Даши и Даниила в городе. Перелёт и отель уже оплачены.</div></div>
       <div class="card quick-card"><span class="icon-dot">🛬</span><div><b>29 ноября · Прилетаем в Стамбул</b><div class="subline">LED 14:40 → IST 18:35<br>Southwind · ручная кладь 8 кг</div></div></div>
       <div class="card quick-card"><span class="icon-dot">🛫</span><div><b>3 декабря · Вылетаем в Москву</b><div class="subline">IST 17:30 → SVO 22:25<br>Аэрофлот · ручная кладь 10 кг</div></div></div>
       
@@ -242,14 +242,14 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
  <div class="stack"><div class="card"><div class="section-title"><h2>Заметки</h2></div><textarea class="notearea" id="notes" placeholder="Какие ещё сувениры и подарки привезём домой…" aria-label="Личные заметки"></textarea><p class="tiny" style="line-height:1.6">Чек-лист и заметки сохраняются только в браузере этого устройства, не синхронизируются между телефонами.</p></div></div></div>
 </section>
 <section class="view" id="budget" aria-label="Бюджет" hidden>
- <div class="budget-head"><span class="eyebrow">Накоплено 15 000 ₽</span><h2>Бюджет на двоих</h2><p>Планируем на уже отложенную сумму. Дополнительные 3 000 ₽ распределены между едой и вечером 1 декабря; новые накопления пока не закладываем.</p></div>
+ <div class="budget-head"><span class="eyebrow">Накоплено 18 000 ₽</span><h2>Бюджет на двоих</h2><p>Планируем на уже отложенные 18 000 ₽. Прибавившиеся 3 000 ₽ распределены между едой, подарками, ужином 2 декабря и резервом.</p></div>
  <div class="budget-layout">
   <div class="card" id="moneyInputs"></div>
   <div class="budget-total">
    <div class="eyebrow">Итого на двоих</div>
    <strong id="budgetTotal">—</strong>
    <p id="budgetEach">—</p>
-   <div class="budget-buffer"><span>Остаток от накопленных 15 000 ₽</span><b id="budgetSafe">—</b></div>
+   <div class="budget-buffer"><span>Остаток от накопленных 18 000 ₽</span><b id="budgetSafe">—</b></div>
   </div>
  </div>
 </section>
@@ -428,25 +428,25 @@ const defaultShopping=[
  ['Купить рубашку XL папе на Гранд-базаре','Размер XL']
 ];
 const budgetMeals=[
-  ['d29','29 ноя · ужин Ortaklar',900],
-  ['d30choice','30 ноя · обед Süleymaniye и ужин Buyruk',900],
+  ['d29','29 ноя · ужин Ortaklar',1000],
+  ['d30choice','30 ноя · обед Süleymaniye и ужин Buyruk',1150],
   ['d30semaver','30 ноя · Semaver: общий кальян и 2 чая',700],
-  ['d30snack1','30 ноя · перекус по пути',200],
-  ['d01choice','1 дек · обед Karaköy Çorba Evi и ужин с пиде',900],
-  ['d01snack1','1 дек · перекус по пути',200],
-  ['d02food2','2 дек · IKEA, перекус и продукты в дорогу',550]
+  ['d30snack1','30 ноя · перекус по пути',300],
+  ['d01choice','1 дек · обед Karaköy Çorba Evi и ужин с пиде',1150],
+  ['d01snack1','1 дек · перекус по пути',300],
+  ['d02food2','2 дек · IKEA, перекус и продукты в дорогу',700]
 ];
 const budgetOther=[
   ['transport','Метро, трамваи и Istanbulkart на двоих',1700],
-  ['gifts','Сувенир, сладости, магнит на троих + рубашка XL',900],
-  ['birthdayCafe','2 дек · кафе на день рождения (наши две порции)',650],
-  ['roomSnack','1 дек · романтический перекус в номере после ужина',900]
+  ['gifts','Сувенир, сладости, магнит на троих + рубашка XL',1100],
+  ['birthdayCafe','2 дек · кафе на день рождения (наши две порции)',850],
+  ['roomSnack','1 дек · романтический перекус в номере после ужина',1000]
 ];
 const optionalExpenses=[
  ['hagia','Айя-София · туристическая галерея на двоих (50 €)',2800],
  ['cistern','Цистерна Базилика · два билета',3900],
 ];
-const budgetRubLimit=15000;
+const budgetRubLimit=18000;
 const estimatedRubPerLira=1.65;
 const budgetTryLimit=Math.floor(budgetRubLimit/estimatedRubPerLira/10)*10;
 const $=id=>document.getElementById(id);
@@ -925,7 +925,7 @@ function showDay(i){
 function drawPlaces(){const cats=['Все','Смотреть','Локанты','Рестораны','Кебабы и пиде','Фастфуд','Уличная еда','Кофе и отдых','Дискаунтеры','Магазины'];$('placeFilters').innerHTML=cats.map(x=>`<button type="button" class="filter ${placeCategory===x?'active':''}" data-cat="${esc(x)}">${esc(x)}</button>`).join('');const q=query.trim().toLocaleLowerCase('ru');const filtered=places.filter(p=>(placeCategory==='Все'||p[1]===placeCategory)&&(!q||(p[0]+' '+p[1]+' '+p[3]).toLocaleLowerCase('ru').includes(q)));$('placesGrid').innerHTML=filtered.length?filtered.map(p=>`<div class="place"><div class="place-top"><div class="symbol">${p[2]}</div><span class="badge gray">${esc(p[1])}</span></div><h3>${esc(p[0])}</h3>${venueType(p[0])}<p>${esc(p[3])}</p>${priceNote(p[0])}<a target="_blank" rel="noopener" href="${mapUrl(p[4])}">Открыть на карте ↗</a></div>`).join(''):'<p class="subline">Ничего не найдено. Попробуй другой запрос.</p>'}
 function drawShopping(){const checks=getJSON('it-shopping-v6',{}),custom=getJSON('it-custom-v5',[]);const items=[...defaultShopping.map((x,i)=>['s'+i,...x]),...custom.map((x,i)=>['c'+i,x,'Добавлено тобой'])];$('shoppingItems').innerHTML=items.map(([key,t,desc])=>`<label class="check-row"><input type="checkbox" data-shopping="${key}" ${checks[key]?'checked':''}><div><b>${esc(t)}</b></div></label>`).join('');const done=items.filter(x=>checks[x[0]]).length;$('shoppingProgressText').textContent=`${done} из ${items.length} куплено`;$('shoppingProgress').style.width=(items.length?done/items.length*100:0)+'%'}
 function budgetValue(key,def){
- const stored=getJSON('it-budget-v12-'+key,null);
+ const stored=getJSON('it-budget-v13-'+key,null);
  const num=stored===null?def:Number(stored);
  return Number.isFinite(num)?Math.min(1000000,Math.max(0,num)):def;
 }
@@ -939,7 +939,7 @@ function drawBudget(){
   '<h3 class="budget-group">Транспорт, покупки, ужин и билеты</h3>'+
   ''+
   budgetOther.map(budgetRow).join('')+
-   '<p class="budget-caveat">Бюджет — уже накопленные 15 000 ₽ на двоих. Завтраки, перелёт и отель уже оплачены. Ужин, перекусы, транспорт, сувениры и романтический вечер 1 декабря включены в расчёт. Платные музеи остаются дополнительными вариантами. Курс для планирования: 1 ₺ ≈ 1,65 ₽; фактический обменный курс и цены могут отличаться.</p>'+
+   '<p class="budget-caveat">Бюджет — уже накопленные 18 000 ₽ на двоих. Завтраки, перелёт и отель оплачены. Увеличили суммы на еду, подарки и день рождения 2 декабря; романтический перекус 1 декабря остаётся включённым. Платные музеи указаны отдельно. Курс для планирования: 1 ₺ ≈ 1,65 ₽; цены и фактический курс обмена могут отличаться.</p>'+
   '<h3 class="budget-group">Другие варианты и билеты</h3>'+optionalExpenses.map(([key,label,amount])=>`<div class="money-line optional-line"><label>${esc(label)}<span>дополнительно, на двоих</span></label><div class="optional-amount">${lira(amount)} · отдельно от основного расчёта</div></div>`).join('');
  updateBudget();
 }
@@ -949,7 +949,7 @@ function updateBudget(){
   const el=$('money-'+key);
   if(!el)continue;
   const n=Math.min(1000000,Math.max(0,Number(el.value)||0));
-  setJSON('it-budget-v12-'+key,n);
+  setJSON('it-budget-v13-'+key,n);
   total+=n;
  }
  $('budgetTotal').textContent=lira(total);
