@@ -203,6 +203,17 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 }
 @media(max-width:370px){.overview-right{grid-template-columns:1fr}.overview-right .quick-card{grid-column:auto}.route-top{display:block}.route-top a{display:inline-block;margin-top:5px}}
 
+.plans-status{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;margin:0 0 20px}
+.plans-card{background:#fff;border:1px solid var(--line);border-radius:11px;padding:18px 19px}
+.plans-card .plans-kicker{font-size:11px;letter-spacing:.6px;font-weight:800;text-transform:uppercase;color:var(--sub);margin-bottom:8px}
+.plans-card h3{font-size:17px;letter-spacing:-.35px;margin:0 0 7px;color:var(--ink)}
+.plans-card p{font-size:13px;line-height:1.55;color:var(--sub);margin:0}
+.plans-card.special{border-color:#c4d7e9;background:#f4f8fc}
+.day-flex-note{display:inline-block;margin-top:12px;font-size:12px;line-height:1.4;color:#d5e0ec}
+.fixed-gift{display:flex;justify-content:space-between;gap:14px;align-items:center;padding:16px 0;border-top:1px solid var(--line)}
+.fixed-gift b{font-size:16px;white-space:nowrap;color:var(--ink)}
+.fixed-gift span{display:block;margin-top:4px;font-size:12px;color:var(--sub)}
+@media(max-width:680px){.plans-status{grid-template-columns:1fr}.plans-card{padding:15px 16px}}
 </style>
 </head>
 <body>
@@ -220,7 +231,8 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
     </div>
     <div class="stack overview-right">
       <div class="card"><div class="small-label">НАША БАЗА</div><div class="large-val">Edibe Sultan Hotel</div><a class="link-btn" style="display:inline-block;padding:10px 0 0" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Edibe+Sultan+Hotel+Istanbul">Открыть на карте ↗</a></div>
-      <div class="card"><div class="small-label">НАША КОМПАНИЯ</div><div class="large-val">6 человек</div></div>
+      <div class="card"><div class="small-label">НАША КОМПАНИЯ</div><div class="large-val">6 человек</div><div class="subline">Большую часть программы согласуем с родителями Даши.</div></div>
+      <div class="card quick-card"><span class="icon-dot">💛</span><div><b>Один день только с Дашей</b><div class="subline">День обещан, точную дату выберем позднее.</div></div></div>
       <div class="card quick-card"><span class="icon-dot">🛬</span><div><b>29 ноября · Прилетаем в Стамбул</b><div class="subline">LED 14:40 → IST 18:35<br>Southwind · ручная кладь 8 кг</div></div></div>
       <div class="card quick-card"><span class="icon-dot">🛫</span><div><b>3 декабря · Вылетаем в Москву</b><div class="subline">IST 17:30 → SVO 22:25<br>Аэрофлот · ручная кладь 10 кг</div></div></div>
       
@@ -228,6 +240,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
   </div>
 </section>
 <section class="view" id="plan" aria-label="Маршрут" hidden>
+  <div class="plans-status"><div class="plans-card"><div class="plans-kicker">Гибкая программа</div><h3>Большинство мест пока под вопросом</h3><p>Основную программу будем согласовывать с родителями Даши. Пункты по датам ниже — идеи, а не утверждённое расписание.</p></div><div class="plans-card special"><div class="plans-kicker">Один день без общей компании</div><h3>День с Дашей — дата уточняется</h3><p>Возможный сценарий: Каракёй → Галата → Истикляль → ужин после 20:30 и вечер вдвоём. Не привязан к 1 декабря, можно перенести.</p></div></div>
   <div class="timeline-wrap"><aside class="side-panel"><span class="eyebrow">Маршрут поездки</span><h2>День за днём</h2><div class="day-nav" id="dayNav"></div></aside><div class="day-content"><div class="day-head" id="dayHeader"></div><div id="eventList"></div></div></div>
 </section>
 <section class="view" id="places" aria-label="Места" hidden>
@@ -241,11 +254,11 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
  <div class="stack"><div class="card"><div class="section-title"><h2>Заметки</h2></div><textarea class="notearea" id="notes" placeholder="Какие ещё сувениры и подарки привезём домой…" aria-label="Личные заметки"></textarea><p class="tiny" style="line-height:1.6">Чек-лист и заметки сохраняются только в браузере этого устройства, не синхронизируются между телефонами.</p></div></div></div>
 </section>
 <section class="view" id="budget" aria-label="Бюджет" hidden>
- <div class="budget-head"><span class="eyebrow">Расходы по поездке</span><h2>Бюджет на двоих</h2><p>План расходов: питание, транспорт, покупки и вечерние мероприятия.</p></div>
+ <div class="budget-head"><span class="eyebrow">Расходы по поездке</span><h2>Бюджет на двоих</h2><p>Расходы пока ориентировочные: семейная программа и день с Дашей ещё уточняются. Подарок Тимохе предусмотрен отдельно.</p></div>
  <div class="budget-layout">
   <div class="card" id="moneyInputs"></div>
   <div class="budget-total">
-   <div class="eyebrow">Итого на двоих</div>
+   <div class="eyebrow">Городские расходы на двоих · без подарка</div>
    <strong id="budgetTotal">—</strong>
    <p id="budgetEach">—</p>
   </div>
@@ -267,7 +280,7 @@ const I = {
 };
 const tabs=[['overview','Обзор','home'],['plan','Маршрут','plan'],['places','Места','places'],['shopping','Покупки','shopping'],['budget','Бюджет','budget']];
 const days=[
- {date:'29 ноября',week:'Воскресенье',short:'29 ноя',title:'Привет, Стамбул!',desc:'Первый вечер — прилёт, заселение и прогулка без спешки.',tags:['Вдвоём','Перелёт'],events:[
+ {date:'29 ноября',week:'Воскресенье',short:'29 ноя',title:'Привет, Стамбул!',desc:'Перелёт и заселение известны; ужин и прогулка — идеи, если останется время.',tags:['Прилёт','Варианты'],events:[
   ['День','✈️','14:40 · Вылетаем из Петербурга','Southwind Airlines: LED → IST. Ручная кладь до 8 кг, без багажа.','Вдвоём'],
   ['Вечер','🛬','18:35 · Прилетаем в Стамбул (IST)','Паспортный контроль, получение связи и трансфер в район Султанахмета.','Вдвоём'],
   ['Вечер','🎫','Покупаем Istanbulkart для поездок','','Транспортная карта','Istanbul Airport Metro M11 station'],
@@ -276,7 +289,7 @@ const days=[
   ['Вечер','🍽️','Ужинаем в Ortaklar Kebap Restaurant','','Вдвоём','Ortaklar Kebap Restaurant Peykhane 27A Istanbul'],
   ['Вечер','🌙','Гуляем по вечернему Султанахмету','','Вдвоём','Sultanahmet Istanbul']
  ]},
- {date:'30 ноября',week:'Понедельник',short:'30 ноя',title:'Старый город',desc:'Недорогая турецкая еда, старый город и вечер с кальяном в Semaver Cafe.',tags:['Вдвоём','Кафе'],events:[
+ {date:'30 ноября',week:'Понедельник',short:'30 ноя',title:'Старый город · вариант',desc:'Один из вариантов прогулки. Места и порядок могут измениться по семейному плану; Semaver Cafe тоже не согласован.',tags:['Семейные планы','Вариант'],events:[
   ['Утро','🥐','Завтракаем в Edibe Sultan Hotel — оплачено','','Вдвоём'],
   ['Утро','🕌','Осматриваем Айя-Софию снаружи','','Достопримечательность','Hagia Sophia Istanbul'],
   ['Утро','🕌','Посещаем Голубую мечеть','','Вдвоём','Blue Mosque Istanbul'],
@@ -292,7 +305,7 @@ const days=[
   ['Вечер','🍽️','20:30 · Ужинаем в Buyruk Esnaf Lokantası','','Ресторан','Buyruk Esnaf Lokantasi Hocapasa Camii Sokak 12 Sirkeci Istanbul'],
   ['Вечер','🫖','Semaver Cafe — кальян и турецкий чай','','Кафе','Semaver Cafe Kennedy Caddesi Istanbul','https://www.semavercafe.com/menu','semaver30'],
  ]},
- {date:'1 декабря',week:'Вторник',short:'1 дек',title:'Галата и Босфор',desc:'Галата и Бейоглу, обед и пиде; в 22:30 — романтический перекус в номере.',tags:['Вдвоём','Прогулка'],events:[
+ {date:'1 декабря',week:'Вторник',short:'1 дек',title:'Галата и Бейоглу · вариант',desc:'Идея для отдельного дня с Дашей, но дата пока неизвестна. Размещение маршрута под 1 декабря не означает, что день вдвоём назначен на это число.',tags:['Дата дня вдвоём уточняется','Вариант'],events:[
   ['Утро','🥐','Завтракаем в Edibe Sultan Hotel — оплачено','','Вдвоём'],
   ['Утро','🚋','Едем на T1 в Эминёню','','Трамвай','Eminönü tram station Istanbul'],
   ['Утро','🌉','Гуляем по Эминёню и Галатскому мосту','','Вдвоём','Galata Bridge Istanbul'],
@@ -303,11 +316,11 @@ const days=[
   ['День','🥙','Перекусы — варианты по пути','','Перекус',null,null,'snack01'],
   ['День','🏛️','Посещаем предполагаемую могилу Паргалы Ибрагима-паши','Район Фындыклы, Canfeda Çıkmazı, у Meclis-i Mebusan Cd. 71A. Место традиционно связывают с Ибрагимом-пашой, но точное захоронение исторически не установлено. От Таксима можно спуститься пешком.','Историческое место','Canfeda Cikmazi Meclis-i Mebusan Caddesi 71A Findikli Beyoglu Istanbul'],
   ['Вечер','🚋','Возвращаемся на трамвае T1 от Fındıklı до Sirkeci','','Трамвай','Sirkeci tram station Istanbul'],
-  ['Вечер','🛒','Продукты для вечера в номере — дополнительная остановка','Можно купить немного фруктов, сыра и сладостей по пути. На покупку продуктов заложено 900 ₺ на двоих в бюджете.','Продуктовый магазин','Peker Market Kucuk Ayasofya Caddesi Aksakal Sokak 14 Fatih Istanbul'],
+  ['Вечер','🛒','Продукты для вечера вдвоём — если выберем маршрут','Можно купить фрукты, сыр и сладости перед днём с Дашей. Дата пока не определена, ориентир затрат указан в смете.','Продуктовый магазин','Peker Market Kucuk Ayasofya Caddesi Aksakal Sokak 14 Fatih Istanbul'],
   ['Вечер','🍽️','20:30 · Ужин — варианты','','Ужин',null,null,'dinner01'],
-  ['Вечер','🍇','22:30 · Романтический перекус в номере','Инжир, виноград, beyaz peynir, фисташки, тёмный шоколад и пахлава. На продуктовый набор заложено 900 ₺ на двоих — сумма уже учтена в бюджете.','Вечер в отеле','Edibe Sultan Hotel Istanbul'],
+  ['Вечер','🍇','22:30 · Вариант перекуса с Дашей в номере','Инжир, виноград, beyaz peynir, фисташки, тёмный шоколад и пахлава. Перенесём на выбранную дату, если такой вечер впишется в планы.','Вечер в отеле','Edibe Sultan Hotel Istanbul'],
  ]},
- {date:'2 декабря',week:'Среда',short:'2 дек',title:'IKEA и день рождения',desc:'Обед, покупки и ужин в кафе по случаю дня рождения Тимохи.',tags:['Вдвоём','Возможен семейный ужин'],events:[
+ {date:'2 декабря',week:'Среда',short:'2 дек',title:'День рождения Тимохи',desc:'Подарок учтён отдельно. IKEA, кафе, время и остальные места согласуем с родителями Даши.',tags:['День рождения','Семейные планы'],events:[
   ['Утро','🥐','Завтракаем в Edibe Sultan Hotel — оплачено','','Вдвоём'],
   ['Утро','🚇','Едем в IKEA на трамвае T1 и метро M1','','Метро и трамвай','IKEA Bayrampasa Istanbul'],
   ['День','🍽️','Обедаем в IKEA Restaurant','','Вдвоём','IKEA Restaurant Bayrampasa Forum Istanbul'],
@@ -315,9 +328,9 @@ const days=[
   ['День','🥨','Перекус в Forum İstanbul — варианты','','Перекус',null,null,'snack02'],
   ['День','🚇','Возвращаемся из IKEA на метро M1 и трамвае T1','','Метро и трамвай','Sultanahmet tram station Istanbul'],
   ['Вечер','🛒','Покупаем еду в дорогу в SHOW Supermarket','','Супермаркет','SHOW Supermarket Çemberlitaş Peykhane Sokak 6 Istanbul'],
-  ['Вечер','🎂','20:30 · Ужин в честь дня рождения Тимохи — кафе по маршруту','','Ресторан',null,null,'birthday02']
+  ['Вечер','🎂','День рождения Тимохи — семейное празднование','Место и время выберут вместе с родителями Даши; варианты кафе ниже только для ориентира.','Ресторан',null,null,'birthday02']
  ]},
- {date:'3 декабря',week:'Четверг',short:'3 дек',title:'До встречи, Стамбул',desc:'Спокойное утро, дорога в аэропорт IST и обратный перелёт.',tags:['Вдвоём','Перелёт'],events:[
+ {date:'3 декабря',week:'Четверг',short:'3 дек',title:'До встречи, Стамбул',desc:'Время рейса известно; утренние планы до выезда в аэропорт могут измениться.',tags:['Перелёт','Гибкое утро'],events:[
   ['Утро','🥐','Завтракаем в Edibe Sultan Hotel — оплачено','','Вдвоём'],
   ['Утро','🧳','Собираем вещи и выезжаем из отеля','','Вдвоём'],
   ['День','🚇','Едем в аэропорт: трамвай T1 → метро M2 → M11','','Метро и трамвай','Istanbul Airport IST'],
@@ -423,22 +436,23 @@ const defaultShopping=[
  ['Один общий сувенир маме, папе и сестре','Покупаем на Гранд-базаре'],
  ['Одна общая упаковка сладостей маме, папе и сестре','Лукум, пахлава или халва'],
  ['Один общий магнитик маме, папе и сестре','Покупаем на Гранд-базаре'],
- ['Купить рубашку XL папе на Гранд-базаре','Размер XL']
+ ['Купить рубашку XL папе на Гранд-базаре','Размер XL'],
+ ['Подарок Тимохе — 4 000 ₽','Отдельно от других сувениров и трат в городе']
 ];
 const budgetMeals=[
-  ['d29','29 ноя · ужин Ortaklar',1000],
-  ['d30choice','30 ноя · обед Süleymaniye и ужин Buyruk',1150],
-  ['d30semaver','30 ноя · Semaver: общий кальян и 2 чая',700],
-  ['d30snack1','30 ноя · перекус по пути',300],
-  ['d01choice','1 дек · обед Karaköy Çorba Evi и ужин с пиде',1150],
-  ['d01snack1','1 дек · перекус по пути',300],
-  ['d02food2','2 дек · IKEA, перекус и продукты в дорогу',700]
+ ['d29','29 ноя · ужин после прилёта (вариант)',800],
+ ['d30choice','30 ноя · обед и ужин (ориентир)',850],
+ ['d30semaver','Semaver Cafe · кальян и чай, если пойдём',700],
+ ['d30snack1','Перекус во время прогулки по Старому городу',200],
+ ['d01choice','Галата и Бейоглу · обед и ужин, если выберем',950],
+ ['d01snack1','Перекус во время прогулки с Дашей',200],
+ ['d02food2','2 дек · обед, перекус и продукты в дорогу',600]
 ];
 const budgetOther=[
-  ['transport','Метро, трамваи и Istanbulkart на двоих',1700],
-  ['gifts','Сувенир, сладости, магнит на троих + рубашка XL',1100],
-  ['birthdayCafe','2 дек · кафе на день рождения (наши две порции)',850],
-  ['roomSnack','1 дек · романтический перекус в номере после ужина',1000]
+ ['transport','Метро, трамваи и Istanbulkart на двоих',1700],
+ ['gifts','Прочие сувениры и рубашка XL (без подарка Тимохе)',900],
+ ['birthdayCafe','Семейное празднование 2 декабря · наши две порции, ориентир',650],
+ ['roomSnack','Перекус в номере с Дашей · дату уточним',900]
 ];
 const optionalExpenses=[
  ['hagia','Айя-София · туристическая галерея на двоих (50 €)',2800],
@@ -908,7 +922,7 @@ function showDay(i){
  activeDay=i;
  $('dayNav').innerHTML=days.map((d,j)=>`<button type="button" data-day="${j}" class="${j===i?'active':''}"><span><b>${d.short}</b><small>${d.week}</small></span><span class="num">${j===i?'●':'›'}</span></button>`).join('');
  const d=days[i];
- $('dayHeader').innerHTML=`<div class="date">${d.date} · ${d.week}</div><h2>${d.title}</h2><p>${esc(d.desc)}</p>`;
+ $('dayHeader').innerHTML=`<div class="date">${d.date} · ${d.week}</div><h2>${d.title}</h2><p>${esc(d.desc)}</p><span class="day-flex-note">${(i===0||i===4)?'Перелёт известен; прогулки и кафе — предложения.':'Это сценарий для выбора, а не утверждённое расписание.'}</span>`;
  const renderEvent=e=>{
   const [period,emoji,title,desc,kind,map,extra]=e;
   return `<div class="entry tone-${eventTone(title)}"><div class="em" aria-hidden="true">${emoji}</div><div class="event"><h3>${esc(title)}</h3>${e[7]?renderMealVariants(e[7]):venueType(title)+priceNote(title)+transportTip(title)}${eventDesc(title,desc)}${map||extra?`<div class="event-links">${map?`<a target="_blank" rel="noopener" href="${mapUrl(map)}">↗ На карте</a>`:''}${extra?`<a target="_blank" rel="noopener" href="${extra}">Меню ↗</a>`:''}</div>`:''}</div></div>`;
@@ -921,7 +935,7 @@ function showDay(i){
 function drawPlaces(){const cats=['Все','Смотреть','Локанты','Рестораны','Кебабы и пиде','Фастфуд','Уличная еда','Кофе и отдых','Дискаунтеры','Магазины'];$('placeFilters').innerHTML=cats.map(x=>`<button type="button" class="filter ${placeCategory===x?'active':''}" data-cat="${esc(x)}">${esc(x)}</button>`).join('');const q=query.trim().toLocaleLowerCase('ru');const filtered=places.filter(p=>(placeCategory==='Все'||p[1]===placeCategory)&&(!q||(p[0]+' '+p[1]+' '+p[3]).toLocaleLowerCase('ru').includes(q)));$('placesGrid').innerHTML=filtered.length?filtered.map(p=>`<div class="place"><div class="place-top"><div class="symbol">${p[2]}</div><span class="badge gray">${esc(p[1])}</span></div><h3>${esc(p[0])}</h3>${venueType(p[0])}<p>${esc(p[3])}</p>${priceNote(p[0])}<a target="_blank" rel="noopener" href="${mapUrl(p[4])}">Открыть на карте ↗</a></div>`).join(''):'<p class="subline">Ничего не найдено. Попробуй другой запрос.</p>'}
 function drawShopping(){const checks=getJSON('it-shopping-v6',{}),custom=getJSON('it-custom-v5',[]);const items=[...defaultShopping.map((x,i)=>['s'+i,...x]),...custom.map((x,i)=>['c'+i,x,'Добавлено тобой'])];$('shoppingItems').innerHTML=items.map(([key,t,desc])=>`<label class="check-row"><input type="checkbox" data-shopping="${key}" ${checks[key]?'checked':''}><div><b>${esc(t)}</b></div></label>`).join('');const done=items.filter(x=>checks[x[0]]).length;$('shoppingProgressText').textContent=`${done} из ${items.length} куплено`;$('shoppingProgress').style.width=(items.length?done/items.length*100:0)+'%'}
 function budgetValue(key,def){
- const stored=getJSON('it-budget-v13-'+key,null);
+ const stored=getJSON('it-budget-v14-'+key,null);
  const num=stored===null?def:Number(stored);
  return Number.isFinite(num)?Math.min(1000000,Math.max(0,num)):def;
 }
@@ -935,7 +949,8 @@ function drawBudget(){
   '<h3 class="budget-group">Транспорт, покупки, ужин и билеты</h3>'+
   ''+
   budgetOther.map(budgetRow).join('')+
-   '<p class="budget-caveat">Завтраки, перелёт и отель оплачены. В смету включены еда, подарки, ужин на день рождения 2 декабря и романтический перекус 1 декабря. Платные музеи указаны отдельно. Курс для планирования: 1 ₺ ≈ 1,65 ₽; цены и фактический курс обмена могут отличаться.</p>'+
+  '<div class="fixed-gift"><div><strong>🎁 Подарок Тимохе</strong><span>Отдельная сумма на 2 декабря, в рублях</span></div><b>4 000 ₽</b></div>'+
+   '<p class="budget-caveat">Завтраки, перелёт и отель оплачены. Еда, прогулки и кафе пока не утверждены — большую часть программы определит семья. Вечер с Дашей перенесём на выбранную дату. Подарок Тимохе учтён отдельно в рублях и не входит в итог по городским расходам. Платные музеи указаны отдельно. Курс для планирования: 1 ₺ ≈ 1,65 ₽; цены и фактический курс обмена могут отличаться.</p>'+
   '<h3 class="budget-group">Другие варианты и билеты</h3>'+optionalExpenses.map(([key,label,amount])=>`<div class="money-line optional-line"><label>${esc(label)}<span>дополнительно, на двоих</span></label><div class="optional-amount">${lira(amount)} · отдельно от основного расчёта</div></div>`).join('');
  updateBudget();
 }
@@ -945,7 +960,7 @@ function updateBudget(){
   const el=$('money-'+key);
   if(!el)continue;
   const n=Math.min(1000000,Math.max(0,Number(el.value)||0));
-  setJSON('it-budget-v13-'+key,n);
+  setJSON('it-budget-v14-'+key,n);
   total+=n;
  }
  $('budgetTotal').textContent=lira(total);
